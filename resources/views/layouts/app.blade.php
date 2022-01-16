@@ -32,6 +32,7 @@
 
             <!-- Page Content -->
             <main>
+                <div id="app"></div>
                 {{ $slot }}
             </main>
         </div>

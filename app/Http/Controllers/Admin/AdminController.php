@@ -59,7 +59,8 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
 
         ]);
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+        ->with('message','ユーザー登録に成功しました');
     }
 
     /**

@@ -25,7 +25,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users=User::select('name', 'email', 'created_at')->get();
+        $users=User::select('id', 'name', 'email', 'created_at')->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -60,7 +60,7 @@ class AdminController extends Controller
 
         ]);
         return redirect()->route('admin.users.index')
-        ->with('message','ユーザー登録に成功しました');
+        ->with('message', 'ユーザー登録に成功しました');
     }
 
     /**
@@ -71,7 +71,6 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -82,7 +81,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -94,7 +94,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+        $user->name=$request->name;
+        $user->email=$request->name;
+        $user->password=Hash::make($request->password);
+        $user->save();
+        redirect()->route('admin.users.index')->with('message', 'ユーザー情報を更新しました。');
     }
 
     /**

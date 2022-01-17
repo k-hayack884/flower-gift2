@@ -96,10 +96,10 @@ class AdminController extends Controller
     {
         $user=User::findOrFail($id);
         $user->name=$request->name;
-        $user->email=$request->name;
+        $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->save();
-        redirect()->route('admin.users.index')->with('message', 'ユーザー情報を更新しました。');
+        return redirect()->route('admin.users.index')->with('message', 'ユーザー情報を更新しました。');
     }
 
     /**

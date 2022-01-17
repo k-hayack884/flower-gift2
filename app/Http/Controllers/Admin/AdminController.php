@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\AppServiceProvider;
 use Carbon\Carbon;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -33,7 +36,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -44,7 +47,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed','string', Password::defaults()],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ]);
+        return redirect()->route('admin.users.index')
+        ->with('message','ユーザー登録に成功しました');
     }
 
     /**
@@ -55,7 +71,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

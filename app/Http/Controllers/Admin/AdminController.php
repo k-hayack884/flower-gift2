@@ -111,19 +111,19 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        User::findOrFail($id)->delete();
         return redirect()->route('admin.users.index')
         ->with(['message'=>'ユーザーを削除しました',
         'status'=>'delete']);
     }
     public function expiredUserIndex()
     {
-        dd('クロウ');
-        $expireUsers=User::onlytrashed()->get();
+        $expireUsers=User::onlyTrashed()->get();
         return view('admin.expired-users', compact('expireUsers'));
     }
     public function expiredUserDestroy($id)
     {
-        User::onlytrashed()->findOrFail($id)->forceDelete();
+        User::onlyTrashed()->findOrFail($id)->forceDelete();
         return redirect()->route('admin.expired-users.index');
     }
 }

@@ -29,7 +29,7 @@ Route::resource('users', AdminController::class)
 ->middleware('auth:admin');
 
 Route::prefix('expired-users')
-->middleware('auth.admin')->group(function () {
+->middleware('auth:admin')->group(function () {
     Route::get('index', [AdminController::class,'expiredUserIndex'])->name('expired-users.index');
     Route::post('destroy/{user}', [AdminController::class,'expiredUserDestroy'])->name('expired-users.destroy');
 });

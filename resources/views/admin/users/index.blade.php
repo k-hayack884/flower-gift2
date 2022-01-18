@@ -53,7 +53,7 @@
              <form id="delete_{{ $user->id }}" method="post" action="{{ route('admin.users.destroy',['user'=>$user->id]) }}">
             @csrf
             @method('delete')
-          <a href=""data-id="{{$user->id}}" onclick="deletePost(this)" class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4"> 削除</a>
+          <a href="#" data-id="{{$user->id}}" onclick="deletePost(this)" class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4"> 削除</a>
             </form>
             </td>
           </tr>
@@ -85,5 +85,5 @@
         }
         }
         </script>
-    
+
 </x-app-layout>

@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           ユーザー管理
+           退会済みユーザー管理
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div clas済み
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -14,7 +14,7 @@
 
  <x-flash-message status="session('status')"></x-flash-message>
         <div class="flex justify-between w-full mb-4">
-      <h1 class="sm:text-4xl font-medium title-font text-gray-900  ">ユーザー管理</h1>
+      <h1 class="sm:text-4xl font-medium title-font text-gray-900  ">退会済みユーザー管理</h1>
 
       <div class="p-2 w-1/4">
             <button onclick="location.href='{{ route('admin.users.create') }}'"
@@ -50,10 +50,10 @@
             </td>
 
             <td class="w-10 text-center">
-             <form id="delete_{{ $user->id }}" method="post" action="{{ route('admin.users.destroy',['user'=>$user->id]) }}">
+             <form id="delete_{{ $user->id }}" method="post" action="{{ route('admin.expired-users.destroy',['user'=>$user->id]) }}">
             @csrf
             @method('delete')
-          <a href=""data-id="{{$user->id}}" onclick="deletePost(this)" class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4"> 削除</a>
+          <a href=""data-id="{{$user->id}}" onclick="deletePost(this)" class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4"> 完全に削除</a>
             </form>
             </td>
           </tr>

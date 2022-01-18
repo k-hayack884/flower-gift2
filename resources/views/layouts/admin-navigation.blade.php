@@ -21,6 +21,11 @@
                         {{ __('ユーザー管理') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.expired-users.index')" :active="request()->routeIs('admin.expired-users.index')">
+                        {{ __('退会ユーザー管理') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

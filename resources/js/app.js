@@ -2,14 +2,14 @@ import './bootstrap'
 
 import { createApp } from 'vue'
 import Counter from './components/Counter.vue'
-import deleteButton  from './components/delete-button.vue'
+// import deleteButton  from './components/delete-button.vue'
 Vue.createApp(Counter).mount('#app')
-Vue.createApp(deleteButton).mount('#hoge')
+// Vue.createApp(deleteButton).mount('#hoge')
 
 createApp({
     components: {
         Counter,
-        deleteButton
+        // deleteButton
     }
 }).mount('#app')
 

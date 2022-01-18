@@ -59,8 +59,8 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
 
         ]);
-        return redirect()->route('admin.users.index')
-        ->with('message', 'ユーザー登録に成功しました');
+        return redirect()->route('admin.users.index')->with(['message'=>'ユーザーを登録しました',
+        'status'=> 'info']);
     }
 
     /**
@@ -99,7 +99,8 @@ class AdminController extends Controller
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
         $user->save();
-        return redirect()->route('admin.users.index')->with('message', 'ユーザー情報を更新しました。');
+        return redirect()->route('admin.users.index')->with(['message'=>'ユーザーを更新しました',
+        'status'=> 'info']);
     }
 
     /**
@@ -110,6 +111,19 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('admin.users.index')
+        ->with(['message'=>'ユーザーを削除しました',
+        'status'=>'delete']);
+    }
+    public function expiredUserIndex()
+    {
+        dd('クロウ');
+        $expireUsers=User::onlytrashed()->get();
+        return view('admin.expired-users', compact('expireUsers'));
+    }
+    public function expiredUserDestroy($id)
+    {
+        User::onlytrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('admin.expired-users.index');
     }
 }

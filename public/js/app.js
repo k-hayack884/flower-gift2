@@ -24548,10 +24548,18 @@ module.exports = {
 var Counter = {
   data: function data() {
     return {
-      counter: 'あへあへ'
+      counter: 0
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    setInterval(function () {
+      _this.counter++;
+    }, 1000);
   }
 };
+Vue.createApp(Counter).mount('#counter');
 
 /***/ }),
 
@@ -24568,14 +24576,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Sample Component", -1
-/* HOISTED */
-);
-
-var _hoisted_2 = [_hoisted_1];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, _hoisted_2);
+  return " Counter: @" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.counter);
 }
 
 /***/ }),
@@ -24597,14 +24599,14 @@ __webpack_require__.r(__webpack_exports__);
 
  // import deleteButton  from './components/delete-button.vue'
 
-Vue.createApp(_components_Counter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#app'); // Vue.createApp(deleteButton).mount('#hoge')
+Vue.createApp(_components_Counter_vue__WEBPACK_IMPORTED_MODULE_2__["default"]).mount('#counter'); // Vue.createApp(deleteButton).mount('#hoge')
+// createApp({
+//     components: {
+//         Counter,
+//         // deleteButton
+//     }
+// }).mount('#app')
 
-(0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)({
-  components: {
-    Counter: _components_Counter_vue__WEBPACK_IMPORTED_MODULE_2__["default"] // deleteButton
-
-  }
-}).mount('#app');
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_3__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_3__["default"].start();

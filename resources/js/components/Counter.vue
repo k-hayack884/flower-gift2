@@ -1,15 +1,19 @@
 <template>
-    <div>
-        <h1>Sample Component</h1>
-    </div>
+  Counter: @{{ counter }}
 </template>
 
 <script>
 const Counter = {
-data() {
-return {
-counter: 'あへあへ'
+  data() {
+    return {
+      counter: 0
+    }
+  },
+   mounted() {
+    setInterval(() => {
+      this.counter++
+    }, 1000)
+  }
 }
-}
-}
+Vue.createApp(Counter).mount('#counter')
 </script>

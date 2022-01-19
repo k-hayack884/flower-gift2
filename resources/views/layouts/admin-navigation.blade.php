@@ -76,6 +76,12 @@
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                {{ __('ユーザー管理') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('admin.expired-users.index')" :active="request()->routeIs('admin.expired-users.index')">
+                {{ __('退会ユーザー管理') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

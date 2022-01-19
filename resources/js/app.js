@@ -3,15 +3,15 @@ import './bootstrap'
 import { createApp } from 'vue'
 import Counter from './components/Counter.vue'
 // import deleteButton  from './components/delete-button.vue'
-Vue.createApp(Counter).mount('#app')
+Vue.createApp(Counter).mount('#counter')
 // Vue.createApp(deleteButton).mount('#hoge')
 
-createApp({
-    components: {
-        Counter,
-        // deleteButton
-    }
-}).mount('#app')
+// createApp({
+//     components: {
+//         Counter,
+//         // deleteButton
+//     }
+// }).mount('#app')
 
 import Alpine from 'alpinejs';
 

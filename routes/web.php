@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.welcome');
 });
+
+Route::resource('profile', ProfileController::class)
+->middleware('auth:users');
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');

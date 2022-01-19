@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\AppServiceProvider;
 use Carbon\Carbon;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -22,7 +25,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users=User::select('name', 'email', 'created_at')->get();
+        $users=User::select('id', 'name', 'email', 'created_at')->paginate(5);
         return view('admin.users.index', compact('users'));
     }
 
@@ -33,7 +36,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -44,7 +47,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed','string', Password::defaults()],
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ]);
+        return redirect()->route('admin.users.index')->with(['message'=>'ユーザーを登録しました',
+        'status'=> 'info']);
     }
 
     /**
@@ -55,7 +71,6 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -66,7 +81,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -78,7 +94,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->save();
+        return redirect()->route('admin.users.index')->with(['message'=>'ユーザーを更新しました',
+        'status'=> 'info']);
     }
 
     /**
@@ -89,6 +111,19 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->route('admin.users.index')
+        ->with(['message'=>'ユーザーを削除しました',
+        'status'=>'delete']);
+    }
+    public function expiredUserIndex()
+    {
+        $expireUsers=User::onlyTrashed()->get();
+        return view('admin.expired-users', compact('expireUsers'));
+    }
+    public function expiredUserDestroy($id)
+    {
+        User::onlyTrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('admin.expired-users.index');
     }
 }

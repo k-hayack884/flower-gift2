@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name'=>'ドルベ',
             'email'=>'barian@books',
+            'comment' => 'バリアンの白き盾!',
+            'prefecture'=>'北海道',
             'password'=>Hash::make('sirokitate'),
             'created_at'=>'2022/01/01 00:01:02'
             ]);

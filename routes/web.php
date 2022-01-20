@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
     // Route::get('index', [ProfileController::class], 'index')->name('profiles.index');
     Route::get('show/{profile} ', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('edit/{profile} ', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::post('update/{profile} ', [ProfileController::class, 'update'])->name('profiles.update');
 });
 Route::get('/dashboard', function () {
     return view('user.dashboard');

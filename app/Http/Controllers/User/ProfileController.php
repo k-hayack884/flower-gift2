@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Providers\AppServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Validation\Rules\Password;
@@ -22,12 +24,25 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth:users');
+//直接別ユーザーにアクセスするとはじくシステム
+        $this->middleware(function($request,$next){
+            $id=$request->route()->parameter('profile');
+            if(!is_null($id)){
+                $userId=User::findOrFail($id)->id;
+                $currentUserId=(int)$userId;
+                $authId=Auth::id();
+                if($currentUserId!==$authId){
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
+
     }
 
     public function index()
     {
-$userId=Auth::id();
-return view('user.profiles.index',compact('userId'));
+
     }
 
     /**
@@ -59,8 +74,9 @@ return view('user.profiles.index',compact('userId'));
      */
     public function show($id)
     {
-        $user=User::findOrFail($id);
-        return view('user.profiles.show', compact('user'));
+        $userProfile=User::findOrFail($id);
+
+        return view('user.profiles.show', compact('userProfile'));
     }
 
     /**
@@ -71,7 +87,9 @@ return view('user.profiles.index',compact('userId'));
      */
     public function edit($id)
     {
-        //
+        $userProfile = User::findOrFail($id);
+
+        return view('user.profiles.edit', compact('userProfile'));
     }
 
     /**
@@ -83,7 +101,15 @@ return view('user.profiles.index',compact('userId'));
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request);
+        $userProfile = User::findOrFail($id);
+        $imageFile=$request->image;
+        dd($imageFile);
+        if(!is_null($imageFile)&&$imageFile->isValid()){
+        Storage::putFile('public/profiles',$imageFile);
+
+        }
+        return redirect()->route('user.profiles.show',['profile' => $userProfile->id]);
     }
 
     /**

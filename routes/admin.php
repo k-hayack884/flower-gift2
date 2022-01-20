@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,8 @@ Route::prefix('expired-users')
     Route::get('index', [AdminController::class,'expiredUserIndex'])->name('expired-users.index');
     Route::post('destroy/{user}', [AdminController::class,'expiredUserDestroy'])->name('expired-users.destroy');
 });
-
+Route::resource('users', AdminController::class)
+->middleware('auth:admin')->except(['show']);
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

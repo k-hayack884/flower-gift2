@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,15 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::resource('profile', ProfileController::class)
-->middleware('auth:users');
+// Route::resource('profile', ProfileController::class)
+// ->middleware('auth:users');
 
+Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
+    // Route::get('index', [ProfileController::class], 'index')->name('profiles.index');
+    Route::get('show/{profile} ', [ProfileController::class, 'show'])->name('profiles.show');
+});
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

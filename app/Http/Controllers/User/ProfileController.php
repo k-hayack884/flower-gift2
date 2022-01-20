@@ -4,6 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\AppServiceProvider;
+use Carbon\Carbon;
+use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
@@ -12,8 +18,16 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+    }
+
     public function index()
     {
+$userId=Auth::id();
+return view('user.profiles.index',compact('userId'));
     }
 
     /**
@@ -46,7 +60,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user=User::findOrFail($id);
-        return view('user.profile.show', compact('user'));
+        return view('user.profiles.show', compact('user'));
     }
 
     /**

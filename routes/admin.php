@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-// Route::prefix('expired-users')
-// ->middleware('auth:admin')->group(function () {
-//     Route::get('index', [AdminController::class,'expiredUserIndex'])->name('expired-users.index');
-//     Route::post('destroy/{user}', [AdminController::class,'expiredUserDestroy'])->name('expired-users.destroy');
-// });
+Route::prefix('expired-users')
+->middleware('auth:admin')->group(function () {
+    Route::get('index', [AdminController::class,'expiredUserIndex'])->name('expired-users.index');
+    Route::post('destroy/{user}', [AdminController::class,'expiredUserDestroy'])->name('expired-users.destroy');
+});
 
 
 Route::get('/dashboard', function () {

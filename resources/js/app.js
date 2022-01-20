@@ -3,8 +3,10 @@ import './bootstrap'
 import { createApp } from 'vue'
 import Counter from './components/Counter.vue'
 // import deleteButton  from './components/delete-button.vue'
-Vue.createApp(Counter).mount('#counter')
-// Vue.createApp(deleteButton).mount('#hoge')
+
+if (document.getElementById('counter')){
+    Vue.createApp(Counter).mount('#counter')
+}
 
 // createApp({
 //     components: {

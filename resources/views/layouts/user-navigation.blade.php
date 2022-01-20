@@ -17,9 +17,10 @@
                     </x-nav-link>
                 </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('user.profile.show')" :active="request()->routeIs('user.profile.show')">
+                    <x-nav-link :href="route('user.profiles.show',['profile' => auth()->user()->id])" :active="request()->routeIs('user.profiles.show',['profile' => auth()->user()->id])">
                         {{ __('ユーザー管理') }}
                     </x-nav-link>
+
                 </div>
             </div>
 

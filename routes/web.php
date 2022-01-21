@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -29,6 +30,10 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
     Route::post('update/{profile}', [ProfileController::class,'update'])->name('profiles.update');
     Route::post('destroy/{profile}', [ProfileController::class,'destroy'])->name('profiles.destroy');
 });
+
+Route::resource('products',ProductController::class)
+->middleware('auth:users')->except('show');
+
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');

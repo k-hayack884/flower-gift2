@@ -102,13 +102,32 @@ class ProfileController extends Controller
      */
     public function update(UploadImageRequest $request, $id)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'comment' => [ 'string', 'max:200'],
+            'password' => ['required', 'confirmed','string', Password::defaults()],
+        ]);
         $userProfile = User::findOrFail($id);
         $imageFile=$request->image;
         if (!is_null($imageFile)&&$imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
             $fileNameToStore=ImageService::upload($imageFile, 'profiles');
         }
-        return redirect()->route('user.profiles.show', ['profile' => $userProfile->id]);
+        $user=User::findOrFail($id);
+        $user->name=$request->name;
+        $user->comment=$request->comment;
+        $user->prefecture=$request->prefecture;
+        $user->password=Hash::make($request->password);
+        if (!is_null($imageFile&&$imageFile->isValid())) {
+            $user->img=$fileNameToStore;
+        }
+        
+        $user->save();
+        
+        return redirect()
+        ->route('user.profiles.show', ['profile' => $userProfile->id])
+        ->with(['message'=>'ユーザーを編集しました',
+        'status'=> 'info']);
     }
 
     /**
@@ -119,6 +138,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        Auth::guard('users')->logout();
+        return redirect('/');
     }
 }

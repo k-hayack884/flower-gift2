@@ -5,7 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Secondary;
+use App\Models\PrimaryCategory;
+use App\Models\SecondaryCategory;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -64,7 +65,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories=PrimaryCategory::with('secondary')->get();
+        return view('user.products.create', compact('categories'));
     }
 
     /**
@@ -73,9 +75,32 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadImageRequest $request)
     {
-        //
+        $request->validate([
+            'category'=>['required', 'exists:secondary_categories,id',],
+            'name' => ['required', 'string', 'max:50'],
+            'comment' => ['required', 'string', 'max:200'],
+            'status' => ['required'],
+        ]);
+        $imageFile=$request->image;
+        if (!is_null($imageFile)&&$imageFile->isValid()) {
+            // Storage::putFile('public/profiles', $imageFile);//リサイズなし
+            $fileNameToStore=ImageService::upload($imageFile, 'products');
+        }
+        $product=Product::create([
+            'user_id'=>Auth::id(),
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'status' => $request->status,
+            'img' => $fileNameToStore,
+            'secondary_category_id'=>$request->category
+
+        ]);
+        return redirect()
+        ->route('user.products.index')
+        ->with(['message'=>'商品を登録しました',
+        'status'=> 'info']);
     }
 
     /**

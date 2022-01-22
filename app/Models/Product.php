@@ -10,6 +10,15 @@ use App\Models\SecondaryCategory;
 class Product extends Model
 {
     use HasFactory;
+    //データベースに登録してくれるすごいやつ
+    protected $fillable = [
+        'user_id',
+        'secondary_category_id',
+        'name',
+        'comment',
+        'img',
+        'status'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -33,8 +33,8 @@ class ProductController extends Controller
         $this->middleware(function ($request, $next) {
             $id=$request->route()->parameter('product');
             if (!is_null($id)) {
-                $userId=User::findOrFail($id)->id;
-                $currentUserId=(int)$userId;
+                $productId=Product::findOrFail($id)->user_id;
+                $currentUserId=(int)$productId;
                 $authId=Auth::id();
                 if ($currentUserId!==$authId) {
                     abort(404);
@@ -43,7 +43,7 @@ class ProductController extends Controller
             return $next($request);
         });
     }
-     
+
     public function index()
     {
         $productInfo=User::with('product.category') //モデルのリレーションのファンクションでつなぐ
@@ -81,6 +81,7 @@ class ProductController extends Controller
             'category'=>['required', 'exists:secondary_categories,id',],
             'name' => ['required', 'string', 'max:50'],
             'comment' => ['required', 'string', 'max:200'],
+            'image' => ['image','mimes:jpg,jpeg,png','max:2048'],
             'status' => ['required'],
         ]);
         $imageFile=$request->image;
@@ -122,7 +123,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = PrimaryCategory::with('secondary')->get();
+        return view('user.products.edit',compact('product','categories'));
     }
 
     /**
@@ -134,8 +137,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'category' => ['required', 'exists:secondary_categories,id',],
+            'name' => ['required', 'string', 'max:50'],
+            'comment' => ['required', 'string', 'max:200'],
+            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'status' => ['required','between:0,2'],
+        ]);
+        $product = Product::findOrFail($id);
+        $categories = PrimaryCategory::with('secondary')->get();
+        $imageFile = $request->image;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            // Storage::putFile('public/profiles', $imageFile);//リサイズなし
+            $fileNameToStore = ImageService::upload($imageFile, 'products');
+        }
+        $product->name = $request->name;
+        $product->comment = $request->comment;
+        $product->status = $request->status;
+        $product->secondary_category_id = $request->category;
+        $product->img = $fileNameToStore;
+
+
+        $product->save();
+
+        return redirect()
+            ->route('user.products.index')
+            ->with([
+                'message' => '商品を編集しました',
+                'status' => 'info'
+            ]);
     }
+
 
     /**
      * Remove the specified resource from storage.

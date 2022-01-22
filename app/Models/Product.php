@@ -14,8 +14,8 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function secondary()
+    public function category()
     {
-        return $this->belongsTo(SecondaryCategory::class);
+        return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
     }
 }

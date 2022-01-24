@@ -24,7 +24,11 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image|mimes:jpg,jpeg,png|max:2048',
+            'category' => ['required', 'exists:secondary_categories,id',],
+            'name' => ['required', 'string', 'max:50'],
+            'comment' => ['required', 'string', 'max:200'],
+            'status' => ['required','between:0,2'],
+             'image' => ['image','mimes:jpg,jpeg,png','max:2048'],
         ];
     }
 }

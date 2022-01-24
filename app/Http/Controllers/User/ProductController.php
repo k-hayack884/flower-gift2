@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Providers\AppServiceProvider;
 use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\ProductRequest;
 use App\Services\ImageService;
 use Carbon\Carbon;
 use InterventionImage;
@@ -75,15 +76,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UploadImageRequest $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'category'=>['required', 'exists:secondary_categories,id',],
-            'name' => ['required', 'string', 'max:50'],
-            'comment' => ['required', 'string', 'max:200'],
-            'image' => ['image','mimes:jpg,jpeg,png','max:2048'],
-            'status' => ['required'],
-        ]);
         $imageFile=$request->image;
         if (!is_null($imageFile)&&$imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
@@ -125,7 +119,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = PrimaryCategory::with('secondary')->get();
-        return view('user.products.edit',compact('product','categories'));
+        return view('user.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -135,15 +129,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $request->validate([
-            'category' => ['required', 'exists:secondary_categories,id',],
-            'name' => ['required', 'string', 'max:50'],
-            'comment' => ['required', 'string', 'max:200'],
-            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'status' => ['required','between:0,2'],
-        ]);
         $product = Product::findOrFail($id);
         $categories = PrimaryCategory::with('secondary')->get();
         $imageFile = $request->image;
@@ -177,6 +164,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::findOrFail($id)->delete();
+        return redirect()->route('user.products.index')->with([
+                'message' => '商品を削除しました',
+                'status' => 'delete'
+            ]);
     }
 }

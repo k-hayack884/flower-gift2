@@ -97,7 +97,7 @@
   <script>
     'use strict';
         function deletePost(e){
-        if(confirm('本当に削除してもよろしいですか？')){
+        if(confirm('本当に退会してもよろしいですか？')){
           document.getElementById('delete_'+e.dataset.id).submit();
         }
         }

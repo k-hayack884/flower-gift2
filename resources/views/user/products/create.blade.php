@@ -66,8 +66,8 @@
                                         <div class="p-2 w-1/2 mx-auto">
                                         <div class="flex justify-around">
         
-                                                <div><input type="radio" name="status" value="0" checked>販売中</div>
-                                                <div><input type="radio" name="status" value="1">取引中</div>
+                                                <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['sell']}}" checked>販売中</div>
+                                                <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['transaction']}}">取引中</div>
                                         </div>
                                        
                                     </div>

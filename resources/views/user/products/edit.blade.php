@@ -67,9 +67,9 @@
                                     <div class="p-2 w-1/2 mx-auto">
                                         <div class="flex justify-around">
 
-                                            <div><input type="radio" name="status" value="0" @if ($product->status===0)checked @endif>販売中</div>
-                                            <div><input type="radio" name="status" value="1" @if ($product->status===1)checked @endif>取引中</div>
-                                            <div><input type="radio" name="status" value="2" @if ($product->status===2)checked @endif>販売終了</div>
+                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['sell']}}" @if ($product->status===0)checked @endif>販売中</div>
+                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['transaction']}}" @if ($product->status===1)checked @endif>取引中</div>
+                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['sold']}}" @if ($product->status===2)checked @endif>販売終了</div>
                                         </div>
 
                                     </div>
@@ -82,10 +82,20 @@
 
 
                                         <button type="submit"
-                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">登録</button>
+                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">更新</button>
                                     </div>
+                                    <div class="flex justify-center">
 
+</div>
                                 </form>
+                                                                     <form id="delete_{{ $product->id }}" method="post"
+              action="{{ route('user.products.destroy',['product'=>$product->id]) }}">
+              @csrf
+              @method('DELETE')
+              <a href="#" data-id="{{$product->id}}" onclick="deletePost(this)"
+                class=" mx-auto  text-center text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg my-8">
+                削除する</a>
+            </form>
 
 
                             </div>
@@ -97,4 +107,13 @@
         </div>
     </div>
     </div>
+  <script>
+  'use strict';
+        function deletePost(e){
+        if(confirm('本当に退会してもよろしいですか？')){
+          document.getElementById('delete_'+e.dataset.id).submit();
+        }
+        }
+  </script>
+  </script>   
 </x-app-layout>

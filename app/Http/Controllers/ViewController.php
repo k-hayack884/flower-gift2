@@ -12,10 +12,14 @@ use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $productInfo=Product::with('category')
-        ->paginate(20);
+
+$productInfo =Product::availableItems()
+->sortOrder($request->sort)
+->paginate(20); //ローカルスコープ
+
+
         return view('user.welcome', compact('productInfo'));
     }
 }

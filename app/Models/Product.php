@@ -27,4 +27,28 @@ class Product extends Model
     {
         return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
     }
+    public function scopeAvailableItems($query)
+    {
+        Product::with('category')
+            ->where('status', 0)
+            ->orWhere('status', 1)
+            ->orderBy('created_at', 'desc');
+
+        return $query;
+    }
+
+    public function scopeSortOrder($query, $sortOrder)
+    {
+        if ($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['later']) {
+            return $query->orderBy('created_at', 'desc');
+        }
+        if ($sortOrder === \Constant::SORT_ORDER['older']) {
+            return $query->orderBy('created_at', 'asc');
+        }
+        // if ($sortOrder === \Constant::SORT_ORDER['like']) {
+        //     return $query->orderBy('', 'desc');
+        // }
+
+        return $query;
+    }
 }

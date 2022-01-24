@@ -16,6 +16,17 @@
             @endif
 
         </div>
+<form action="#" method="get">
+<span class="text-sm">表示順</span><br>
+<select name="sort" id="sort">
+  <option value="{{ \Constant::SORT_ORDER['later'] }}"@if(\Request::get('sort')===\Constant::SORT_ORDER['later']) selected @endif>新しい順
+  </option>
+  <option value="{{ \Constant::SORT_ORDER['older'] }}" @if(\Request::get('sort')===\Constant::SORT_ORDER['older'])
+      selected @endif>古い順
+    </option>
+</select>
+</form>
+
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-24 mx-auto">
               <div class="flex flex-wrap m-4">
@@ -37,4 +48,12 @@
          {{$productInfo->links()}}
     </body>
 </html>
+
+<script>
+const select=document.getElementById('sort')
+select.addEventListener('change',function(){
+  this.form.submit()
+})
+
+</script>
 </x-app-layout>

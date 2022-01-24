@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\ViewController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
@@ -16,9 +17,8 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
-});
+Route::get('/', [ViewController::class,'index'])->name('view');
+
 
 // Route::resource('profile', ProfileController::class)
 // ->middleware('auth:users');

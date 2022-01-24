@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -138,7 +139,18 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
+        try {
+            DB::transaction(function () use ($id) {
+                Product::select('id', )
+                ->where('user_id', Auth::id())->delete();
+                
+                User::select('id', 'name')
+                ->where('id', Auth::id())->delete();
+            }, 2); //試行する回数
+        } catch (Throwable $e) {
+            Log::error($e);
+            throw $e;
+        }
         Auth::guard('users')->logout();
         return redirect('/');
     }

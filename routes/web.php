@@ -3,7 +3,9 @@
 use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\ViewController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,13 +14,12 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" miuserddleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
-});
+Route::get('/', [ViewController::class,'index'])->name('view');
+
 
 // Route::resource('profile', ProfileController::class)
 // ->middleware('auth:users');
@@ -31,11 +32,10 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
     Route::post('destroy/{profile}', [ProfileController::class,'destroy'])->name('profiles.destroy');
 });
 
-Route::resource('products',ProductController::class)
+Route::resource('products', ProductController::class)
 ->middleware('auth:users')->except('show');
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+Route::get('/dashboard', [ ProductController::class,'view'])
+->middleware(['auth:users'])->name('user.dashboard');
 
 require __DIR__ . '/auth.php';

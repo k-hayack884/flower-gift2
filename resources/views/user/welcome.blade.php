@@ -19,8 +19,7 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-24 mx-auto">
               <div class="flex flex-wrap m-4">
-                @foreach($productInfo as $info)
-                @foreach ($info->product as $product)
+                @foreach($productInfo as $product)
                 <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                   <a href="{{ route('user.products.edit',['product'=>$product->id]) }}" class="block relative h-48 rounded overflow-hidden">
                     <x-product-image :filename="$product->img" />
@@ -32,11 +31,10 @@
                   </div>
                 </div>
                 @endforeach
-                @endforeach
               </div>
             </div>
         </div>
-        
+         {{$productInfo->links()}}
     </body>
 </html>
 </x-app-layout>

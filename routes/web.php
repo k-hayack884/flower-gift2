@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\ViewController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,7 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
 Route::resource('products', ProductController::class)
 ->middleware('auth:users')->except('show');
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+Route::get('/dashboard', [ ProductController::class,'view'])
+->middleware(['auth:users'])->name('user.dashboard');
 
 require __DIR__ . '/auth.php';

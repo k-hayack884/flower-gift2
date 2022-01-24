@@ -45,6 +45,15 @@ class ProductController extends Controller
         });
     }
 
+    public function view()
+    {
+        $productInfo=Product::with('category')
+        ->paginate(20);
+        // dd($productInfo);
+        //モデルのリレーションのファンクションでつなぐ
+
+        return view('user.dashboard', compact('productInfo'));
+    }
     public function index()
     {
         $productInfo=User::with('product.category') //モデルのリレーションのファンクションでつなぐ

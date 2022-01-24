@@ -14,9 +14,8 @@ class ViewController extends Controller
 {
     public function index()
     {
-        $productInfo=User::with('product.category')
-        ->get();//モデルのリレーションのファンクションでつなぐ
-
+        $productInfo=Product::with('category')
+        ->paginate(20);
         return view('user.welcome', compact('productInfo'));
     }
 }

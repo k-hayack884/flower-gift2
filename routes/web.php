@@ -36,6 +36,6 @@ Route::resource('products', ProductController::class)
 ->middleware('auth:users')->except('show');
 
 Route::get('/dashboard', [ ProductController::class,'view'])
-->middleware(['auth:users'])->name('user.dashboard');
+->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

@@ -39,16 +39,43 @@ class Product extends Model
 
     public function scopeSortOrder($query, $sortOrder)
     {
-        if ($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['later']) {
-            return $query->orderBy('created_at', 'desc');
+        if ($sortOrder === null || $sortOrder === \Constant::ORDER_LIST['later']) {
+            return $query->where('status', 0)
+            ->orWhere('status', 1)->orderBy('created_at', 'desc');
         }
-        if ($sortOrder === \Constant::SORT_ORDER['older']) {
-            return $query->orderBy('created_at', 'asc');
+        if ($sortOrder === \Constant::ORDER_LIST['older']) {
+            return $query->where('status', 0)
+            ->orWhere('status', 1)->orderBy('created_at', 'asc');
         }
         // if ($sortOrder === \Constant::SORT_ORDER['like']) {
         //     return $query->orderBy('', 'desc');
         // }
-
+        if ($sortOrder === \Constant::ORDER_LIST['sell']) {
+            return $query->where('status', 0)->orderBy('created_at', 'desc');
+        }
         return $query;
+    }
+    
+    public function scopeSelectCategory($query, $categoryId)
+    {
+        if ($categoryId!=='0') {
+            return $query->where('products.secondary_category_id', $categoryId);
+        } else {
+            return;
+        }
+    }
+    public function scopeSearchKeyword($query, $keyword)
+    {
+        if (!is_null($keyword)) {
+            $spaceConvert=mb_convert_kana($keyword, 's'); //全角スペースを半角にする
+            $keywords=preg_split('/[\s]+/', $spaceConvert, -1, PREG_SPLIT_NO_EMPTY);
+            //[/s]はスペースのエスケープ
+            foreach ($keywords as $word) {
+                $query->where('products.name', 'like', '%'.$word.'%');
+            }
+            return $query;
+        } else {
+            return;
+        }
     }
 }

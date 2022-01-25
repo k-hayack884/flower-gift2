@@ -18,11 +18,13 @@ class Common
     const ORDER_LATER = '0';
     const ORDER_OLDER = '1';
     const ORDER_LIKE = '2';
+    const ORDER_SELL = '3';
 
     const ORDER_LIST = [
 
-        'later' => self::PRODUCT_LATER,
-        'older' => self::PRODUCT_OLDER,
-        'like' => self::PRODUCT_LIKE
+        'later' => self::ORDER_LATER,
+        'older' => self::ORDER_OLDER,
+        'like' => self::ORDER_LIKE,
+        'sell' => self::ORDER_SELL
     ];
 }

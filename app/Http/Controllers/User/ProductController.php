@@ -45,14 +45,17 @@ class ProductController extends Controller
         });
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        $productInfo=Product::with('category')
-        ->paginate(20);
+        $categories=PrimaryCategory::with('secondary')->get();
+        $productInfo=Product::availableItems()
+        ->selectCategory($request->category ?? '0')
+        ->searchKeyword($request->keyword ?? '')
+        ->sortOrder($request->sort)->with('category')->paginate(20); //n+1なんとかなた
         // dd($productInfo);
         //モデルのリレーションのファンクションでつなぐ
 
-        return view('user.dashboard', compact('productInfo'));
+        return view('user.dashboard', compact('productInfo', 'categories'));
     }
     public function index()
     {

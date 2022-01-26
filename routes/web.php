@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\ViewController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +35,10 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
 
 Route::resource('products', ProductController::class)
 ->middleware('auth:users')->except('show');
+
+Route::prefix('trades')->middleware(['auth:users'])->group(function () {
+    Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
+});
 
 Route::get('/dashboard', [ ProductController::class,'view'])
 ->middleware(['auth:users'])->name('dashboard');

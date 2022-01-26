@@ -20,8 +20,8 @@ class ViewController extends Controller
         ->selectCategory($request->category ?? '0')
         ->searchKeyword($request->keyword ?? '')
         ->sortOrder($request->sort)->with('category')->paginate(20); //n+1なんとかなた
-        
+
         // dd($category, $keyword, $sort);
-        return view('user.welcome', compact('productInfo', 'categories'));
+        return view('welcome', compact('productInfo', 'categories'));
     }
 }

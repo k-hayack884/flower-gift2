@@ -18,13 +18,22 @@ use App\Http\Requests\ProductRequest;
 use App\Services\ImageService;
 use Carbon\Carbon;
 use InterventionImage;
+
 class TradeController extends Controller
 {
     public function show($id)
     {
-        $categories = PrimaryCategory::with('secondary')->get();
-        $userProfile = User::findOrFail($id);
+        //大カテゴリーと小カテゴリーの名称を取得
+        $categoryName= Product::findOrFail($id)
+        ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
+            ->join('primary_categories', 'secondary_categories.primary_category_id', '=', 'primary_categories.id')
+            ->select('products.id', 'secondary_categories.name AS secondary_name', 'primary_categories.name AS primary_name')
+            ->where('products.id', $id)
+            ->first();
+        
+        $productInfo = Product::findOrFail($id);
+        $userProfile=Product::with('user')->findOrFail($id);
 
-        return view('user.trades.show', compact('userProfile','categories'));
+        return view('user.trades.show', compact('userProfile', 'productInfo', 'categoryName'));
     }
 }

@@ -34,10 +34,9 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
 });
 
 Route::resource('products', ProductController::class)
-->middleware('auth:users');
+->middleware('auth:users')->except('show');
 
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
-
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
 });
 

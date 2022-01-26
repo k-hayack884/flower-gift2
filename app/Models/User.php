@@ -14,6 +14,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
+    public function products()
+    {
+        return $this->belongToMany(Product::class, 'favorites')
+    ->withPivot(['id']);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -14,8 +14,20 @@
               {{$categoryName->primary_name}}>>{{$categoryName->secondary_name}}
             <h1 class="title-font  text-3xl mb-4 font-medium text-gray-900">
               
-                <br class="hidden lg:inline-block">{{$productInfo->name}} お気に入りボタン
+                <br class="hidden lg:inline-block">{{$productInfo->name}} 
             </h1>
+            <form method="post" action="{{route('user.favorite.add')}}">
+                @csrf
+                <button class="p-4 bg-blue-500">お気に入りボタン</button>
+                <input type="hidden" name="product_id" value="{{$productInfo->id}}">
+            </form>
+             <form method="post" action="{{route('user.favorite.delete')}}">
+                @csrf
+                <button class="p-4 bg-red-500">消すボタン</button>
+                <input type="hidden" name="product_id" value="{{$productInfo->id}}">
+            </form>
+            
+            
             <p class="mb-8 leading-relaxed">{{$productInfo->comment}}</p>
             
             

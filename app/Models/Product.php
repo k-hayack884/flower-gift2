@@ -27,6 +27,11 @@ class Product extends Model
     {
         return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
     }
+    public function users()
+    {
+        return $this->belongToMany(User::class, 'favorites')
+    ->withPivot(['id']);
+    }
     public function scopeAvailableItems($query)
     {
         Product::with('category')

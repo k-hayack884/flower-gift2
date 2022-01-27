@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\PrimaryCategory;
 use App\Models\SecondaryCategory;
 use App\Models\Product;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -30,10 +31,13 @@ class TradeController extends Controller
             ->select('products.id', 'secondary_categories.name AS secondary_name', 'primary_categories.name AS primary_name')
             ->where('products.id', $id)
             ->first();
-        
+        // $favorite=Favorite::with('user')->findOrFail($id);
         $productInfo = Product::findOrFail($id);
         $userProfile=Product::with('user')->findOrFail($id);
+        $favorite=Favorite::where('product_id', $id)
+        ->where('user_id', Auth::id())->first();
 
-        return view('user.trades.show', compact('userProfile', 'productInfo', 'categoryName'));
+
+        return view('user.trades.show', compact('userProfile', 'productInfo', 'categoryName','favorite'));
     }
 }

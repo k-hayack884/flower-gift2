@@ -41,9 +41,10 @@ Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
 });
 
-Route::prefix('favorite')->middleware(['auth:users'])->group(function () {
-    Route::post('/add', [FavoriteController::class,'add'])->name('favorite.add');
-    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorite.delete');
+Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
+    Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
+    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
 });
 
 

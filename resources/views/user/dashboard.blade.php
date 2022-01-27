@@ -12,14 +12,14 @@
         <select name="category" class="lg:mr-4 md:my-4">
           <option value="0" @if(\Request::get('category')==='0' ) selected @endif>すべての商品
           </option>
-            @foreach($categories as $category)
-            <optgroup label={{$category->name}}>
-              @foreach($category->secondary as $secondary)
-              <option value="{{$secondary->id}}" @if(\Request::get('category')==$secondary->id) selected @endif>
-                {{$secondary->name}}
-              </option>
-              @endforeach
-              @endforeach
+          @foreach($categories as $category)
+          <optgroup label={{$category->name}}>
+            @foreach($category->secondary as $secondary)
+            <option value="{{$secondary->id}}" @if(\Request::get('category')==$secondary->id) selected @endif>
+              {{$secondary->name}}
+            </option>
+            @endforeach
+            @endforeach
         </select>
         <div class="flex space-x-2 items-center">
           <div><input name="keyword"
@@ -72,10 +72,10 @@
   </div>
   </div>
   <script>
-      const select=document.getElementById('sort')
+    const select=document.getElementById('sort')
     select.addEventListener('change',function(){
       this.form.submit()
     })
 
-    </script>
+  </script>
 </x-app-layout>

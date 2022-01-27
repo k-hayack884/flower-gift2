@@ -16,8 +16,7 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->belongToMany(Product::class, 'favorites')
-    ->withPivot(['id']);
+        return $this->belongsToMany(Product::class, 'favorites');
     }
 
     /**
@@ -52,5 +51,9 @@ class User extends Authenticatable
     public function product()
     {
         return $this->hasMany(Product::class);
+    }
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }

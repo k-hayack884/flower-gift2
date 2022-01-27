@@ -11,31 +11,35 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\AppServiceProvider;
-use App\Services\ImageService;
-use Carbon\Carbon;
-use InterventionImage;
-
 class FavoriteController extends Controller
 {
+    public function index()
+    {
+        $favoriteItem = Favorite::with('product') //モデルのリレーションのファンクションでつなぐ
+            ->where('user_id', Auth::id())->get();
+
+
+        return view('user.favorites.index', compact('favoriteItem'));
+    }
     public function add(Request $request)
     {
-        $itemInFavorite=Favorite::where('user_id', Auth::id())
-        ->where('product_id', $request->product_id)->first();
-        
-        if (!$itemInFavorite) {
+        $itemInFavorite = Favorite::where('user_id', Auth::id())
+            ->where('product_id', $request->product_id)->first();
+
+        if (empty($itemInFavorite)) {
             Favorite::create([
-                'user_id'=>Auth::id(),
-                'product_id'=>$request->product_id,
-                
-                ]);
+                'user_id' => Auth::id(),
+                'product_id' => $request->product_id,
+
+            ]);
         }
         return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
     public function delete(Request $request)
     {
         Favorite::where('product_id', $request->product_id)
-        ->where('user_id', Auth::id())->delete();
-        
+            ->where('user_id', Auth::id())->delete();
+
         return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
 }

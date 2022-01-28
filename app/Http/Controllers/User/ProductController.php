@@ -52,6 +52,7 @@ class ProductController extends Controller
         ->selectCategory($request->category ?? '0')
         ->searchKeyword($request->keyword ?? '')
         ->sortOrder($request->sort)->with('category')->paginate(20); //n+1なんとかなた
+        
         // dd($productInfo);
         //モデルのリレーションのファンクションでつなぐ
 
@@ -119,7 +120,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**

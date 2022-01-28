@@ -38,6 +38,6 @@ class TradeController extends Controller
         ->where('user_id', Auth::id())->first();
 
 
-        return view('user.trades.show', compact('userProfile', 'productInfo', 'categoryName','favorite'));
+        return view('user.trades.show', compact('userProfile', 'productInfo', 'categoryName', 'favorite'));
     }
 }

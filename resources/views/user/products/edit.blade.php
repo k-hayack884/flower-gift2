@@ -69,14 +69,11 @@
                                         <div class="flex justify-around">
 
                                             <div><input type="radio" name="status"
-                                                    value="{{\Constant::PRODUCT_LIST['sell']}}" @if
-                                                    ($product->status===0)checked @endif>販売中</div>
+                                                    value="{{\Constant::PRODUCT_LIST['sell']}}" @if($product->status===0) checked @endif >販売中</div>
                                             <div><input type="radio" name="status"
-                                                    value="{{\Constant::PRODUCT_LIST['transaction']}}" @if
-                                                    ($product->status===1)checked @endif>取引中</div>
+                                                    value="{{\Constant::PRODUCT_LIST['transaction']}}" @if($product->status===1) checked @endif>取引中</div>
                                             <div><input type="radio" name="status"
-                                                    value="{{\Constant::PRODUCT_LIST['sold']}}" @if
-                                                    ($product->status===2)checked @endif>販売終了</div>
+                                                    value="{{\Constant::PRODUCT_LIST['sold']}}" @if($product->status===2) checked @endif >販売終了</div>
                                         </div>
 
                                     </div>

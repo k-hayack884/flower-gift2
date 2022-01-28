@@ -12,8 +12,10 @@
             <div
                 class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
                 {{$categoryName->primary_name}}>>{{$categoryName->secondary_name}}
+                <a href="{{ route('user.dashboard',['category'=>$productInfo->secondary_category_id]) }}" class="text-blue-600" >
+                    {{$productInfo->secondary_category_id}}
+                    </a>
                 <h1 class="title-font  text-3xl mb-4 font-medium text-gray-900">
-
                     <br class="hidden lg:inline-block">{{$productInfo->name}}
                 </h1>
                 @if (empty($favorite))
@@ -33,8 +35,8 @@
                 <form method="post" action="{{route('user.favorites.delete')}}">
                     @csrf
                     <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="yellow" viewBox="0 0 24 24"
+                            stroke="gold">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                         </svg>
@@ -49,8 +51,10 @@
                 <div
                     class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
                     <ul>
-                        <li class="mb-8 leading-relaxed">出品者: {{ $userProfile->user->name
-                            }}(例外的にユーザーへーじに飛ばしたい)　ここにフォローボタン</li>　
+                        <li class="mb-4 leading-relaxed">出品者: <a href="{{ route('user.profiles.show',['profile'=>$userProfile->user->id]) }}" class="text-blue-600" >
+                    {{ $userProfile->user->name }}
+                    </a>
+                       </li>　
                         ここにレビュー
                         <li class="mb-8 leading-relaxed">出品日: {{ $productInfo->created_at }}</li>
                         <li class="mb-8 leading-relaxed">

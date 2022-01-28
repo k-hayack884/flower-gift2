@@ -25,23 +25,6 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth:users');
-        //直接別ユーザーにアクセスするとはじくシステム
-        $this->middleware(function ($request, $next) {
-            $id=$request->route()->parameter('profile');
-            if (!is_null($id)) {
-                $userId=User::findOrFail($id)->id;
-                $currentUserId=(int)$userId;
-                $authId=Auth::id();
-                if ($currentUserId!==$authId) {
-                    abort(404);
-                }
-            }
-            return $next($request);
-        });
-    }
 
     public function index()
     {
@@ -87,8 +70,23 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id) //リクエスト入れる
     {
+        $this->middleware('auth:users');
+        //直接別ユーザーにアクセスするとはじくシステム
+        $this->middleware(function ($request, $next) {
+            $id=$request->route()->parameter('profile');
+            if (!is_null($id)) {
+                $userId=User::findOrFail($id)->id;
+                $currentUserId=(int)$userId;
+                $authId=Auth::id();
+                if ($currentUserId!==$authId) {
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
+        
         $userProfile = User::findOrFail($id);
 
         return view('user.profiles.edit', compact('userProfile'));
@@ -103,6 +101,21 @@ class ProfileController extends Controller
      */
     public function update(UploadImageRequest $request, $id)
     {
+        $this->middleware('auth:users');
+        //直接別ユーザーにアクセスするとはじくシステム
+        $this->middleware(function ($request, $next) {
+            $id=$request->route()->parameter('profile');
+            if (!is_null($id)) {
+                $userId=User::findOrFail($id)->id;
+                $currentUserId=(int)$userId;
+                $authId=Auth::id();
+                if ($currentUserId!==$authId) {
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'comment' => [ 'string', 'max:200'],
@@ -139,6 +152,21 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware('auth:users');
+        //直接別ユーザーにアクセスするとはじくシステム
+        $this->middleware(function ($request, $next) {
+            $id=$request->route()->parameter('profile');
+            if (!is_null($id)) {
+                $userId=User::findOrFail($id)->id;
+                $currentUserId=(int)$userId;
+                $authId=Auth::id();
+                if ($currentUserId!==$authId) {
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
+        
         try {
             DB::transaction(function () use ($id) {
                 Product::select('id', )

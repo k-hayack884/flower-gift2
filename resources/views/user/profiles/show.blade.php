@@ -19,6 +19,7 @@
                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">ユーザー情報</h1>
                 <ul>
                   <li class="mb-8 leading-relaxed">ユーザー名: {{ $userProfile->name }}</li>
+                  <li class="mb-8 leading-relaxed">ユーザー評価:よい {{ $good }} よい {{ $normal}} 悪い {{ $bad }}</li>
                   <li class="mb-8 leading-relaxed">メールアドレス: {{ $userProfile->email }}</li>
                   <li class="mb-8 leading-relaxed">出身地: {{ $userProfile->prefecture }}</li>
                   <li class="mb-8 leading-relaxed">自己紹介: {{ $userProfile->comment }}</li>

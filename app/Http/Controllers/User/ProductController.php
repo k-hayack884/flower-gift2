@@ -132,6 +132,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = PrimaryCategory::with('secondary')->get();
+        dd($categories);
         return view('user.products.edit', compact('product', 'categories'));
     }
 

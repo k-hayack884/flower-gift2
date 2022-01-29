@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Product;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -55,5 +56,9 @@ class User extends Authenticatable
     public function favorite()
     {
         return $this->hasMany(Favorite::class);
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
 }

@@ -31,7 +31,6 @@ class Product extends Model
     public function favorite()
     {
         return $this->hasMany(Favorite::class);
-
     }
     public function scopeAvailableItems($query)
     {

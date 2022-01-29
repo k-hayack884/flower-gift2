@@ -11,10 +11,12 @@
             </div>
             <div
                 class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                {{$categoryName->primary_name}}>>{{$categoryName->secondary_name}}
-                <a href="{{ route('user.dashboard',['category'=>$productInfo->secondary_category_id]) }}" class="text-blue-600" >
-                    {{$productInfo->secondary_category_id}}
+                            <div
+                class="lg:flex-grow flex  md:items-start md:text-left">
+                {{$categoryName->primary_name}}>><a href="{{ route('user.dashboard',['category'=>$productInfo->secondary_category_id]) }}" class="text-blue-600" >
+                    {{$productInfo->category->name}}
                     </a>
+                    </div>
                 <h1 class="title-font  text-3xl mb-4 font-medium text-gray-900">
                     <br class="hidden lg:inline-block">{{$productInfo->name}}
                 </h1>

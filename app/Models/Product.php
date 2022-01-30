@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Favorite;
 use App\Models\SecondaryCategory;
 
 class Product extends Model
@@ -26,6 +27,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
+    }
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
     }
     public function scopeAvailableItems($query)
     {
@@ -55,7 +60,7 @@ class Product extends Model
         }
         return $query;
     }
-    
+
     public function scopeSelectCategory($query, $categoryId)
     {
         if ($categoryId!=='0') {

@@ -9,10 +9,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Product;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'favorites');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -46,5 +52,13 @@ class User extends Authenticatable
     public function product()
     {
         return $this->hasMany(Product::class);
+    }
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
 }

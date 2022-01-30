@@ -17,8 +17,8 @@
 
                             <div class="lg:w-1/2 mx-auto">
                                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                                <form action="{{ route('user.products.update',['product'=>$product->id]) }}" method="post"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('user.products.update',['product'=>$product->id]) }}"
+                                    method="post" enctype="multipart/form-data">
                                     @method('PUT')
                                     @csrf
                                     <div class="flex flex-col items-center m-2">
@@ -29,7 +29,8 @@
                                                     @foreach($categories as $category)
                                                     <optgroup label={{$category->name}}>
                                                         @foreach($category->secondary as $secondary)
-                                                        <option value="{{$secondary->id}}" @if($secondary->id===$product->secondary_category_id) selected @endif>
+                                                        <option value="{{$secondary->id}}" @if($secondary->
+                                                            id===$product->secondary_category_id) selected @endif>
                                                             {{$secondary->name}}
                                                         </option>
                                                         @endforeach
@@ -56,7 +57,7 @@
 
                                         <div class="p-2 w-1/2 mx-auto">
                                             <div class="relative">
-                                            <x-product-image :filename="$product->img" />
+                                                <x-product-image :filename="$product->img" />
                                                 <label for="image" class="leading-7 text-sm text-gray-600">画像</label>
                                                 <input type="file" name="image" id="image"
                                                     accept="image/png,image/jpeg,image/jpg"
@@ -67,9 +68,12 @@
                                     <div class="p-2 w-1/2 mx-auto">
                                         <div class="flex justify-around">
 
-                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['sell']}}" @if ($product->status===0)checked @endif>販売中</div>
-                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['transaction']}}" @if ($product->status===1)checked @endif>取引中</div>
-                                            <div><input type="radio" name="status" value="{{\Constant::PRODUCT_LIST['sold']}}" @if ($product->status===2)checked @endif>販売終了</div>
+                                            <div><input type="radio" name="status"
+                                                    value="{{\Constant::PRODUCT_LIST['sell']}}" @if($product->status===0) checked @endif >販売中</div>
+                                            <div><input type="radio" name="status"
+                                                    value="{{\Constant::PRODUCT_LIST['transaction']}}" @if($product->status===1) checked @endif>取引中</div>
+                                            <div><input type="radio" name="status"
+                                                    value="{{\Constant::PRODUCT_LIST['sold']}}" @if($product->status===2) checked @endif >販売終了</div>
                                         </div>
 
                                     </div>
@@ -86,16 +90,16 @@
                                     </div>
                                     <div class="flex justify-center">
 
-</div>
+                                    </div>
                                 </form>
-                                                                     <form id="delete_{{ $product->id }}" method="post"
-              action="{{ route('user.products.destroy',['product'=>$product->id]) }}">
-              @csrf
-              @method('DELETE')
-              <a href="#" data-id="{{$product->id}}" onclick="deletePost(this)"
-                class=" mx-auto  text-center text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg my-8">
-                削除する</a>
-            </form>
+                                <form id="delete_{{ $product->id }}" method="post"
+                                    action="{{ route('user.products.destroy',['product'=>$product->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#" data-id="{{$product->id}}" onclick="deletePost(this)"
+                                        class=" mx-auto  text-center text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg my-8">
+                                        削除する</a>
+                                </form>
 
 
                             </div>
@@ -107,13 +111,13 @@
         </div>
     </div>
     </div>
-  <script>
-  'use strict';
+    <script>
+        'use strict';
         function deletePost(e){
         if(confirm('本当に退会してもよろしいですか？')){
           document.getElementById('delete_'+e.dataset.id).submit();
         }
         }
-  </script>
-  </script>   
+    </script>
+    </script>
 </x-app-layout>

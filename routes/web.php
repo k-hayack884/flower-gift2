@@ -4,6 +4,7 @@ use App\Http\Controllers\User\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TradeController;
+use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\ViewController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,14 @@ Route::resource('products', ProductController::class)
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
 });
+
+Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
+    Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
+    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
+    Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
+});
+
 
 Route::get('/dashboard', [ ProductController::class,'view'])
 ->middleware(['auth:users'])->name('dashboard');

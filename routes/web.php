@@ -39,6 +39,9 @@ Route::resource('products', ProductController::class)
 
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
+    Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');
+    Route::post('show/delete{trade}', [TradeController::class, 'delete'])->name('trades.show.delete');
+    
 });
 
 Route::prefix('favorites')->middleware(['auth:users'])->group(function () {

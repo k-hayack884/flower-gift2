@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Comment;
+
+
 
 class User extends Authenticatable
 {
@@ -60,5 +63,9 @@ class User extends Authenticatable
     public function review()
     {
         return $this->hasMany(Review::class);
+    }
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Favorite;
+use App\Models\Comment;
 use App\Models\SecondaryCategory;
 
 class Product extends Model
@@ -31,6 +32,10 @@ class Product extends Model
     public function favorite()
     {
         return $this->hasMany(Favorite::class);
+    }
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
     }
     public function scopeAvailableItems($query)
     {

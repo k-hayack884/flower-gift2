@@ -18,6 +18,8 @@ class Product extends Model
         'secondary_category_id',
         'name',
         'comment',
+        'address',
+        'trade_type',
         'img',
         'status'
     ];

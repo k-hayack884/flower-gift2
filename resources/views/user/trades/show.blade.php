@@ -127,6 +127,11 @@
                         <li class="mb-8 leading-relaxed">希望取引形態:</li>
 
                         取引希望場所
+<<<<<<< Updated upstream
+=======
+
+                        取引希望場所 {{ $productInfo->address }}
+>>>>>>> Stashed changes
                         <div id="my_map" style="width: 300px; height: 300px">
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuaFvbBqEM2aU64_xQ_M-6mxYFxM-fjN4&callback=initMapWithAddress" async defer></script>
                                 </div>
@@ -152,8 +157,14 @@
                     <x-product-image :filename="$comment->user->img" /></li>
                     
                     <li class="col-span-3">{{ $comment->comment}}
+<<<<<<< Updated upstream
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p></li>
 
+=======
+                        <p class="text-right">{{$comment->created_at->toDateString()}}</p>
+                        <p class="text-right">違反報告</p></li>
+                        
+>>>>>>> Stashed changes
                         @if ( $comment->user_id===auth()->user()->id )
                         <form id="delete_{{ $comment->id }}" method="post"
                             action="{{ route('user.trades.show.delete',['trade'=>$comment->id]) }}">
@@ -164,6 +175,10 @@
                               削除</a>
                           </form>
                                     @endif
+<<<<<<< Updated upstream
+=======
+                                    
+>>>>>>> Stashed changes
                 </div>  
                 </ul>
 
@@ -195,6 +210,7 @@
               document.getElementById('delete_'+e.dataset.id).submit();
             }
             }
+<<<<<<< Updated upstream
 
             var _my_address = '大阪府大阪市城東区今福東１丁目';
 function initMapWithAddress() {
@@ -224,6 +240,31 @@ function initMapWithAddress() {
   }
 </script>
       </script>
+=======
 
+            var _my_address = '{{ $productInfo->address }}';
+function initMapWithAddress() {
+    var opts = {
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    };
+    var my_google_map = new google.maps.Map(document.getElementById('my_map'), opts);
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+      {
+        'address': _my_address,
+        'region': 'jp'
+      },
+      function(result, status){
+        if(status==google.maps.GeocoderStatus.OK){
+            var latlng = result[0].geometry.location;
+            my_google_map.setCenter(latlng);
+            var marker = new google.maps.Marker({position:latlng, map:my_google_map, title:latlng.toString(), draggable:true});
+            google.maps.event.addListener(marker, 'dragend', function(event){
+                marker.setTitle(event.latLng.toString());
+            });
+>>>>>>> Stashed changes
+
+          </script>
 
 </x-app-layout>

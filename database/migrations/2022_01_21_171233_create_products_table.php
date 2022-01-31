@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->string('img')->nullable();
             $table->string('name');
             $table->string('comment');
+            $table->string('address')->nullable();
+            $table->integer('trade_type');
             $table->integer('status');
             $table->timestamps();
         });

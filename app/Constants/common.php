@@ -27,4 +27,15 @@ class Common
         'like' => self::ORDER_LIKE,
         'sell' => self::ORDER_SELL
     ];
+
+    const TRADE_DIRECT = '0';
+    const TRADE_PAYMENT = '1';
+    const TRADE_PREPAYMENT = '2';
+
+    const TRADE_LIST = [
+
+        'direct' => self::TRADE_DIRECT,
+        'payment' => self::TRADE_PAYMENT,
+        'prepayment' => self::TRADE_PREPAYMENT,
+    ];
 }

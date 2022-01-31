@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
             'name'=>'キーボードクラッシャー',
             'comment'=>'ダミーデータです',
             'status' => '0',
+            'trade_type' => '0',
             ]
         );
     }

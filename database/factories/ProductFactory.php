@@ -18,6 +18,8 @@ class ProductFactory extends Factory
             'secondary_category_id'=>$this->faker->numberBetween(1, 21),
             'name'=>$this->faker->name,
             'comment'=>$this->faker->realText,
+            'trade_type'=>$this->faker->numberBetween(0, 2),
+            'address' =>$this->faker->address(),
             'status'=>$this->faker->numberBetween(0, 2),
         ];
     }

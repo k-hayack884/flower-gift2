@@ -102,6 +102,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'comment' => $request->comment,
             'status' => $request->status,
+            'address'=>$request->address,
+            'trade_type'=>$request->trade_type,
             'img' => $fileNameToStore,
             'secondary_category_id'=>$request->category
 

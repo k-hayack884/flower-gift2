@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -125,8 +126,12 @@
 
                         <li class="mb-8 leading-relaxed">希望取引形態:</li>
 
-                        取引希望場所
 
+                        取引希望場所 {{ $productInfo->address }}
+
+                        <div id="my_map" style="width: 300px; height: 300px">
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuaFvbBqEM2aU64_xQ_M-6mxYFxM-fjN4&callback=initMapWithAddress" async defer></script>
+                                </div>
                         <ul>
                             <div class="flex justify-center">
 
@@ -139,8 +144,94 @@
                 </div>
             </div>
         </div>
+        <div class="w-1/2 mx-auto">
+            <h1>コメント</h1>
+            @foreach ($comments as $comment )
+                <ul class="mb-4">
+            
+                    <div class="grid grid-cols-4 ">
+                    <li class="w-24">{{ $comment->user->name }}
+                    <x-product-image :filename="$comment->user->img" /></li>
+                    
+                    <li class="col-span-3">{{ $comment->comment}}
+                        <p class="text-right">{{$comment->created_at->toDateString()}}</p></li>
+
+                        <p class="text-right">{{$comment->created_at->toDateString()}}</p>
+                        <p class="text-right">違反報告</p></li>
+                        
+                        @if ( $comment->user_id===auth()->user()->id )
+                        <form id="delete_{{ $comment->id }}" method="post"
+                            action="{{ route('user.trades.show.delete',['trade'=>$comment->id]) }}">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
+                            <a href="#" data-id="{{$comment->id}}" onclick="deletePost(this)"
+                              class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
+                              削除</a>
+                          </form>
+                                    @endif
+
+                                    
+
+                </div>  
+                </ul>
+
+            @endforeach
+
+            <div class="lg:w-1/2 mx-auto">
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <form action="{{ route('user.trades.show.add') }}" method="post">
+                    @csrf
+
+                                <label for="comment" class="leading-7 text-sm text-gray-600">コメントを書く</label>
+                                <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
+
+                                <textarea type="text" id="comment" name="comment"
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                    value=" {{ old('comment') }}" required> </textarea>
+                                    <button type="submit"
+                                    class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">コメントを書く</button>
+
+                                    
+                    
+        </div>
     </section>
+    <script src="{{ asset('/js/result.js') }}"></script>
+    <script>
+        'use strict';
+            function deletePost(e){
+            if(confirm('コメントを削除してもよろしいですか？')){
+              document.getElementById('delete_'+e.dataset.id).submit();
+            }
+            }
 
 
+
+var _my_address = '{{ $productInfo->address }}';
+function initMapWithAddress() {
+        var opts = {
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        var my_google_map = new google.maps.Map(document.getElementById('my_map'), opts);
+        var geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+      {
+        'address': _my_address,
+        'region': 'jp'
+      },
+      function(result, status){
+        if(status==google.maps.GeocoderStatus.OK){
+            var latlng = result[0].geometry.location;
+            my_google_map.setCenter(latlng);
+            var marker = new google.maps.Marker({position:latlng, map:my_google_map, title:latlng.toString(), draggable:true});
+            google.maps.event.addListener(marker, 'dragend', function(event){
+                marker.setTitle(event.latLng.toString());
+            });
+
+        }
+      }
+    );
+  }
+</script>
 
 </x-app-layout>

@@ -6,6 +6,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\MailController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
 
@@ -35,8 +36,13 @@ Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
 });
 
 Route::resource('products', ProductController::class)
-->middleware('auth:users')->except('show');
+->middleware('auth:users');
 
+Route::prefix('emails')->middleware(['auth:users'])->group(function () {
+    Route::get('/create/{mail}', [MailController::class, 'create'])->name('emails.create');
+    Route::post('/send/{mail}', [MailController::class, 'send'])->name('emails.send');
+    
+});
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
     Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');

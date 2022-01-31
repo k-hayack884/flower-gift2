@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\PrimaryCategory;
 use App\Models\SecondaryCategory;
 use App\Models\Product;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +123,17 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $categoryName = Product::findOrFail($id)
+            ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
+            ->join('primary_categories', 'secondary_categories.primary_category_id', '=', 'primary_categories.id')
+            ->select('products.id', 'secondary_categories.name AS secondary_name', 'primary_categories.name AS primary_name')
+            ->where('products.id', $id)
+            ->first();
+        // $favorite=Favorite::with('user')->findOrFail($id);
+        $productInfo = Product::findOrFail($id);
+        $userProfile = Product::with('user')->findOrFail($id);
+        $comments = Comment::with('user')->where('product_id', $id)->get();
+        return view('user.products.show', compact('userProfile', 'productInfo', 'categoryName', 'comments'));
     }
 
     /**
@@ -134,7 +146,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = PrimaryCategory::with('secondary')->get();
-        dd($categories);
         return view('user.products.edit', compact('product', 'categories'));
     }
 
@@ -157,6 +168,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->comment = $request->comment;
         $product->status = $request->status;
+        $product->trade_type = $request->trade_type;
+        $product->address = $request->address;
         $product->secondary_category_id = $request->category;
         $product->img = $fileNameToStore;
 

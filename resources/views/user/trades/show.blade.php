@@ -124,14 +124,19 @@
                             現在の状態:@if($productInfo->status==\Constant::PRODUCT_LIST['sell'])取引可能@elseif($productInfo->status==\Constant::PRODUCT_LIST['transaction'])取引中@elseif($productInfo->status==\Constant::PRODUCT_LIST['sold'])取引終了@endif
                         </li>
 
-                        <li class="mb-8 leading-relaxed">希望取引形態:</li>
+                        <li class="mb-8 leading-relaxed">希望取引形態:
+                          @if($productInfo->trade_type==\Constant::TRADE_LIST['direct'])直接取引@elseif($productInfo->trade_type==\Constant::TRADE_LIST['payment'])配送(着払い)@elseif($productInfo->trade_type==\Constant::TRADE_LIST['prepayment'])配送(元払い)@endif
+                        </li>
 
+                        @if ($productInfo->trade_type==\Constant::TRADE_LIST['direct'])
+                          取引希望場所 {{ $productInfo->address }}
+                          <div id="my_map" style="width: 300px; height: 300px">
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuaFvbBqEM2aU64_xQ_M-6mxYFxM-fjN4&callback=initMapWithAddress" async defer></script>
+                                    </div>
+                        @endif
+                        
 
-                        取引希望場所 {{ $productInfo->address }}
-
-                        <div id="my_map" style="width: 300px; height: 300px">
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuaFvbBqEM2aU64_xQ_M-6mxYFxM-fjN4&callback=initMapWithAddress" async defer></script>
-                                </div>
+                        
                         <ul>
                             <div class="flex justify-center">
 

@@ -16,7 +16,7 @@ class CommentFactory extends Factory
         return [
 
             'product_id'=>$this->faker->numberBetween(1, 100),
-            'user_id'=>$this->faker->numberBetween(1, 10),
+            'user_id'=>$this->faker->numberBetween(1, 2),
             'comment'=>$this->faker->realText($maxNbChars = 100),
             'status'=>$this->faker->numberBetween(0, 1),
         ];

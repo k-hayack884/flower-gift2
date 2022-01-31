@@ -65,6 +65,29 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="p-2 w-1/2 mx-auto">
+                                        取引形態
+                                        <div class="flex justify-around">
+
+                                            <div><input type="radio" name="trade_type"
+                                                    value="{{ \Constant::TRADE_LIST['direct'] }}"  @if($product->trade_type===0) checked @endif>直接取引</div>
+                                            <div><input type="radio" name="trade_type"
+                                                    value="{{ \Constant::TRADE_LIST['payment'] }}" @if($product->trade_type===1) checked @endif>配送(着払い)</div>
+                                            <div><input type="radio" name="trade_type"
+                                                    value="{{ \Constant::TRADE_LIST['prepayment'] }}" @if($product->trade_type===2) checked @endif>配送(元払い)</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="p-2 w-1/2 mx-auto">
+                                        <div class="relative">
+                                            <label for="address" class="leading-7 text-sm text-gray-600">取引希望場所
+                                                ※直接取引の場合入力ください</label>
+                                            <input type="text" name="address" id="address" value="{{$product->address}}"
+                                                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        </div>
+                                    </div>
+                                    
                                     <div class="p-2 w-1/2 mx-auto">
                                         <div class="flex justify-around">
 
@@ -80,7 +103,7 @@
                                     <div class="flex justify-around mt-4">
 
                                         <button type="button"
-                                            onclick="location.href='{{ route('user.products.index') }}'"
+                                            onclick="location.href='{{ route('user.products.show',['product'=>$product->id]) }}'"
                                             class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
 
 

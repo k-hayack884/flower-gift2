@@ -40,7 +40,7 @@ Route::resource('products', ProductController::class)
 
 Route::prefix('emails')->middleware(['auth:users'])->group(function () {
     Route::get('/create/{mail}', [MailController::class, 'create'])->name('emails.create');
-    Route::post('/send/{mail}', [MailController::class, 'send'])->name('emails.send');
+    Route::post('/send', [MailController::class, 'send'])->name('emails.send');
     
 });
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {

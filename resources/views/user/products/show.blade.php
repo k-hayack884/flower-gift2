@@ -72,7 +72,6 @@
 
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p>
                         <p class="text-right">違反報告</p></li>
-                        <a href="{{ route('user.emails.create',['mail'=>$comment->id]) }}"> <p class="text-right">メールを送る</p></a>
                        </li>
                         @if ( $comment->user_id===auth()->user()->id )
                         <form id="delete_{{ $comment->id }}" method="post"

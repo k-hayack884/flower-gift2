@@ -3,14 +3,12 @@
 namespace App\Mail;
 
 use App\Models\Product;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-
-class Trademail extends Mailable
+class OwnerMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -37,7 +35,6 @@ class Trademail extends Mailable
      */
     public function build()
     {
-
-        return $this->subject('取引ありがとうございます')->view('emails.mail');
+        return $this->subject('取引ありがとうございます')->view('emails.ownermail');
     }
 }

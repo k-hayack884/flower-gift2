@@ -19,6 +19,7 @@ use App\Http\Requests\UploadImageRequest;
 use App\Http\Requests\ProductRequest;
 use App\Services\MailService;
 use App\Mail\trademail;
+use App\Mail\Ownermail;
 use Carbon\Carbon;
 use InterventionImage;
 use Illuminate\Validation\Rules\Password;
@@ -27,17 +28,18 @@ class MailController extends Controller
 {
     public function create($id)
     {
-        $mail=Comment::with('user')->findOrFail($id);
-        $product=Comment::with('product')->findOrFail($id);
-        return view('user.emails.create',compact('mail','product'));
+        $user=Auth::id();
+        $product=Product::with('user')->findOrFail($id);
+        return view('user.emails.create',compact('user','product'));
     }
-    public function send(Request $request,$id)
+    public function send(Request $request)
     {
+        $user=User::findOrFail(Auth::id());
 
-        $toMail=User::findOrFail($request->user_id);
-        $product=Product::findOrFail($request->product_id);
-        
-        Mail::to($toMail->email)->send(new Trademail($product,$toMail));
+        $product=Product::with('user')->findOrFail($request->product_id);
+
+        Mail::to($user->email)->send(new Trademail($product,$user,$request));
+        Mail::to($product->user->email)->send(new OwnerMail($product,$user,$request));
 
         return redirect()
             ->route('user.products.index')

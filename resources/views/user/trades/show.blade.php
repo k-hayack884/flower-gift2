@@ -139,10 +139,10 @@
                         
                         <ul>
                             <div class="flex justify-center">
-
-                                <button type="button"
-                                    onclick="location.href='{{ route('user.profiles.edit',['profile'=>$userProfile->id]) }}'"
-                                    class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">違反報告</button>
+                              <a href="'{{ route('user.profiles.edit',['profile'=>$userProfile->id]) }}">違反報告</a>
+                              <button type="button"
+                                    onclick="location.href='{{ route('user.emails.create',['mail'=>$productInfo->id]) }}'"
+                                    class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">取引希望</button>
                                 <button type="button" onclick="location.href='{{ route('user.dashboard') }}'"
                                     class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
                             </div>

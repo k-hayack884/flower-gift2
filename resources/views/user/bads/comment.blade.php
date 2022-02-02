@@ -7,8 +7,8 @@
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                 <div class="flex">
                     <div class="w-1/3">
-                    <x-product-image :filename="$badComment->user->img" />
-                    <p>投稿者:{{ $badComment->user->name}}</p>
+                        <x-product-image :filename="$badComment->user->img" />
+                        <p>投稿者:{{ $badComment->user->name }}</p>
                     </div>
                     <div class="w-2/3">{{ $badComment->comment }}
                         <p class="text-right">投稿日時:{{ $badComment->created_at->toDateString() }}</p>

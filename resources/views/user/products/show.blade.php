@@ -64,6 +64,9 @@
                 <ul class="mb-4">
             
                     <div class="grid grid-cols-4 ">
+                        @if($comment->status==0)
+                        このコメントは非公開にされています
+                        @else
                     <li class="w-24">{{ $comment->user->name }}
                     <x-product-image :filename="$comment->user->img" /></li>
                     
@@ -82,6 +85,7 @@
                               class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
                               削除</a>
                           </form>
+                          @endif
                                     @endif
 
                                     

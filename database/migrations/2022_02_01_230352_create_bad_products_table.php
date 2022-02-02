@@ -18,7 +18,6 @@ class CreateBadProductsTable extends Migration
             $table->foreignId('product_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('reason');
-            $table->boolean('status');
             $table->timestamps();
         });
     }

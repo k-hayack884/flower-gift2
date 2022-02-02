@@ -47,8 +47,8 @@ class Product extends Model
     public function scopeAvailableItems($query)
     {
         Product::with('category')
-            ->where('status', 0)
-            ->orWhere('status', 1)
+            ->where('status', 1)
+            ->orWhere('status', 2)
             ->orderBy('created_at', 'desc');
 
         return $query;
@@ -57,18 +57,18 @@ class Product extends Model
     public function scopeSortOrder($query, $sortOrder)
     {
         if ($sortOrder === null || $sortOrder === \Constant::ORDER_LIST['later']) {
-            return $query->where('status', 0)
-            ->orWhere('status', 1)->orderBy('created_at', 'desc');
+            return $query->where('status', 1)
+            ->orWhere('status', 2)->orderBy('created_at', 'desc');
         }
         if ($sortOrder === \Constant::ORDER_LIST['older']) {
-            return $query->where('status', 0)
-            ->orWhere('status', 1)->orderBy('created_at', 'asc');
+            return $query->where('status', 1)
+            ->orWhere('status', 2)->orderBy('created_at', 'asc');
         }
         // if ($sortOrder === \Constant::SORT_ORDER['like']) {
         //     return $query->orderBy('', 'desc');
         // }
         if ($sortOrder === \Constant::ORDER_LIST['sell']) {
-            return $query->where('status', 0)->orderBy('created_at', 'desc');
+            return $query->where('status', 1)->orderBy('created_at', 'desc');
         }
         return $query;
     }

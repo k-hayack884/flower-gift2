@@ -18,11 +18,14 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
-
         ]);
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(20)->create();
         \App\Models\Product::factory(100)->create();
         \App\Models\Review::factory(100)->create();
         \App\Models\Comment::factory(100)->create();
+        \App\Models\Favorite::factory(100)->create();
+        \App\Models\BadComment::factory(100)->create();
+        \App\Models\BadProduct::factory(100)->create();
+
     }
 }

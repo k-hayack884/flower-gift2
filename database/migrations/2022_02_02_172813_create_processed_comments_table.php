@@ -15,7 +15,7 @@ class CreateProcessedCommentsTable extends Migration
     {
         Schema::create('processed_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('admin_id')->constrained('admins');
             $table->boolean('result');
             $table->timestamps();
         });

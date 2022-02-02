@@ -18,7 +18,6 @@ class CreateBadCommentsTable extends Migration
             $table->foreignId('comment_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('reason');
-            $table->boolean('status');
             $table->timestamps();
         });
     }

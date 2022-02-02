@@ -7,6 +7,7 @@ use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\BadController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
 
@@ -47,8 +48,14 @@ Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
     Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');
     Route::post('show/delete{trade}', [TradeController::class, 'delete'])->name('trades.show.delete');
-    
 });
+Route::prefix('bads')->middleware(['auth:users'])->group(function () {
+    Route::get('/product/{bad}', [BadController::class, 'product'])->name('bads.product');
+    Route::post('/product/send/{product}', [BadController::class, 'productSend'])->name('bads.product.send');
+    Route::get('/comment/{bad}', [badController::class, 'comment'])->name('bads.comment');
+    Route::post('/comment/send/{comment}', [badController::class, 'commentSend'])->name('bads.comment.send');
+});
+
 
 Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
     Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');

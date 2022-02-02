@@ -71,7 +71,7 @@
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p></li>
 
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p>
-                        <p class="text-right">違反報告</p></li>
+                        <a href="{{ route('user.bads.comment',['bad'=>$comment->id]) }}"><p class="text-right">違反報告</p></a></li>
                        </li>
                         @if ( $comment->user_id===auth()->user()->id )
                         <form id="delete_{{ $comment->id }}" method="post"

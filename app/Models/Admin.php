@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\ProcessedComment;
+use App\Models\processedproduct;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
@@ -22,4 +25,12 @@ class Admin extends Authenticatable
         'email',
         'password',
     ];
+    public function processedcomment()
+    {
+        return $this->hasMany(ProcessedComment::class);
+    }
+    public function processedproduct()
+    {
+        return $this->hasMany(ProcessedProduct::class);
+    }
 }

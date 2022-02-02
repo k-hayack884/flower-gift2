@@ -139,7 +139,7 @@
                         
                         <ul>
                             <div class="flex justify-center">
-                              <a href="'{{ route('user.profiles.edit',['profile'=>$userProfile->id]) }}">違反報告</a>
+                              <a href="{{ route('user.bads.product',['bad'=>$userProfile->id]) }}">違反報告</a>
                               <button type="button"
                                     onclick="location.href='{{ route('user.emails.create',['mail'=>$productInfo->id]) }}'"
                                     class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">取引希望</button>
@@ -162,7 +162,7 @@
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p></li>
 
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p>
-                        <p class="text-right">違反報告</p></li>
+                        <a href="{{ route('user.bads.comment',['bad'=>$comment->id]) }}"><p class="text-right">違反報告</p></a></li>
                         
                         @if ( $comment->user_id===auth()->user()->id )
                         <form id="delete_{{ $comment->id }}" method="post"

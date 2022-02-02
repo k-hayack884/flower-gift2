@@ -101,7 +101,7 @@ class ProductController extends Controller
         $product=Product::create([
             'user_id'=>Auth::id(),
             'name' => $request->name,
-            'comment' => $request->comment,
+            'comment_id' => $request->comment,
             'status' => $request->status,
             'address'=>$request->address,
             'trade_type'=>$request->trade_type,

@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function index()
     {
         $users=User::select('id', 'name', 'email', 'created_at')->paginate(5);
-        return view('admin.users.index', compact('users'));
+        return view('admin.bads.index', compact('users'));
     }
 
     /**

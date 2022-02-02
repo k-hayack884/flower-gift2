@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Comment;
+use App\Models\BadProduct;
 use App\Models\SecondaryCategory;
 
 class Product extends Model
@@ -38,6 +39,10 @@ class Product extends Model
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function badproduct()
+    {
+        return $this->hasMany(BadProduct::class);
     }
     public function scopeAvailableItems($query)
     {

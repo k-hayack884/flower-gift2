@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin;
 
-class Processedproduct extends Model
+class ProcessedProduct extends Model
 {
+    protected $fillable = [
+        'admin_id',
+        'result',
+
+    ];
     use HasFactory;
     public function admin()
     {

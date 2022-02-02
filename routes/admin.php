@@ -39,7 +39,9 @@ Route::prefix('bads')
     Route::get('product/index', [BadController::class,'badProductIndex'])->name('bads.product-index');
     Route::post('comment/delete/{comment}', [BadController::class,'badCommentDelete'])->name('bads.comment.delete');
     Route::post('comment/cancel/{comment}', [BadController::class,'badCommentCancel'])->name('bads.comment.cancel');
-    Route::get('product/show/{product}', [BadController::class,'badProductShow'])->name('bads.product.show');
+    Route::get('product/show/{product}', [BadController::class,'badProductShow'])->name('bads.product-show');
+    Route::post('product/delete/{product}', [BadController::class,'badProductDelete'])->name('bads.product.delete');
+    Route::post('product/cancel/{product}', [BadController::class,'badProductCancel'])->name('bads.product.cancel');
 });
 
 Route::resource('users', AdminController::class)

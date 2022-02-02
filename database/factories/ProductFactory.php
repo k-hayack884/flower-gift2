@@ -20,7 +20,7 @@ class ProductFactory extends Factory
             'comment'=>$this->faker->realText,
             'trade_type'=>$this->faker->numberBetween(0, 2),
             'address' =>$this->faker->address(),
-            'status'=>$this->faker->numberBetween(0, 2),
+            'status'=>$this->faker->numberBetween(0, 3),
         ];
     }
 }

@@ -28,6 +28,6 @@ class CreateProcessedproductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('processedproducts');
+        Schema::dropIfExists('processed_products');
     }
 }

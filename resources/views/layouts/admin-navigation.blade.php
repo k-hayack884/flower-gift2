@@ -27,6 +27,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.bads.product-index')" :active="request()->routeIs('admin.bads.product-index')">
+                        {{ __('違反商品管理') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.bads.comment-index')" :active="request()->routeIs('admin.bads.comment-index')">
                         {{ __('違反コメント管理') }}
                     </x-nav-link>
@@ -85,6 +90,9 @@
             </x-responsive-nav-link>
              <x-responsive-nav-link :href="route('admin.expired-users.index')" :active="request()->routeIs('admin.expired-users.index')">
                 {{ __('退会ユーザー管理') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.bads.product-index')" :active="request()->routeIs('admin.bads.product-index')">
+                {{ __('違反商品管理') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.bads.comment-index')" :active="request()->routeIs('admin.bads.comment-index')">
                 {{ __('違反コメント管理') }}

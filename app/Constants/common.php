@@ -3,10 +3,10 @@
 namespace App\Constants;
 
 class Common
-{
-    const PRODUCT_SELL = '0';
-    const PRODUCT_TRANSACTION = '1';
-    const PRODUCT_SOLD = '2';
+{   const PRODUCT_NOSHOW = '0';
+    const PRODUCT_SELL = '1';
+    const PRODUCT_TRANSACTION = '2';
+    const PRODUCT_SOLD = '3';
 
     const PRODUCT_LIST = [
 

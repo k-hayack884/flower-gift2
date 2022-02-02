@@ -16,10 +16,18 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->insert([
-            'name'=>'ナッシュ',
-            'email'=>'barian@shark',
-            'password'=>Hash::make('mazikkukonbo'),
-            'created_at'=>'2022/01/01 00:01:01'
-            ]);
+            [
+                'name' => 'ナッシュ',
+                'email' => 'barian@shark',
+                'password' => Hash::make('mazikkukonbo'),
+                'created_at' => '2022/01/01 00:01:01'
+            ],
+            [
+                'name' => 'ミザエル',
+                'email' => 'barian@mizaeru',
+                'password' => Hash::make('takionlove'),
+                'created_at' => '2022/01/01 00:01:01'
+            ],
+        ]);
     }
 }

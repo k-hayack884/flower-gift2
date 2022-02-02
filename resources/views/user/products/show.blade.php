@@ -64,6 +64,9 @@
                 <ul class="mb-4">
             
                     <div class="grid grid-cols-4 ">
+                        @if($comment->status==0)
+                        このコメントは非公開にされています
+                        @else
                     <li class="w-24">{{ $comment->user->name }}
                     <x-product-image :filename="$comment->user->img" /></li>
                     
@@ -71,7 +74,7 @@
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p></li>
 
                         <p class="text-right">{{$comment->created_at->toDateString()}}</p>
-                        <p class="text-right">違反報告</p></li>
+                        <a href="{{ route('user.bads.comment',['bad'=>$comment->id]) }}"><p class="text-right">違反報告</p></a></li>
                        </li>
                         @if ( $comment->user_id===auth()->user()->id )
                         <form id="delete_{{ $comment->id }}" method="post"
@@ -82,6 +85,7 @@
                               class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
                               削除</a>
                           </form>
+                          @endif
                                     @endif
 
                                     

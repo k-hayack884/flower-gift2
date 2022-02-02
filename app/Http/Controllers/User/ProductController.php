@@ -101,7 +101,7 @@ class ProductController extends Controller
         $product=Product::create([
             'user_id'=>Auth::id(),
             'name' => $request->name,
-            'comment' => $request->comment,
+            'comment_id' => $request->comment,
             'status' => $request->status,
             'address'=>$request->address,
             'trade_type'=>$request->trade_type,
@@ -123,6 +123,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $productInfo = Product::findOrFail($id);
+        if($productInfo->status===0){
+            return redirect()
+            ->route('user.products.index')
+            ->with([
+                'message' => 'この商品は非公開にされています',
+                'status' => 'info'
+            ]);
+        }
         $categoryName = Product::findOrFail($id)
             ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
             ->join('primary_categories', 'secondary_categories.primary_category_id', '=', 'primary_categories.id')
@@ -130,7 +139,7 @@ class ProductController extends Controller
             ->where('products.id', $id)
             ->first();
         // $favorite=Favorite::with('user')->findOrFail($id);
-        $productInfo = Product::findOrFail($id);
+
         $userProfile = Product::with('user')->findOrFail($id);
         $comments = Comment::with('user')->where('product_id', $id)->get();
         return view('user.products.show', compact('userProfile', 'productInfo', 'categoryName', 'comments'));

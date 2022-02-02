@@ -21,8 +21,12 @@ class ProductSeeder extends Seeder
             'img'=>'computer_keyboard_yatsuatari_businessman.png',
             'name'=>'キーボードクラッシャー',
             'comment'=>'ダミーデータです',
-            'status' => '0',
+            'status' => '1',
             'trade_type' => '0',
+            'address' => '兵庫県三木市末広1-1-4',
+            'created_at' => '2022/01/01 00:01:01',
+            'updated_at' => '2022/01/01 00:01:01'
+
             ]
         );
     }

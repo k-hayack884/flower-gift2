@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,18 @@ Route::prefix('expired-users')
     Route::get('index', [AdminController::class,'expiredUserIndex'])->name('expired-users.index');
     Route::post('destroy/{user}', [AdminController::class,'expiredUserDestroy'])->name('expired-users.destroy');
 });
+
+Route::prefix('bads')
+->middleware('auth:admin')->group(function () {
+    Route::get('comment/index', [BadController::class,'badCommentIndex'])->name('bads.comment-index');
+    Route::get('product/index', [BadController::class,'badProductIndex'])->name('bads.product-index');
+    Route::post('comment/delete/{comment}', [BadController::class,'badCommentDelete'])->name('bads.comment.delete');
+    Route::post('comment/cancel/{comment}', [BadController::class,'badCommentCancel'])->name('bads.comment.cancel');
+    Route::get('product/show/{product}', [BadController::class,'badProductShow'])->name('bads.product-show');
+    Route::post('product/delete/{product}', [BadController::class,'badProductDelete'])->name('bads.product.delete');
+    Route::post('product/cancel/{product}', [BadController::class,'badProductCancel'])->name('bads.product.cancel');
+});
+
 Route::resource('users', AdminController::class)
 ->middleware('auth:admin')->except(['show']);
 

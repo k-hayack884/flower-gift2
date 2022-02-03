@@ -11,7 +11,7 @@
                     <x-flash-message status="session('status')"></x-flash-message>
                     <section class="text-gray-600 body-font">
                         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+                            <div class="w-1/2 lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
                                 <x-user-icon :filename="$userProfile->img" />
                             </div>
                             <div
@@ -20,7 +20,7 @@
                                 <ul>
                                     <li class="mb-8 leading-relaxed">ユーザー名: {{ $userProfile->name }}</li>
                                     <li class="mb-8 leading-relaxed">
-                                        <div class="flex">ユーザー評価:
+                                        <div class="flex justify-center md:justify-start">ユーザー評価:
                                             <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
                                                 height="512px" viewBox="0 0 512 512"
@@ -110,23 +110,35 @@
                                     <li class="mb-8 leading-relaxed">出身地: {{ $userProfile->prefecture }}</li>
                                     <li class="mb-8 leading-relaxed">自己紹介: {{ $userProfile->comment }}</li>
                                     <ul>
-                                        <div class="flex justify-center">
+                                        <div class="flex flex-col md:flex-row">
                                             <button type="button"
                                                 onclick="location.href='{{ route('user.profiles.edit', ['profile' => $userProfile->id]) }}'"
-                                                class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">編集</button>
+                                                class=" mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">編集</button>
                                             <button type="button"
                                                 onclick="location.href='{{ route('user.dashboard') }}'"
-                                                class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
-                                        </div>
+                                                class=" mx-auto text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-20 md:mb-4">戻る</button>
+                                       
+                                        <form id="delete_{{ $userProfile->id }}" method="post"
+                                            action="{{ route('user.profiles.destroy', ['profile' => $userProfile->id]) }}">
+                                            @csrf
+                                            <a href="#" data-id="{{ $userProfile->id }}" onclick="deletePost(this)"
+                                                class=" text-white bg-red-500 border-0 py-2 px-20 text-center focus:outline-none hover:bg-red-600 rounded text-lg mx-4 mt-8 md:hidden">
+                                                削除</a>
+                                        </form>
+                                    </div>
+                                   
                             </div>
+                           
                         </div>
+                        <div class="flex justify-end">
                         <form id="delete_{{ $userProfile->id }}" method="post"
                             action="{{ route('user.profiles.destroy', ['profile' => $userProfile->id]) }}">
                             @csrf
                             <a href="#" data-id="{{ $userProfile->id }}" onclick="deletePost(this)"
-                                class="flex mx-auto  text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
+                                class=" text-white bg-red-500 border-0 py-2 px-8 mx-auto focus:outline-none hover:bg-red-600 rounded text-lg mx-4 mt-10 hidden md:block">
                                 削除</a>
-                        </form>
+                        </form> 
+                    </div>
                     </section>
                 </div>
             </div>

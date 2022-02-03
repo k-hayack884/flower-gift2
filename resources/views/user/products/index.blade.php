@@ -10,9 +10,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <section class="text-gray-600 body-font">
+                        <div class="flex justify-center md:justify-start">
                         <button onclick="location.href='{{ route('user.products.create') }}'"
-                            class="  bg-indigo-500 border-0  sm:px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg py-4 text-white">商品登録する</button>
-                        <div class="container px-5 py-24 mx-auto">
+                            class="bg-indigo-500 border-0 w-full md:w-1/4 sm:px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg py-4 text-white">商品登録する</button>
+                        </div>
+                            <div class="container px-5 py-24 mx-auto">
                             <div class="flex flex-wrap m-4">
                                 @foreach ($productInfo as $info)
                                     @foreach ($info->product as $product)
@@ -32,6 +34,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        
                     </section>
                 </div>
             </div>

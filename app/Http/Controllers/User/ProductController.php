@@ -62,7 +62,7 @@ class ProductController extends Controller
     public function index()
     {
         $productInfo=User::with('product.category') //モデルのリレーションのファンクションでつなぐ
-        ->where('id', Auth::id())->get();
+        ->where('id', Auth::id())->paginate(10);
         // dd($productInfo);
         // foreach ($productInfo as $info) {
         //     // dd($info->product);

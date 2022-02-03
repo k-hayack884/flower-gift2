@@ -36,7 +36,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <label for="name" class="leading-7 text-sm text-gray-600">商品名</label>
                                                 <input type="text" id="name" name="name"
@@ -44,7 +44,7 @@
                                                     value=" {{ $product->name }}" required>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <label for="comment" class="leading-7 text-sm text-gray-600">紹介文</label>
                                                 <textarea type="text" id="comment" name="comment"
@@ -52,7 +52,7 @@
                                                     required>{{ $product->comment }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <x-product-image :filename="$product->img" />
                                                 <label for="image" class="leading-7 text-sm text-gray-600">画像</label>
@@ -62,9 +62,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
+                                    <div class="p-2 mx-auto md:w-full">
                                         取引形態
-                                        <div class="flex justify-around">
+                                        <div class="flex  flex-col md:flex-row md:justify-around">
                                             <div><input type="radio" name="trade_type"
                                                     value="{{ \Constant::TRADE_LIST['direct'] }}"
                                                     @if ($product->trade_type === 0) checked @endif>直接取引</div>
@@ -76,7 +76,7 @@
                                                     @if ($product->trade_type === 2) checked @endif>配送(元払い)</div>
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
+                                    <div class="p-2 mx-auto md:w-full">
                                         <div class="relative">
                                             <label for="address" class="leading-7 text-sm text-gray-600">取引希望場所
                                                 ※直接取引の場合入力ください</label>
@@ -85,8 +85,8 @@
                                                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
-                                        <div class="flex justify-around">
+                                    <div class="p-2 mx-auto md:w-full">
+                                        <div class="flex  flex-col md:flex-row md:justify-around">
                                             <div><input type="radio" name="status"
                                                     value="{{ \Constant::PRODUCT_LIST['sell'] }}"
                                                     @if ($product->status === 0) checked @endif>販売中</div>

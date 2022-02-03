@@ -3,31 +3,39 @@
     <body class="antialiased">
         <div>
             <x-slot name="header">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    商品一覧
-                </h2>
-                <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center z-20">
+
+                <div class="relative flex items-top justify-between dark:bg-gray-900 sm:items-center z-20">
+                    <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+                        flower-giftへようこそ!
+                    </h1>
                     @if (Route::has('user.login'))
-                        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                        <div class="  sm:block">
                             @auth
-                                <a href="{{ url('/user/dashboard') }}"
-                                    class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        
                             @else
+                            
+
                                 <a href="{{ route('user.login') }}"
-                                    class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                                    class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class=" hidden sm:inline w-6 absolute top-3 left-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                      </svg> 
+ ログイン</a>
                                 @if (Route::has('user.register'))
                                     <a href="{{ route('user.register') }}"
-                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500  py-2 md:px-8 sm:py-4  hover:underline border-2 border-green-300 border-solid rounded">新規登録</a>
                                 @endif
                             @endauth
                         </div>
                     @endif
                 </div>
+
+                
             </x-slot>
             <form action="#" method="get">
-                <div class="lg:flex lg:justify-around mt-20">
-                    <div class="lg:flex items-center">
-                        <select name="category" class="lg:mr-4 md:my-4">
+                <div class="md:flex md:justify-around mt-20">
+                    <div class="md:flex items-center">
+                        <select name="category" class="my-2 md:mr-4 md:my-4">
                             <option value="0" @if (\Request::get('category') === '0') selected @endif>すべての商品</opition>
                                 @foreach ($categories as $category)
                                     <optgroup label={{ $category->name }}>
@@ -40,14 +48,14 @@
                         </select>
                         <div class="flex space-x-2 items-center">
                             <div><input name="keyword"
-                                    class="w-full md:my-4 bg-gray-100 bg-opacity-50 rounded border border-black focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out sm:my-4"
+                                    class="w-full my-2 md:my-4 bg-gray-100 bg-opacity-50 rounded border border-black focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out sm:my-4"
                                     placeholder="キーワードを入力" value="{{ request()->keyword }}"></div>
                             <div><button type="submit"
-                                    class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">検索する</button>
+                                    class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-4 md:px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">検索する</button>
                             </div>
                         </div>
                     </div>
-                    <div class="text-sm sm:my-4">表示順
+                    <div class="text-sm my-2 sm:my-4">表示順
                         <select name="sort" id="sort" class="ml-4">
                             <option value="{{ \Constant::ORDER_LIST['later'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順
                             </option>
@@ -59,13 +67,26 @@
                     </div>
             </form>
         </div>
+
+        <div id="app">
+            <button v-on:click="show" class="button">show!</button>
+            <modal name="hello-world" :draggable="true" :resizable="true">
+              <div class="modal-header">
+                <h2>Modal title</h2>
+              </div>
+              <div class="modal-body">
+                <p>you're reading this text in a modal!</p>
+                <button v-on:click="hide">閉じる</button>
+              </div>  
+            </modal>
+          </div>
+          
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-12 mx-auto">
                 <div class="flex flex-wrap m-4">
                     @foreach ($productInfo as $product)
                         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                            <a href="{{ route('user.products.edit', ['product' => $product->id]) }}"
-                                class="block relative h-48 rounded overflow-hidden">
+                            <a href="" class="block relative h-48 rounded overflow-hidden">
                                 <x-product-image :filename="$product->img" />
                             </a>
                             <div class="mt-4">
@@ -78,6 +99,7 @@
                 </div>
             </div>
         </div>
+    </div>
         {{ $productInfo->appends(request()->query())->links() }}
     </body>
 
@@ -87,5 +109,19 @@
         select.addEventListener('change', function() {
             this.form.submit()
         })
+        
+        Vue.use(window["vue-js-modal"].default);
+
+var app = new Vue({
+  el: '#app',
+  methods: {
+    show : function() {
+      this.$modal.show('hello-world');
+    },
+    hide : function () {
+      this.$modal.hide('hello-world');
+    },
+  }
+})
     </script>
 </x-app-layout>

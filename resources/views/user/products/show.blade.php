@@ -20,7 +20,7 @@
                 <h1 class="title-font  text-3xl mb-4 font-medium text-gray-900">
                     <br class="hidden lg:inline-block">{{ $productInfo->name }}
                 </h1>
-                <p class="mb-8 leading-relaxed">{{ $productInfo->comment }}</p>
+                <p class="mb-8 leading-relaxed lg:w-2/3">{{ $productInfo->comment }}</p>
                 <div
                     class="lg:flex-grow flex flex-col md:items-start md:text-left items-center">
                     <ul>

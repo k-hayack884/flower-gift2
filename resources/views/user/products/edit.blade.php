@@ -11,7 +11,7 @@
                     <section class="text-gray-600 body-font relative">
                         <div class="container px-5 mx-auto">
                             <div class="flex flex-col text-center w-full mb-12">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">商品登録</h1>
+                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">商品編集</h1>
                             </div>
                             <div class="lg:w-1/2 mx-auto">
                                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -20,7 +20,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="flex flex-col items-center m-2">
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 カテゴリー
                                                 <select name="category">
@@ -98,37 +98,39 @@
                                                     @if ($product->status === 2) checked @endif>販売終了</div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-around mt-4">
+                                    <div class="flex flex-col md:flex-row justify-around mt-4">
+                                        <button type="submit"
+                                            class=" mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4 mb-4">更新</button>
+
                                         <button type="button"
                                             onclick="location.href='{{ route('user.products.show', ['product' => $product->id]) }}'"
-                                            class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
-                                        <button type="submit"
-                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">更新</button>
-                                    </div>
-                                    <div class="flex justify-center">
+                                            class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">戻る</button>
+
+                                            <form id="delete_{{ $product->id }}" method="post"
+                                                action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
+                                                    class="mx-auto text-center text-white bg-red-500 border-0 py-2 px-12 focus:outline-none hover:bg-red-300 rounded text-lg mx-4 mb-4">
+                                                    削除する</a>
+                                            </form>
                                     </div>
                                 </form>
-                                <form id="delete_{{ $product->id }}" method="post"
-                                    action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
-                                        class=" mx-auto  text-center text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg my-8">
-                                        削除する</a>
-                                </form>
+
                             </div>
                         </div>
                 </div>
-                </section>
             </div>
+            </section>
         </div>
+    </div>
     </div>
     </div>
     <script>
         'use strict';
 
         function deletePost(e) {
-            if (confirm('本当に退会してもよろしいですか？')) {
+            if (confirm('本当に削除してもよろしいですか？')) {
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }

@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="bg-cover static">
+                <img src="{{asset('images/back_img.jpg')}}" class="" alt="">
+                <h1 class="text-white absolute top-48 left-48 mx-auto">飾り終わった花を必要な人にお届けするサービス!</h1>
+            </div>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -14,21 +15,27 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="name" :value="__('ユーザー名')" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('メールアドレス')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <div class="mt-4">
+                <x-label for="prefecture" :value="__('出身地')" />
+
+                <x-input id="prefecture" class="block mt-1 w-full" type="email" name="email" :value="old('prefecture')" />
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('パスワード')" />
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -38,7 +45,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="password_confirmation" :value="__('パスワード確認')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
@@ -47,11 +54,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('既に登録されていますか?(ログイン)') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('新規登録') }}
                 </x-button>
             </div>
         </form>

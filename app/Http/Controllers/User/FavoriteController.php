@@ -18,6 +18,7 @@ class FavoriteController extends Controller
     {
         $favoriteItem = Favorite::with('product') //モデルのリレーションのファンクションでつなぐ
             ->where('user_id', Auth::id())->get();
+           
 
 
         return view('user.favorites.index', compact('favoriteItem'));

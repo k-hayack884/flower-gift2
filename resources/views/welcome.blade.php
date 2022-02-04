@@ -9,18 +9,21 @@
                         flower-giftへようこそ!
                     </h1>
                     @if (Route::has('user.login'))
-                        <div class="  sm:block">
+                        <div class="sm:block">
                             @auth
-                        
+
                             @else
-                            
+
 
                                 <a href="{{ route('user.login') }}"
                                     class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 rounded">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class=" hidden sm:inline w-6 absolute top-3 left-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                                      </svg> 
- ログイン</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class=" hidden sm:inline w-6 absolute top-3 left-2" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                    </svg>
+                                    ログイン</a>
                                 @if (Route::has('user.register'))
                                     <a href="{{ route('user.register') }}"
                                         class="ml-4 text-sm text-gray-700 dark:text-gray-500  py-2 md:px-8 sm:py-4  hover:underline border-2 border-green-300 border-solid rounded">新規登録</a>
@@ -30,7 +33,7 @@
                     @endif
                 </div>
 
-                
+
             </x-slot>
             <form action="#" method="get">
                 <div class="md:flex md:justify-around mt-20">
@@ -69,24 +72,21 @@
         </div>
 
         <div id="app">
-            <button v-on:click="show" class="button">show!</button>
-            <modal name="hello-world" :draggable="true" :resizable="true">
-              <div class="modal-header">
-                <h2>Modal title</h2>
-              </div>
-              <div class="modal-body">
-                <p>you're reading this text in a modal!</p>
-                <button v-on:click="hide">閉じる</button>
-              </div>  
-            </modal>
+            <button v-on:click="openModal">Click</button>
           </div>
-          
+          <div id="overlay" v-show="showContent" class="z-1 fixed top-500 left-50 bg-black-200 flex justify-center">
+            <div id="content" class="z-2 w-48 p-4 bg-black-500">
+                <p>これがモーダルウィンドウです。</p>
+                <p><button v-on:click="closeModal">close</button></p>
+              </div>
+        </div>        
+
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-12 mx-auto">
                 <div class="flex flex-wrap m-4">
                     @foreach ($productInfo as $product)
                         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                            <a href="" class="block relative h-48 rounded overflow-hidden">
+                            <a href="" class="block relative  rounded overflow-hidden">
                                 <x-product-image :filename="$product->img" />
                             </a>
                             <div class="mt-4">
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
         {{ $productInfo->appends(request()->query())->links() }}
     </body>
 
@@ -109,18 +109,19 @@
         select.addEventListener('change', function() {
             this.form.submit()
         })
-        
-        Vue.use(window["vue-js-modal"].default);
 
-var app = new Vue({
+        new Vue({
   el: '#app',
-  methods: {
-    show : function() {
-      this.$modal.show('hello-world');
+  data: {
+    showContent: false
+  },
+  methods:{
+    openModal: function(){
+      this.showContent = true
     },
-    hide : function () {
-      this.$modal.hide('hello-world');
-    },
+    closeModal: function(){
+      this.showContent = false
+    }
   }
 })
     </script>

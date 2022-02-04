@@ -1,13 +1,14 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="bg-cover static">
+                <img src="{{asset('images/back_img.jpg')}}" class="" alt="">
+                <h1 class="text-white absolute top-48 left-48 mx-auto">飾り終わった花を必要な人にお届けするサービス!</h1>
+            </div>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('登録したメールアドレスをご入力ください') }}
         </div>
 
         <!-- Session Status -->
@@ -21,14 +22,14 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('登録メールアドレス')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('メールを送信する') }}
                 </x-button>
             </div>
         </form>

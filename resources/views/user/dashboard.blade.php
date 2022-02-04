@@ -45,7 +45,7 @@
                 @foreach ($productInfo as $product)
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                         <a href="{{ route('user.trades.show', ['trade' => $product->id]) }}"
-                            class="block relative h-48 rounded overflow-hidden">
+                            class="block relative rounded overflow-hidden">
                             <x-product-image :filename="$product->img" />
                         </a>
                         <div class="mt-4">

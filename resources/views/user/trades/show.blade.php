@@ -9,7 +9,7 @@
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
                 <x-product-image :filename="$productInfo->img" />
             </div>
-            <div class="lg:flex-grow md:w-1/2 lg:pl-12 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+            <div class="lg:flex-grow md:w-1/2 lg:pl-12 md:pl-16 flex flex-col md:items-start md:text-left items-center">
                 <div class="lg:flex-grow flex  md:items-start md:text-left">
                     {{ $categoryName->primary_name }}>>
                     <a href="{{ route('user.dashboard', ['category' => $productInfo->secondary_category_id]) }}" class="text-blue-600">
@@ -46,7 +46,7 @@
                 </form>
             @endif
         </div>     
-                <p class="mb-8 leading-relaxed">{{ $productInfo->comment }}</p>
+                <p class="mb-8 leading-relaxed w-2/3">{{ $productInfo->comment }}</p>
 
 
                 <div
@@ -58,7 +58,7 @@
                                 {{ $userProfile->user->name }}
                             </a>
                         </li>
-                        <li class="mb-8 leading-relaxed">
+                        <li class="mb-4 leading-relaxed">
                             <div class="flex">ユーザー評価:
                                 <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
@@ -143,18 +143,18 @@
                                 </svg> {{ $bad }}
                             </div>
                         </li>
-                        <li class="mb-8 leading-relaxed">出品日: {{ $productInfo->created_at }}</li>
-                        <li class="mb-8 leading-relaxed">
+                        <li class="mb-4 leading-relaxed">出品日: {{ $productInfo->created_at }}</li>
+                        <li class="mb-4 leading-relaxed">
                             現在の状態:@if ($productInfo->status == \Constant::PRODUCT_LIST['sell'])取引可能@elseif($productInfo->status == \Constant::PRODUCT_LIST['transaction'])取引中@elseif($productInfo->status == \Constant::PRODUCT_LIST['sold'])取引終了@endif
                         </li>
 
-                        <li class="mb-8 leading-relaxed">希望取引形態:
+                        <li class="mb-4 leading-relaxed">希望取引形態:
                             @if ($productInfo->trade_type == \Constant::TRADE_LIST['direct'])直接取引@elseif($productInfo->trade_type == \Constant::TRADE_LIST['payment'])配送(着払い)@elseif($productInfo->trade_type == \Constant::TRADE_LIST['prepayment'])配送(元払い)@endif
                         </li>
 
                         @if ($productInfo->trade_type == \Constant::TRADE_LIST['direct'])
                             取引希望場所 {{ $productInfo->address }}
-                            <div id="my_map" style="width: 300px; height: 300px">
+                            <div id="my_map" style="width: 300px; height: 300px; margin-bottom:20px;">
                                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuaFvbBqEM2aU64_xQ_M-6mxYFxM-fjN4&callback=initMapWithAddress"
                                                                 async defer></script>
                             </div>

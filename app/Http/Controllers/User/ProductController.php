@@ -70,7 +70,7 @@ class ProductController extends Controller
         //         dd($product->id);
         //     }
         // }
-
+        
         return view('user.products.index', compact('productInfo'));
     }
 

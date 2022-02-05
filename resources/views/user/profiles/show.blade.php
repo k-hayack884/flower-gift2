@@ -111,13 +111,15 @@
                                     <li class="mb-8 leading-relaxed">自己紹介: {{ $userProfile->comment }}</li>
                                     <ul>
                                         <div class="flex flex-col md:flex-row">
+                                            @if($userProfile->id===auth()->user()->id)  
                                             <button type="button"
                                                 onclick="location.href='{{ route('user.profiles.edit', ['profile' => $userProfile->id]) }}'"
                                                 class=" mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">編集</button>
-                                            <button type="button"
+                                            @endif
+                                                <button type="button"
                                                 onclick="location.href='{{ route('user.dashboard') }}'"
                                                 class=" mx-auto text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-20 md:mb-4">戻る</button>
-                                       
+                                         @if($userProfile->id===auth()->user()->id)  
                                         <form id="delete_{{ $userProfile->id }}" method="post"
                                             action="{{ route('user.profiles.destroy', ['profile' => $userProfile->id]) }}">
                                             @csrf
@@ -125,11 +127,13 @@
                                                 class=" text-white bg-red-500 border-0 py-2 px-20 text-center focus:outline-none hover:bg-red-600 rounded text-lg mx-4 mt-8 md:hidden">
                                                 削除</a>
                                         </form>
+                                        @endif
                                     </div>
                                    
                             </div>
                            
                         </div>
+                        @if($userProfile->id===auth()->user()->id) 
                         <div class="flex justify-end">
                         <form id="delete_{{ $userProfile->id }}" method="post"
                             action="{{ route('user.profiles.destroy', ['profile' => $userProfile->id]) }}">
@@ -139,6 +143,7 @@
                                 削除</a>
                         </form> 
                     </div>
+                    @endif
                     </section>
                 </div>
             </div>

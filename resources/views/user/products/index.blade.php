@@ -16,8 +16,30 @@
                         </div>
                             <div class="container px-5 py-24 mx-auto">
                             <div class="flex flex-wrap m-4">
+                                
+
+
                                 @foreach ($productInfo as $info)
+
                                     @foreach ($info->product as $product)
+                                    @if($product->status===0)
+                                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                                    <div class="relative">
+                                        <x-product-image :filename="$product->img" />
+                                            <div class=" absolute top-0 right-0">
+                                                
+                                            </div>   
+                                    </div>
+                                    <div class="mt-4">
+                                            <p class="text-gray-900 title-font font-medium mb-4">
+                                               この商品は運営によって非公開にされています</p>
+                                            <p class="text-gray-900">{{ $product->created_at->toDateString() }}に追加</p>
+                                    </div>
+
+
+                                </div>
+                                @else
+
                                         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                                             <a href="{{ route('user.products.show', ['product' => $product->id]) }}"
                                                 class="block relative rounded overflow-hidden">
@@ -26,12 +48,15 @@
                                             <div class="mt-4">
                                                 <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
                                                     {{ $product->category->name }}</h3>
-                                                <h2 class="text-gray-900 title-font text-lg font-medium">
+                                                <h2 class="text-gray-900 title-font text-lg font-medium mb-4">
                                                     {{ $product->name }}</h2>
                                             </div>
+                                            <p class="text-gray-900">{{ $product->created_at->toDateString() }}に追加</p>
                                         </div>
+                                        @endif
                                     @endforeach
                                 @endforeach
+                               
                             </div>
                         </div>
                         

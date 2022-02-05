@@ -1,10 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <div class="bg-cover static">
-                <img src="{{asset('images/back_img.jpg')}}" class="" alt="">
-                <h1 class="text-white absolute top-48 left-48 mx-auto">飾り終わった花を必要な人にお届けするサービス!</h1>
-            </div>
+            <x-back-image></x-back-image>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">

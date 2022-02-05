@@ -40,12 +40,13 @@
                         @endif
                         <ul>
                             <div class="flex flex-col md:flex-row">
-
+@if($productInfo->user_id!==auth()->user()->id)
                                 <button type="button"
                                     onclick="location.href='{{ route('user.products.edit', ['product' => $productInfo->id]) }}'"
                                     class=" mx-auto w-full text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 mb-4">編集</button>
+                                    @endif
                                 <button type="button" onclick="location.href='{{ route('user.dashboard') }}'"
-                                    class="mx-auto w-full text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 mb-4">戻る</button>
+                                    class="mx-auto w-full text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">戻る</button>
                             </div>
                 </div>
             </div>

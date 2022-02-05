@@ -9,6 +9,8 @@ use App\Models\PrimaryCategory;
 use App\Models\SecondaryCategory;
 use App\Models\Product;
 use App\Models\Comment;
+use App\Models\BadProduct;
+use App\Models\BadComment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -202,7 +204,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::findOrFail($id)->delete();
+
+            
+            Product::findOrFail($id)->delete();
+
+
+       
         return redirect()->route('user.products.index')->with([
                 'message' => '商品を削除しました',
                 'status' => 'delete'

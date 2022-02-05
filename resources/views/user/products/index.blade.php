@@ -4,7 +4,6 @@
             商品一覧
         </h2>
     </x-slot>
-    <x-flash-message status="session('status')"></x-flash-message>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -33,7 +32,18 @@
                                     <div class="mt-4">
                                             <p class="text-gray-900 title-font font-medium mb-4">
                                                この商品は運営によって非公開にされています</p>
+                                               <div class="flex justify-around">
                                             <p class="text-gray-900">{{ $product->created_at->toDateString() }}に追加</p>
+                                            <form id="delete_{{ $product->id }}" method="post"
+                                                action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
+                                                    class="mx-auto text-center text-white bg-red-500 border-0 px- focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
+                                                    削除</a>
+                                                </form>
+                                            </div>
                                     </div>
 
 
@@ -65,4 +75,13 @@
             </div>
         </div>
     </div>
+    <script>
+               'use strict';
+
+function deletePost(e) {
+    if (confirm('商品を削除してもよろしいですか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+    }
+}
+    </script>
 </x-app-layout>

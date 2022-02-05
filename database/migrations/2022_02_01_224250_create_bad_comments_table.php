@@ -15,8 +15,12 @@ class CreateBadCommentsTable extends Migration
     {
         Schema::create('bad_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('comment_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('comment_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('reason');
             $table->timestamps();
         });

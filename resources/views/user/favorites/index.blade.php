@@ -37,8 +37,9 @@
                                             </div>   
                                     </div>
                                     <div class="mt-4">
-                                            <p class="text-gray-900 title-font font-medium mb-4">
+                                            <p class="text-gray-900 title-font font-medium mb-10">
                                                この商品は運営によって非公開にされています</p>
+                                            
                                             <p class="text-gray-900">{{ $item->created_at->toDateString() }}に追加</p>
                                     </div>
 

@@ -39,14 +39,26 @@
                             </div>
                         @endif
                         <ul>
-                            <div class="flex flex-col md:flex-row">
-@if($productInfo->user_id!==auth()->user()->id)
+                            <div class="flex flex-col md:flex-row ">
+@if($productInfo->user_id===auth()->user()->id)
                                 <button type="button"
                                     onclick="location.href='{{ route('user.products.edit', ['product' => $productInfo->id]) }}'"
-                                    class=" mx-auto w-full text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 mb-4">編集</button>
+                                    class=" mx-auto w-full md:w-1/4 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">編集</button>
                                     @endif
                                 <button type="button" onclick="location.href='{{ route('user.dashboard') }}'"
-                                    class="mx-auto w-full text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">戻る</button>
+                                    class="mx-auto w-full md:w-1/4 text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">戻る</button>
+                                    @if($productInfo->user_id===auth()->user()->id)  
+                                    <form id="delete_{{ $productInfo->id }}" method="post"
+                                        action="{{ route('user.products.destroy', ['product' => $productInfo->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
+                                        <a href="#" data-id="{{ $productInfo->id }}" onclick="deletePost(this)"
+                                            class="block w-full text-white bg-red-500 border-0 py-2 px-8 text-center focus:outline-none hover:bg-red-600 rounded text-lg  mt-4 md:mx-4">
+             
+                                            削除</a>
+                                        </form>
+                                        @endif
                             </div>
                 </div>
             </div>

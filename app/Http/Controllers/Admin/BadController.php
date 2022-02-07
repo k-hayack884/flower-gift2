@@ -12,7 +12,6 @@ use App\Models\ProcessedComment;
 use App\Models\ProcessedProduct;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Models\User;
 
 class BadController extends Controller
 {

@@ -11,7 +11,6 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div id="app" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                         <example-component></example-component>
-                        <counter-component></counter-component>
                         <div class="grid grid-cols-1 md:grid-cols-2">    
                 </div>
             </div>

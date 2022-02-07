@@ -65,10 +65,10 @@ class ProfileController extends Controller
         $good=Review::goodReview($id);
         $normal=Review::normalReview($id);
         $bad=Review::badReview($id);
-        
+        $hoge='hogee';
         $userProfile=User::findOrFail($id);
 
-        return view('user.profiles.show', compact('userProfile', 'good', 'normal', 'bad'));
+        return view('user.profiles.show', compact('userProfile', 'good', 'normal', 'bad','hoge'));
     }
 
     /**

@@ -38,11 +38,15 @@ class Product extends Model
     }
     public function comment()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasOne(Comment::class);
     }
     public function badproduct()
     {
-        return $this->hasMany(BadProduct::class);
+        return $this->hasOne(BadProduct::class);
+    }
+    public function processedproduct()
+    {
+        return $this->hasOne(ProcessedProduct::class);
     }
     public function scopeAvailableItems($query)
     {

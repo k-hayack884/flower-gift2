@@ -14,49 +14,52 @@
                             <div class="flex justify-between w-full mb-4">
                                 <h1 class="text-4xl font-medium title-font text-gray-900  ">違反コメント管理</h1>
                             </div>
-                            <div class="lg:w-3/4 w-full mx-auto overflow-auto">
+                            <div class="w-full mx-auto overflow-auto">
                                 <table class="table-auto w-full text-left whitespace-no-wrap">
                                     <thead>
                                         <tr>
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                                class="md:px-4 py-3 w-1/6 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                                 報告ユーザー</th>
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                                class="md:px-4 py-3 w-1/4 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
                                                 理由</th>
+                                                <th
+                                                class="md:px-4 py-3 w-1/4 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                                コメント内容</th>
+
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                                class="md:px-4 py-3 w-1/6 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                                 報告日時</th>
                                             <th
-                                                class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
+                                                class="w-10 title-font w-1/6 text-center tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
                                                 処理</th>
-                                            <th
-                                                class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
-                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($comments as $comment)
-                                            <tr>
-                                                <td class="md:px-4 py-3">{{ $comment->user->name }}</td>
-                                                <td class="md:px-4 py-3">{{ $comment->reason }}</td>
-                                                <td class="md:px-4 py-3">{{ $comment->created_at }}
+                                            <tr class="border-2">
+                                                <td class="md:px-4 py-3 break-all">{{ $comment->user->name }}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $comment->comment->comment }}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $comment->reason }}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $comment->created_at->toDateString() }}
                                                 </td>
-                                                <td class="w-10 text-center md:px-4 py-3">
+                                                <td class=" text-center md:px-4 py-3 ">
                                                     <form
                                                         action="{{ route('admin.bads.comment.delete', ['comment' => $comment->id]) }}"
                                                         method="post">
                                                         @csrf
-                                                <td class="w-10 text-center md:px-4 py-3">
-                                                    <input type="submit" value="削除する"
-                                                        class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">
+                                                    <input type="hidden" name="comment_id" value="{{ $comment->comment->id }}">
+                                                    <input type="submit" value="削除"
+                                                        class="flex mx-auto  text-white bg-red-500 border-0 py-8 px-0  md:py-4 md:px-4 lg:px-8 focus:outline-none hover:bg-red-600 rounded text-lg mb-4">
                                                     </form>
                                                     <form
                                                         action="{{ route('admin.bads.comment.cancel', ['comment' => $comment->id]) }}"
                                                         method="post">
                                                         @csrf
-                                                        <input type="submit" value="違反取消"
-                                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">
+                                                        <input type="hidden" name="comment_id" value="{{ $comment->comment->id }}">
+                                                        <input type="submit" value="取消"
+                                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-8 px-0 md:py-4 md:px-4 lg:px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mb-4">
                                                 </td>
                                                 </form>
                                             </tr>

@@ -19,7 +19,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="flex flex-col items-center m-2">
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="name" class="leading-7 text-sm text-gray-600">ユーザー名</label>
                                                 <input type="text" id="name" name="name"
@@ -27,7 +27,7 @@
                                                     value="{{ $user->name }}" required>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="email"
                                                     class="leading-7 text-sm text-gray-600">メールアドレス</label>
@@ -36,7 +36,7 @@
                                                     value="{{ $user->email }}" required>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="password"
                                                     class="leading-7 text-sm text-gray-600">パスワード</label>
@@ -45,7 +45,7 @@
                                                     required>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="password_confirmation"
                                                     class="leading-7 text-sm text-gray-600">パスワード確認</label>
@@ -56,12 +56,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-around mt-4">
+                                    <div class="flex flex-col md:flex-row justify-around mt-4">
                                         <button type="button"
                                             onclick="location.href='{{ route('admin.users.index') }}'"
-                                            class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
+                                            class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4 md:mb-0">戻る</button>
                                         <button type="submit"
-                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">登録</button>
+                                            class=" mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">登録</button>
                                     </div>
                                 </form>
                             </div>

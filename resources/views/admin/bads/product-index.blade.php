@@ -18,16 +18,16 @@
                                     <thead>
                                         <tr>
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                                class="md:px-4 py-3 w-1/6 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                                 報告ユーザー</th>
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                                class="md:px-4 py-3 w-1/2  text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
                                                 理由</th>
                                             <th
-                                                class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                                class="md:px-4 py-3 w-1/6 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                                 報告日時</th>
                                             <th
-                                                class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
+                                                class="w-10 title-font w-1/6 tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
                                                 処理</th>
                                             <th
                                                 class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
@@ -36,14 +36,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($products as $product)
-                                            <tr>
-                                                <td class="md:px-4 py-3">{{ $product->product->user->name }}</td>
-                                                <td class="md:px-4 py-3">{{ $product->reason }}</td>
-                                                <td class="md:px-4 py-3">{{ $product->created_at }}
+                                            <tr class="border-2">
+                                                <td class="md:px-4 py-3 break-all">{{ $product->product->user->name}}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $product->reason }}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $product->created_at->toDateString() }}
                                                 </td>
                                                 <td class="w-20 text-center md:px-4">
                                                     <a href="{{ route('admin.bads.product-show', ['product' => $product->id]) }}"
-                                                        class="block relative rounded overflow-hidden">確認
+                                                        class="block relative text-white rounded overflow-hidden p-2 bg-indigo-500">確認
                                                     </a>
                                         @endforeach
                                     </tbody>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\BadComment;
+use App\Models\ProcessedComment;
 class Comment extends Model
 {
     protected $fillable = [
@@ -28,5 +29,9 @@ class Comment extends Model
     public function badcomment()
     {
         return $this->hasMany(BadComment::class);
+    }
+    public function processedcomment()
+    {
+        return $this->hasMany(ProcessedComment::class);
     }
 }

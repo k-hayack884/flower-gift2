@@ -1,19 +1,19 @@
 import './bootstrap'
 
+
 import { createApp } from 'vue'
-import Counter from './components/Counter.vue'
-// import deleteButton  from './components/delete-button.vue'
+import ExampleComponent from './components/ExampleComponent.vue'
+import CounterComponent from './components/Counter.vue'
+import ReviewComponent from './components/Review.vue'
 
-if (document.getElementById('counter')){
-    Vue.createApp(Counter).mount('#counter')
-}
 
-// createApp({
-//     components: {
-//         Counter,
-//         // deleteButton
-//     }
-// }).mount('#app')
+createApp({
+    components:{
+        ExampleComponent,
+        CounterComponent,
+        ReviewComponent
+    }
+}).mount('#app')
 
 import Alpine from 'alpinejs';
 

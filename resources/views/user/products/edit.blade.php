@@ -11,7 +11,7 @@
                     <section class="text-gray-600 body-font relative">
                         <div class="container px-5 mx-auto">
                             <div class="flex flex-col text-center w-full mb-12">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">商品登録</h1>
+                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">商品編集</h1>
                             </div>
                             <div class="lg:w-1/2 mx-auto">
                                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -20,7 +20,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="flex flex-col items-center m-2">
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 カテゴリー
                                                 <select name="category">
@@ -36,7 +36,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <label for="name" class="leading-7 text-sm text-gray-600">商品名</label>
                                                 <input type="text" id="name" name="name"
@@ -44,7 +44,7 @@
                                                     value=" {{ $product->name }}" required>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <label for="comment" class="leading-7 text-sm text-gray-600">紹介文</label>
                                                 <textarea type="text" id="comment" name="comment"
@@ -52,7 +52,7 @@
                                                     required>{{ $product->comment }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="p-2 w-1/2 mx-auto">
+                                        <div class="p-2 mx-auto md:w-full">
                                             <div class="relative">
                                                 <x-product-image :filename="$product->img" />
                                                 <label for="image" class="leading-7 text-sm text-gray-600">画像</label>
@@ -62,9 +62,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
+                                    <div class="p-2 mx-auto md:w-full">
                                         取引形態
-                                        <div class="flex justify-around">
+                                        <div class="flex  flex-col md:flex-row md:justify-around">
                                             <div><input type="radio" name="trade_type"
                                                     value="{{ \Constant::TRADE_LIST['direct'] }}"
                                                     @if ($product->trade_type === 0) checked @endif>直接取引</div>
@@ -76,7 +76,7 @@
                                                     @if ($product->trade_type === 2) checked @endif>配送(元払い)</div>
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
+                                    <div class="p-2 mx-auto md:w-full">
                                         <div class="relative">
                                             <label for="address" class="leading-7 text-sm text-gray-600">取引希望場所
                                                 ※直接取引の場合入力ください</label>
@@ -85,8 +85,8 @@
                                                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         </div>
                                     </div>
-                                    <div class="p-2 w-1/2 mx-auto">
-                                        <div class="flex justify-around">
+                                    <div class="p-2 mx-auto md:w-full">
+                                        <div class="flex  flex-col md:flex-row md:justify-around">
                                             <div><input type="radio" name="status"
                                                     value="{{ \Constant::PRODUCT_LIST['sell'] }}"
                                                     @if ($product->status === 0) checked @endif>販売中</div>
@@ -98,37 +98,39 @@
                                                     @if ($product->status === 2) checked @endif>販売終了</div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-around mt-4">
+                                    <div class="flex flex-col md:flex-row justify-around mt-4">
+                                        <button type="submit"
+                                            class=" mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4 mb-4">更新</button>
+
                                         <button type="button"
                                             onclick="location.href='{{ route('user.products.show', ['product' => $product->id]) }}'"
-                                            class="flex mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4">戻る</button>
-                                        <button type="submit"
-                                            class="flex mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">更新</button>
-                                    </div>
-                                    <div class="flex justify-center">
+                                            class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">戻る</button>
+
+                                            <form id="delete_{{ $product->id }}" method="post"
+                                                action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
+                                                    class="mx-auto text-center text-white bg-red-500 border-0 py-2 px-12 focus:outline-none hover:bg-red-300 rounded text-lg mx-4 mb-4">
+                                                    削除する</a>
+                                            </form>
                                     </div>
                                 </form>
-                                <form id="delete_{{ $product->id }}" method="post"
-                                    action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
-                                        class=" mx-auto  text-center text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg my-8">
-                                        削除する</a>
-                                </form>
+
                             </div>
                         </div>
                 </div>
-                </section>
             </div>
+            </section>
         </div>
+    </div>
     </div>
     </div>
     <script>
         'use strict';
 
         function deletePost(e) {
-            if (confirm('本当に退会してもよろしいですか？')) {
+            if (confirm('本当に削除してもよろしいですか？')) {
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }

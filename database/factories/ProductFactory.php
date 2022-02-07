@@ -14,7 +14,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=>$this->faker->numberBetween(1, 2),
+            'user_id'=>$this->faker->numberBetween(1, 21),
             'secondary_category_id'=>$this->faker->numberBetween(1, 21),
             'name'=>$this->faker->name,
             'comment'=>$this->faker->realText,

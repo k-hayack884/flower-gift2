@@ -9,7 +9,7 @@ class Common
     const PRODUCT_SOLD = '3';
 
     const PRODUCT_LIST = [
-
+        'noshow' => self::PRODUCT_NOSHOW,
         'sell' => self::PRODUCT_SELL,
         'transaction' => self::PRODUCT_TRANSACTION,
         'sold' => self::PRODUCT_SOLD

@@ -1,19 +1,26 @@
 <template>
-  Counter: {{ counter }}
+<div id="counter">
+<button id="increment-button" @click="increment">+ 1</button>
+      <button id="decrement-button" @click="decrement">- 1</button>
+      <p id="count" v-cloak>{{count}}</p>
+    </div>
 </template>
 
 <script>
-const Counter = {
+export default {
+   el: "#counter",
   data() {
     return {
-      counter: 0
-    }
+      count: 0
+    };
   },
-   mounted() {
-    setInterval(() => {
-      this.counter++
-    }, 1000)
+  methods: {
+    increment() {
+      this.count++;
+    },
+    decrement() {
+      this.count--;
+    }
   }
-}
-Vue.createApp(Counter).mount('#counter')
+};
 </script>

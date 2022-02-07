@@ -11,6 +11,7 @@ class ProcessedProduct extends Model
     protected $fillable = [
         'admin_id',
         'result',
+        'product_id'
 
     ];
     use HasFactory;

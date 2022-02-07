@@ -15,8 +15,12 @@ class CreateBadProductsTable extends Migration
     {
         Schema::create('bad_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('reason');
             $table->timestamps();
         });

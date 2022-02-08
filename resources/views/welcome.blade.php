@@ -8,6 +8,10 @@
                     <h1 class="font-semibold text-xl text-gray-800 leading-tight">
                         flower-giftへようこそ!
                     </h1>
+                    
+        <div id="app">
+            <modal-component></modal-component>
+        </div>     
                     @if (Route::has('user.login'))
                         <div class="sm:block">
                             @auth
@@ -70,16 +74,7 @@
                     </div>
             </form>
         </div>
-
-        <div id="app">
-            <button v-on:click="openModal">Click</button>
-          </div>
-          <div id="overlay" v-show="showContent" class="z-1 fixed top-500 left-50 bg-black-200 flex justify-center">
-            <div id="content" class="z-2 w-48 p-4 bg-black-500">
-                <p>これがモーダルウィンドウです。</p>
-                <p><button v-on:click="closeModal">close</button></p>
-              </div>
-        </div>        
+ 
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-12 mx-auto">
@@ -104,25 +99,13 @@
     </body>
 
     </html>
+    <script src="{{ mix('/js/app.js') }}"></script>
     <script>
         const select = document.getElementById('sort')
         select.addEventListener('change', function() {
             this.form.submit()
         })
 
-        new Vue({
-  el: '#app',
-  data: {
-    showContent: false
-  },
-  methods:{
-    openModal: function(){
-      this.showContent = true
-    },
-    closeModal: function(){
-      this.showContent = false
-    }
-  }
-})
+
     </script>
 </x-app-layout>

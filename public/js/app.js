@@ -24691,20 +24691,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   el: '#app',
-  data: {
-    modalVisible: false,
-    // モーダル
-    modalBgVisible: false //モーダル背景色（薄黒）
-
+  data: function data() {
+    return {
+      showContent: false
+    };
   },
   methods: {
-    showModal: function showModal() {
-      this.modalVisible = true;
-      this.modalBgVisible = true;
+    openModal: function openModal() {
+      this.showContent = true;
     },
     closeModal: function closeModal() {
-      this.modalVisible = false;
-      this.modalBgVisible = false;
+      this.showContent = false;
     }
   }
 });
@@ -24834,40 +24831,47 @@ var _hoisted_1 = {
   id: "app"
 };
 var _hoisted_2 = {
-  "class": "p-modal"
+  id: "overlay",
+  "class": "z-20 flex justify-center"
+};
+var _hoisted_3 = {
+  id: "content",
+  "class": "md:absolute top-40"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "p-modal__title"
-}, "Vueモーダル", -1
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  className: "h-3 w-3",
+  fill: "red",
+  viewBox: "0 0 24 24",
+  stroke: "white"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  strokeWidth: "{2}",
+  d: "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+})], -1
 /* HOISTED */
 );
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Hello World!", -1
-/* HOISTED */
-);
+var _hoisted_5 = [_hoisted_4];
 
-var _hoisted_5 = {
-  key: 1,
-  "class": "l-modal__bg"
-};
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"text-gray-600 body-font\"><div class=\"relative mx-auto px-5 py-12\" style=\"background-image:url(&#39;images/back_img.jpg&#39;);\"></div><div class=\"container mx-auto flex px-5 py-4 items-center justify-center flex-col\"><h1 class=\"title-font sm:text-xl text-2xl mb-4 font-medium text-gray-900\">利用のためにログインしてください</h1><div class=\"flex justify-center flex-col md:flex-row\"><a href=\"login\" class=\"text-center text-white bg-indigo-500 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-indigo-600 rounded text-lg md:mx-4\">ログイン</a><a href=\"register\" class=\"text-center text-gray-700 bg-gray-100 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-gray-200 rounded text-lg md:mx-4\">新規登録</a></div></div></section>", 1);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" template for the modal component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" template for the modal component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function () {
-      return _ctx.openModal && _ctx.openModal.apply(_ctx, arguments);
-    })
-  }, "Click"), _ctx.modalVisible ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    key: 0,
-    onClick: _cache[2] || (_cache[2] = function () {
-      return $options.closeModal && $options.closeModal.apply($options, arguments);
+      return $options.openModal && $options.openModal.apply($options, arguments);
     }),
-    "class": "l-modal"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" モーダルを閉じるボタン "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "absolute top-0 p-48"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.closeModal && $options.closeModal.apply($options, arguments);
     }),
-    "class": "p-modal__btn--close"
-  }, "×")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.modalBgVisible ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 2112
+    "class": "ml-30 z-30 w-8 h-8 flex justify-end"
+  }, _hoisted_5), _hoisted_6])], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.showContent]])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -25056,29 +25060,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
-/* harmony import */ var _components_Counter_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Counter.vue */ "./resources/js/components/Counter.vue");
-/* harmony import */ var _components_Review_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Review.vue */ "./resources/js/components/Review.vue");
-/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Modal.vue */ "./resources/js/components/Modal.vue");
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
+/* harmony import */ var _components_Counter_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Counter.vue */ "./resources/js/components/Counter.vue");
+/* harmony import */ var _components_Review_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Review.vue */ "./resources/js/components/Review.vue");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
 
 
 
 
-(0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)({
+
+
+(0,vue__WEBPACK_IMPORTED_MODULE_2__.createApp)({
   components: {
-    ExampleComponent: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    CounterComponent: _components_Counter_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    ReviewComponent: _components_Review_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    // router,
+    ExampleComponent: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    CounterComponent: _components_Counter_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ReviewComponent: _components_Review_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
-}).mount('#app');
+}).mount('#app'); // Vue.use(VueRouter);
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_6__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_6__["default"].start();
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_7__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_7__["default"].start();
 
 /***/ }),
 
@@ -25113,6 +25123,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/routes.js":
+/*!********************************!*\
+  !*** ./resources/js/routes.js ***!
+  \********************************/
+/***/ (() => {
+
+// import ExampleComponent from "./components/ExampleComponent";
+// import VueRouter from "vue-router";
+// const routes = [
+//     {
+//         path: "/",
+//         component: ExampleComponent,
+//         name: "home"
+//     }
+// ];
+// const router = new VueRouter({
+//     routes,
+// });
+// export default router;
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Modal.vue?vue&type=style&index=0&id=53ab54d2&lang=css":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Modal.vue?vue&type=style&index=0&id=53ab54d2&lang=css ***!
@@ -25130,7 +25162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#overlay{\r\n  /*　要素を重ねた時の順番　*/\r\n  z-index:1;\r\n\r\n  /*　画面全体を覆う設定　*/\r\n  position:fixed;\r\n  top:0;\r\n  left:0;\r\n  width:100%;\r\n  height:100%;\r\n  background-color:rgba(0,0,0,0.5);\r\n\r\n  /*　画面の中央に要素を表示させる設定　*/\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\n}\n#content{\r\n  z-index:2;\r\n  width:50%;\r\n  padding: 1em;\r\n  background:#fff;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#overlay{\r\n  /*　要素を重ねた時の順番　*/\r\n\r\n  /*　画面全体を覆う設定　*/\r\n  position:fixed;\r\n  top:0;\r\n  left:0;\r\n  width:100%;\r\n  height:100%;\r\n  background-color:rgba(0,0,0,0.5);\r\n\r\n  /*　画面の中央に要素を表示させる設定　*/\n}\n#content{\r\n\r\n  width:75%;\r\n  padding: 1em;\r\n  background:#fff;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

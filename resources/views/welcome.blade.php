@@ -5,22 +5,19 @@
             <x-slot name="header">
 
                 <div class="relative flex items-top justify-between dark:bg-gray-900 sm:items-center z-20">
-                    <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+                    <h1 class="font-semibold text-lg text-gray-800 leading-tight">
                         flower-giftへようこそ!
                     </h1>
-                    
-        <div id="app">
-            <modal-component></modal-component>
-        </div>     
+                
                     @if (Route::has('user.login'))
-                        <div class="sm:block">
+                        <div class="">
                             @auth
 
                             @else
 
 
                                 <a href="{{ route('user.login') }}"
-                                    class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 rounded">
+                                    class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 border-2 border-red-500 rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class=" hidden sm:inline w-6 absolute top-3 left-2" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -30,7 +27,7 @@
                                     ログイン</a>
                                 @if (Route::has('user.register'))
                                     <a href="{{ route('user.register') }}"
-                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500  py-2 md:px-8 sm:py-4  hover:underline border-2 border-green-300 border-solid rounded">新規登録</a>
+                                        class=" text-sm text-gray-700 dark:text-gray-500  py-2 md:px-8 sm:py-4  hover:underline border-2 border-green-700 border-solid rounded">新規登録</a>
                                 @endif
                             @endauth
                         </div>
@@ -74,16 +71,19 @@
                     </div>
             </form>
         </div>
- 
-
+        <div id="app">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="container px-5 py-12 mx-auto">
                 <div class="flex flex-wrap m-4">
                     @foreach ($productInfo as $product)
                         <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                            <a href="" class="block relative  rounded overflow-hidden">
-                                <x-product-image :filename="$product->img" />
-                            </a>
+                            
+                            <span class="block relative  rounded overflow-hidden">
+                                <x-product-image :filename="$product->img"/>
+                                <modal-component v-on:click="openModal"></modal-component>
+                                
+                                </span>
+                          
                             <div class="mt-4">
                                 <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
                                     {{ $product->category->name }}</h3>
@@ -91,6 +91,7 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
                 </div>
             </div>
         </div>

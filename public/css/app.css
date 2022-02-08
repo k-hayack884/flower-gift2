@@ -659,6 +659,12 @@ select {
 .top-1\/2 {
   top: 50%;
 }
+.top-40 {
+  top: 10rem;
+}
+.left-24 {
+  left: 6rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -667,6 +673,9 @@ select {
 }
 .z-20 {
   z-index: 20;
+}
+.z-30 {
+  z-index: 30;
 }
 .col-span-3 {
   grid-column: span 3 / span 3;
@@ -768,11 +777,17 @@ select {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
+.ml-20 {
+  margin-left: 5rem;
+}
 .block {
   display: block;
 }
 .inline-block {
   display: inline-block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -815,6 +830,9 @@ select {
 }
 .h-48 {
   height: 12rem;
+}
+.h-3 {
+  height: 0.75rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -869,6 +887,12 @@ select {
 }
 .w-24 {
   width: 6rem;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-3 {
+  width: 0.75rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1046,13 +1070,17 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
-.border-green-300 {
+.border-green-700 {
   --tw-border-opacity: 1;
-  border-color: rgb(134 239 172 / var(--tw-border-opacity));
+  border-color: rgb(21 128 61 / var(--tw-border-opacity));
 }
 .border-indigo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
+}
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1110,6 +1138,9 @@ select {
 }
 .p-4 {
   padding: 1rem;
+}
+.p-48 {
+  padding: 12rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1486,6 +1517,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.hover\:bg-gray-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1722,8 +1757,17 @@ select {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 @media (min-width: 768px) {
+
+  .md\:absolute {
+    position: absolute;
+  }
 
   .md\:mx-4 {
     margin-left: 1rem;
@@ -1848,6 +1892,10 @@ select {
   }
 }
 @media (min-width: 1024px) {
+
+  .lg\:absolute {
+    position: absolute;
+  }
 
   .lg\:left-1\/4 {
     left: 25%;

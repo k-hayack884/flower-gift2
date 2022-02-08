@@ -5,15 +5,18 @@ import { createApp } from 'vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 import CounterComponent from './components/Counter.vue'
 import ReviewComponent from './components/Review.vue'
+import FavoriteComponent from './components/Favorite.vue'
 
 
 createApp({
     components:{
         ExampleComponent,
         CounterComponent,
-        ReviewComponent
+        ReviewComponent,
+        FavoriteComponent,
     }
 }).mount('#app')
+
 
 import Alpine from 'alpinejs';
 

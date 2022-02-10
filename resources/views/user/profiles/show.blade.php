@@ -22,6 +22,7 @@
                                     <li class="mb-8 leading-relaxed">
                                         <div id="app" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                                             <review-component v-bind:good='{{$good}}' v-bind:normal='{{$normal}}' v-bind:bad='{{$bad}}'></review-component>
+                                            <counter-component></counter-component>
                                         </div>
                                         
                                         

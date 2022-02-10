@@ -19,11 +19,19 @@
                 <div class="flex">
                 <h1 class="title-font  text-3xl font-medium text-gray-900 my-2">
                     <p >{{ $productInfo->name }}</p>
+
                 </h1>
                 @if (empty($favorite))
-                <div id="add">
-<favorite-component></favorite-component>
-</div>
+                <form method="post" action="{{ route('api.user.favorites.delete') }}">
+                    @csrf
+                <button class="pt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                </button>
+                <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
+            </form>
             @else
 
                 <form method="post" action="{{ route('user.favorites.delete') }}">
@@ -53,9 +61,11 @@
                             </a>
                         </li>
                         <li class="mb-4 leading-relaxed">
-                            <div id="app" class="">
-                                <review-component v-bind:good='{{$good}}' v-bind:normal='{{$normal}}' v-bind:bad='{{$bad}}'></review-component>
-                            </div>
+                            <div class="flex">ユーザー評価:
+                                <div id="app" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                                    <review-component v-bind:good='{{$good}}' v-bind:normal='{{$normal}}' v-bind:bad='{{$bad}}'></review-component>
+                                </div>
+
                         </li>
                         <li class="mb-4 leading-relaxed">出品日: {{ $productInfo->created_at }}</li>
                         <li class="mb-4 leading-relaxed">
@@ -114,7 +124,7 @@
                             <li>
                                 @if ($comment->user_id === auth()->user()->id)
                                     <form id="delete_{{ $comment->id }}" method="post"
-                                        action="{{ route('user.trades.show.delete', ['trade' => $comment->id]) }}">
+                                        action="{{ route('trades.show.delete', ['trade' => $comment->id]) }}">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
                                         <a href="#" data-id="{{ $comment->id }}" onclick="deletePost(this)"
@@ -138,7 +148,7 @@
         @endforeach
         <div class="lg:w-1/2 mx-auto">
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <form action="{{ route('user.trades.show.add') }}" method="post">
+            <form action="{{ route('trades.show.add') }}" method="post">
                 @csrf
                 <label for="comment" class="leading-7 text-sm text-gray-600">コメントを書く</label>
                 <input type="hidden" name="product_id" value="{{ $productInfo->id }}">

@@ -3,7 +3,8 @@
 <!-- <button id="increment-button" @click="increment">+ 1</button>
       <button id="decrement-button" @click="decrement">- 1</button> -->
       <div class="flex justify-center md:justify-start">ユーザー評価:
-
+<button class="good-icon"
+          @click="good_review">
                                             <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
                                                 height="512px" viewBox="0 0 512 512"
@@ -27,13 +28,15 @@
                                                         style="fill: rgb(255, 170, 243);"></path>
                                                 </g>
                                             </svg>
-                                            {{ good }} 
+                                            </button>
+                                          <p id="good" v-cloak>  {{ good }}</p> 
+                                            <button class="normal-icon"
+          @click="normal_review">
                                             <svg version="1.1" id="_x32_"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
                                                 height="512px" viewBox="0 0 512 512"
                                                 style="width: 24px; height: 24px; opacity: 1;" xml:space="preserve">
-
                                                 <g>
                                                     <path class="st0" d="M256.016,0C114.625,0,0,114.625,0,256s114.625,256,256.016,256C397.375,512,512,397.375,512,256
                           S397.375,0,256.016,0z M256.016,450.031c-106.984,0-194.047-87.063-194.047-194.031c0-37.766,11.031-72.953,29.797-102.781H420.25
@@ -49,7 +52,10 @@
                                                         height="32.313" style="fill: rgb(184, 221, 24);"></rect>
                                                 </g>
                                             </svg> 
+                                            </button>
                                             {{ normal }}
+                                            <button class="bad-icon"
+          @click="bad_review">
                                              <svg version="1.1" id="_x32_"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
@@ -74,6 +80,7 @@
                                                         style="fill: rgb(162, 142, 247);"></path>
                                                 </g>
                                             </svg>
+                                            </button>
                                              {{ bad }}
                                         </div>
     </div>
@@ -84,7 +91,7 @@ export default {
    el: "#review",
   data() {
     return {
-    
+
     }
   },
   props: ['good','normal','bad'],
@@ -92,12 +99,15 @@ export default {
     
   },
   methods: {
-    increment() {
-      this.count++;
+    good_review() {
+      this.good++;
     },
-    decrement() {
-      this.count--;
-    }
+    normal_review() {
+      this.normal++;
+    },
+    bad_review() {
+      this.bad++;
+    },
   }
 };
 </script>

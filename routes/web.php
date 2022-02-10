@@ -46,8 +46,7 @@ Route::prefix('emails')->middleware(['auth:users'])->group(function () {
 });
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
-    Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');
-    Route::post('show/delete{trade}', [TradeController::class, 'delete'])->name('trades.show.delete');
+    
 });
 Route::prefix('bads')->middleware(['auth:users'])->group(function () {
     Route::get('/product/{bad}', [BadController::class, 'product'])->name('bads.product');
@@ -64,6 +63,11 @@ Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
     Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
 });
 
+Route::prefix('reviews')->middleware(['auth:users'])->group(function () {
+    Route::post('/good', [ReviewController::class, 'good'])->name('reviews.good');
+    Route::post('/normal', [ReviewController::class, 'normal'])->name('reviews.normal');
+    Route::post('/bad', [ReviewController::class, 'bad'])->name('reviews.bad');
+});
 
 Route::get('/dashboard', [ ProductController::class,'view'])
 ->middleware(['auth:users'])->name('dashboard');

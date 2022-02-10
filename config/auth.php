@@ -48,6 +48,11 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false, // ここをtrueにする
+        ],
     ],
 
     /*

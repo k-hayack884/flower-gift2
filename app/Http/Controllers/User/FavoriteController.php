@@ -25,24 +25,29 @@ class FavoriteController extends Controller
     }
     public function add(Request $request)
     {
-        $itemInFavorite = Favorite::where('user_id', Auth::id())
-            ->where('product_id', $request->product_id)->first();
+    $product_id = $request->input('productId');
 
+        $itemInFavorite = Favorite::where('user_id', Auth::id())
+            ->where('product_id', $product_id)->first();
         if (empty($itemInFavorite)) {
             Favorite::create([
                 'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
+                'product_id' => $product_id,
 
             ]);
         }
-        return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
+        return response()->json([
+            'message' => 'New post created'
+        ]);
+        // return response()->json([Favorite::all()]);
+        // return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
     public function delete(Request $request)
     {
         Favorite::where('product_id', $request->product_id)
             ->where('user_id', Auth::id())->delete();
-
-        return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
+            return response()->json(Favorite::all());
+        // return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
     public function indexDelete(Request $request)
     {

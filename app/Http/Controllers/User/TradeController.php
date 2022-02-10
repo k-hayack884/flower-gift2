@@ -63,4 +63,5 @@ class TradeController extends Controller
 
         return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
+
 }

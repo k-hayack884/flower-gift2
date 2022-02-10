@@ -20,12 +20,15 @@ use App\Http\Controllers\User\ReviewController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('trades')->middleware(['auth:users'])->group(function () {
-    Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');
-    Route::post('show/delete{trade}', [TradeController::class, 'delete'])->name('trades.show.delete');
+Route::prefix('favorites')->middleware(['api', 'auth:users'])->group(function () {
+    Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
+    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
 });
+
 Route::prefix('reviews')->middleware(['auth:users'])->group(function () {
     Route::post('/good', [ReviewController::class,'good'])->name('reviews.good');
     Route::post('/normal', [ReviewController::class,'normal'])->name('reviews.normal');
     Route::post('/bad', [ReviewController::class,'bad'])->name('reviews.bad');
 });
+
+

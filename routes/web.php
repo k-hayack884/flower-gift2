@@ -7,7 +7,7 @@ use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\BadController;
+use App\Http\Controllers\User\BadController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
 
@@ -46,7 +46,8 @@ Route::prefix('emails')->middleware(['auth:users'])->group(function () {
 });
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
-    
+    Route::post('show/add', [TradeController::class, 'add'])->name('trades.show.add');
+    Route::post('show/delete{trade}', [TradeController::class, 'delete'])->name('trades.show.delete');
 });
 Route::prefix('bads')->middleware(['auth:users'])->group(function () {
     Route::get('/product/{bad}', [BadController::class, 'product'])->name('bads.product');
@@ -58,16 +59,11 @@ Route::prefix('bads')->middleware(['auth:users'])->group(function () {
 
 Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
     Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');
-    Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
-    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
+    // Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
+    // Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
     Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
 });
 
-Route::prefix('reviews')->middleware(['auth:users'])->group(function () {
-    Route::post('/good', [ReviewController::class, 'good'])->name('reviews.good');
-    Route::post('/normal', [ReviewController::class, 'normal'])->name('reviews.normal');
-    Route::post('/bad', [ReviewController::class, 'bad'])->name('reviews.bad');
-});
 
 Route::get('/dashboard', [ ProductController::class,'view'])
 ->middleware(['auth:users'])->name('dashboard');

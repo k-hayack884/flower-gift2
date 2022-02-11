@@ -24731,8 +24731,9 @@ __webpack_require__.r(__webpack_exports__);
   el: "#favo",
   data: function data() {
     return {
-      favo: this.canfavorite //初期値
-
+      favo: this.canfavorite,
+      //初期値
+      error: ''
     };
   },
   props: ["productid", "canfavorite"],
@@ -24740,7 +24741,6 @@ __webpack_require__.r(__webpack_exports__);
     postFavo: function postFavo() {
       var _this = this;
 
-      console.log('sa', this.productid);
       axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
         withCredentials: true
       }).then(function (response) {
@@ -24749,6 +24749,24 @@ __webpack_require__.r(__webpack_exports__);
           withCredentials: true
         }).then(function (response) {
           return _this.favo = false;
+        })["catch"](function (response) {
+          return console.error(response.message);
+        });
+      });
+    },
+    deleteFavo: function deleteFavo() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+        withCredentials: true
+      }).then(function (response) {
+        axios.post("http://127.0.0.1:8000/api/favorites/delete", {
+          productId: _this2.productid,
+          withCredentials: true
+        }).then(function (response) {
+          return _this2.favo = true;
+        })["catch"](function (response) {
+          return console.error(response.message);
         });
       });
     }
@@ -24771,19 +24789,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   el: "#review",
   data: function data() {
-    return {};
+    return {
+      good: this.good,
+      normal: this.normal,
+      bad: this.bad
+    };
   },
-  props: ['good', 'normal', 'bad'],
-  setup: function setup(props) {},
+  props: ["good", "normal", "bad", "userid"],
   methods: {
-    good_review: function good_review() {
-      this.good++;
+    goodReview: function goodReview() {
+      var _this = this;
+
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+        withCredentials: true
+      }).then(function (response) {
+        axios.post("http://127.0.0.1:8000/api/reviews/good", {
+          userid: _this.userid,
+          withCredentials: true
+        }).then(function (response) {
+          return _this.good;
+        })["catch"](function (response) {
+          return console.error(response.message);
+        });
+      });
     },
-    normal_review: function normal_review() {
-      this.normal++;
+    normalReview: function normalReview() {
+      var _this2 = this;
+
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+        withCredentials: true
+      }).then(function (response) {
+        axios.post("http://127.0.0.1:8000/api/reviews/normal", {
+          userid: _this2.userid,
+          withCredentials: true
+        }).then(function (response) {
+          return _this2.normal;
+        })["catch"](function (response) {
+          return console.error(response.message);
+        });
+      });
     },
-    bad_review: function bad_review() {
-      this.bad++;
+    badReview: function badReview() {
+      var _this3 = this;
+
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+        withCredentials: true
+      }).then(function (response) {
+        axios.post("http://127.0.0.1:8000/api/reviews/bad", {
+          userid: _this3.userid,
+          withCredentials: true
+        }).then(function (response) {
+          return _this3.bad;
+        })["catch"](function (response) {
+          return console.error(response.message);
+        });
+      });
     }
   }
 });
@@ -24918,9 +24978,7 @@ var _hoisted_4 = {
   key: 1
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" //deletefavo ");
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   "class": "h-6 w-6",
   fill: "yellow",
@@ -24935,7 +24993,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_7 = [_hoisted_5, _hoisted_6];
+var _hoisted_6 = [_hoisted_5];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $data.favo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function () {
@@ -24944,10 +25002,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "pt-4"
   }, _hoisted_3)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function () {
-      return $options.postFavo && $options.postFavo.apply($options, arguments);
+      return $options.deleteFavo && $options.deleteFavo.apply($options, arguments);
     }),
     "class": "pt-4"
-  }, _hoisted_7)]));
+  }, _hoisted_6)]));
 }
 
 /***/ }),
@@ -25124,21 +25182,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"increment-button\" @click=\"increment\">+ 1</button>\r\n      <button id=\"decrement-button\" @click=\"decrement\">- 1</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "good-icon",
     onClick: _cache[0] || (_cache[0] = function () {
-      return $options.good_review && $options.good_review.apply($options, arguments);
+      return $options.goodReview && $options.goodReview.apply($options, arguments);
     })
   }, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.good), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "normal-icon",
     onClick: _cache[1] || (_cache[1] = function () {
-      return $options.normal_review && $options.normal_review.apply($options, arguments);
+      return $options.normalReview && $options.normalReview.apply($options, arguments);
     })
   }, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.normal) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bad-icon",
     onClick: _cache[2] || (_cache[2] = function () {
-      return $options.bad_review && $options.bad_review.apply($options, arguments);
+      return $options.badReview && $options.badReview.apply($options, arguments);
     })
   }, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.bad), 1
   /* TEXT */

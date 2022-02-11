@@ -1,5 +1,5 @@
 <template>
-  <div v-if="favo">
+  <div v-if="favo"> 
     <button @click="postFavo" class="pt-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@
     </button>
   </div>
   <div v-else>
-    <button @click="postFavo" class="pt-4"> //deletefavo
+    <button @click="deleteFavo" class="pt-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6"
@@ -42,19 +42,28 @@ export default {
   el: "#favo",
 data(){
   return {
-favo:this.canfavorite //初期値
+favo:this.canfavorite, //初期値
+error:''
   }
 },
   props: ["productid","canfavorite"],
   methods: {
       postFavo() {
-        console.log('sa',this.productid);
       axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true }).then(response => {
       axios.post(`http://127.0.0.1:8000/api/favorites/add`, {productId: this.productid, withCredentials: true})
       .then(response =>(this.favo = false) )
+      .catch(response=>( console.error(response.message)))
+});    
+    },
+    deleteFavo() {
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true }).then(response => {
+      axios.post(`http://127.0.0.1:8000/api/favorites/delete`, {productId: this.productid, withCredentials: true})
+      .then(response =>(this.favo = true) )
+      .catch(response=>( console.error(response.message)))
 });
      
     }
   },
 };
+
 </script>

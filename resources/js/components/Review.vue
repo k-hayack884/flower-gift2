@@ -4,7 +4,7 @@
       <button id="decrement-button" @click="decrement">- 1</button> -->
       <div class="flex justify-center md:justify-start">ユーザー評価:
 <button class="good-icon"
-          @click="good_review">
+          @click="goodReview">
                                             <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
                                                 height="512px" viewBox="0 0 512 512"
@@ -31,7 +31,7 @@
                                             </button>
                                           <p id="good" v-cloak>  {{ good }}</p> 
                                             <button class="normal-icon"
-          @click="normal_review">
+          @click="normalReview">
                                             <svg version="1.1" id="_x32_"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
@@ -55,7 +55,7 @@
                                             </button>
                                             {{ normal }}
                                             <button class="bad-icon"
-          @click="bad_review">
+          @click="badReview">
                                              <svg version="1.1" id="_x32_"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
@@ -91,23 +91,37 @@ export default {
    el: "#review",
   data() {
     return {
-
+    good:this.good,
+    normal:this.normal,
+    bad:this.bad
     }
   },
-  props: ['good','normal','bad'],
-  setup(props) {
-    
-  },
+  props: ["good","normal","bad","userid"],
   methods: {
-    good_review() {
-      this.good++;
+      goodReview() {
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true }).then(response => {
+      axios.post(`http://127.0.0.1:8000/api/reviews/good`, {userid: this.userid, withCredentials: true})
+      .then(response =>(this.good) )
+      .catch(response=>( console.error(response.message)))
+});
+     
     },
-    normal_review() {
-      this.normal++;
+    normalReview() {
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true }).then(response => {
+      axios.post(`http://127.0.0.1:8000/api/reviews/normal`, {userid: this.userid, withCredentials: true})
+      .then(response =>(this.normal) )
+      .catch(response=>( console.error(response.message)))
+});
+     
     },
-    bad_review() {
-      this.bad++;
-    },
+    badReview() {
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', { withCredentials: true }).then(response => {
+      axios.post(`http://127.0.0.1:8000/api/reviews/bad`, {userid: this.userid, withCredentials: true})
+      .then(response =>(this.bad) )
+      .catch(response=>( console.error(response.message)))
+});
+     
+    }
   }
 };
 </script>

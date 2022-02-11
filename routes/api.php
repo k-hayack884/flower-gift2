@@ -25,7 +25,7 @@ Route::prefix('favorites')->middleware(['api', 'auth:users'])->group(function ()
     Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
 });
 
-Route::prefix('reviews')->middleware(['auth:users'])->group(function () {
+Route::prefix('reviews')->middleware(['api', 'auth:users'])->group(function () {
     Route::post('/good', [ReviewController::class,'good'])->name('reviews.good');
     Route::post('/normal', [ReviewController::class,'normal'])->name('reviews.normal');
     Route::post('/bad', [ReviewController::class,'bad'])->name('reviews.bad');

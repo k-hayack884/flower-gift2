@@ -23,17 +23,27 @@ use Illuminate\Validation\Rules\Password;
 
 class ReviewController extends Controller
 {
-    public function good()
+    public function good(Request $request) //
     {
-        # code...
+        //リクエストしている人のid 評価されようとしている人
+        //2回目の評価は４０３をかえす　必須　フロントとバック両方守る
+        # code... スコープを呼び出す　全部いる　
+        return response()->json([
+            'message' => 'レビューありがとうございます!'
+        ]); //200が入ってる
+
     }
-    public function normal()
+    public function normal(Request $request)
     {
-        # code...
+        return response()->json([
+            'message' => 'レビューありがとうございます!'
+        ]);
     }
-    public function bad()
+    public function bad(Request $request)
     {
-        # code...
+        return response()->json([
+            'message' => 'レビューありがとうございます!'
+        ]);
     }
 
 }

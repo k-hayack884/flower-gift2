@@ -14,10 +14,9 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'reviewer_id'=>$this->faker->numberBetween(1, 2),
-            'reviewee_id'=>$this->faker->numberBetween(1, 2),
+            'reviewer_id'=>$this->faker->numberBetween(1, 20),
+            'reviewee_id'=>$this->faker->numberBetween(1, 20),
             'review'=>$this->faker->numberBetween(1, 3),
-            'status'=>$this->faker->numberBetween(0, 1),
         ];
     }
 }

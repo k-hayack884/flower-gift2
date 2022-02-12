@@ -5,22 +5,36 @@ import VueRouter from "vue-router";
 
 
 import { createApp } from 'vue'
-import ExampleComponent from './components/ExampleComponent.vue'
 import CounterComponent from './components/Counter.vue'
 import ReviewComponent from './components/Review.vue'
-import ModalComponent from './components/Modal.vue'
-
-
+import ExampleComponent from './components/Example.vue'
+import FlashmessageComponent from './components/Flashmessage.vue'
+import FavoriteComponent from './components/Favorite.vue'
 createApp({
     components:{
-        // router,
-        ExampleComponent,
-        CounterComponent,
+        // CounterComponent,
         ReviewComponent,
-        ModalComponent
     }
 }).mount('#app')
-// Vue.use(VueRouter);
+createApp({
+    components:{
+        FavoriteComponent
+    }
+}).mount('#api')
+createApp({
+    components:{
+        FlashmessageComponent
+    }
+}).mount('#flash')
+
+// //data() {
+//     return {
+//         info: null
+//       };
+//     },
+
+
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

@@ -27,8 +27,10 @@ class ProductRequest extends FormRequest
             'category' => ['required', 'exists:secondary_categories,id',],
             'name' => ['required', 'string', 'max:50'],
             'comment' => ['required', 'string', 'max:200'],
-            'status' => ['required','between:0,2'],
-             'image' => ['image','mimes:jpg,jpeg,png','max:2048'],
+            'status' => ['required', 'between:1,3'],
+            'image' => ['image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'address' => ['string', 'max:200'],
+            'trade_type' => ['required', 'between:1,3'],
         ];
     }
 }

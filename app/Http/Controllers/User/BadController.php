@@ -42,12 +42,11 @@ class BadController extends Controller
             'user_id'=>Auth::id(),
             'comment_id' => $id,
             'reason' => $request->reason,
-            'status' => true,
         ]);
         return redirect()
         ->route('user.dashboard')
         ->with(['message'=>'違反コメントを報告しました',
-        'status'=> 'info']);
+        'status'=> 'bad']);
     }
     public function productSend(Request $request,$id)
     {
@@ -58,12 +57,11 @@ class BadController extends Controller
             'user_id'=>Auth::id(),
             'product_id' => $id,
             'reason' => $request->reason,
-            'status' => true,
         ]);
         return redirect()
         ->route('user.dashboard')
         ->with(['message'=>'違反商品を報告しました',
-        'status'=> 'info']);
+        'status'=> 'bad']);
     }
 
 }

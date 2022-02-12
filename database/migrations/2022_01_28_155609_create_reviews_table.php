@@ -18,7 +18,6 @@ class CreateReviewsTable extends Migration
             $table->foreignId('reviewer_id')->constrained('users');
             $table->foreignId('reviewee_id')->constrained('users');
             $table->integer('review');
-            $table->boolean('status');
             $table->timestamps();
         });
     }

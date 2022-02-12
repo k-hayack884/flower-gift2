@@ -7,7 +7,7 @@ use App\Http\Controllers\User\TradeController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\BadController;
+use App\Http\Controllers\User\BadController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\DB;
 
@@ -59,9 +59,9 @@ Route::prefix('bads')->middleware(['auth:users'])->group(function () {
 
 Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
     Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');
-    Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
-    Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
-    Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
+    // Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
+    // Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
+    // Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
 });
 
 

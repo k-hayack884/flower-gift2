@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -34,7 +35,10 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
-
+    protected function authenticated(Request $request, $user)
+    {
+        $user->update(['api_token' => str_random(60)]);
+    }
     /**
      * Destroy an authenticated session.
      *
@@ -43,6 +47,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        $user = $request->user();
+        $user->update(['api_token' => null]);
         Auth::guard('users')->logout();
 
         $request->session()->invalidate();

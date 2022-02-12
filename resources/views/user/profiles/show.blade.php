@@ -21,12 +21,14 @@
                                     <li class="mb-8 leading-relaxed">ユーザー名: {{ $userProfile->name }}</li>
                                     <li class="mb-8 leading-relaxed">
                                         <div id="app" class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                                            <review-component v-bind:good='{{$good}}' v-bind:normal='{{$normal}}' v-bind:bad='{{$bad}}'></review-component>
+                                            <review-component v-bind:good='{{$good}}' v-bind:normal='{{$normal}}' v-bind:bad='{{$bad}}' v-bind:userId="{{ $userProfile->id }}"></review-component>
                                         </div>
                                         
                                         
                                     </li>
+                                    @if($userProfile->id===auth()->user()->id)
                                     <li class="mb-8 leading-relaxed">メールアドレス: {{ $userProfile->email }}</li>
+                                    @endif
                                     <li class="mb-8 leading-relaxed">出身地: {{ $userProfile->prefecture }}</li>
                                     <li class="mb-8 leading-relaxed">自己紹介: {{ $userProfile->comment }}</li>
                                     <ul>

@@ -4,6 +4,10 @@
             商品一覧
         </h2>
     </x-slot>
+    <span id="flash">
+        <flashmessage-component :flashmessage="{{ $categories }}"></flashmessage-component>
+    </span>
+
     <form action="{{ route('user.dashboard') }}" method="get">
         <div class="md:flex md:justify-around mt-20">
             <div class="md:flex items-center">

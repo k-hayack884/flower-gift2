@@ -49,7 +49,9 @@ foreach($comments as $comment){
         }
         
 
-        return redirect()->route('admin.bads.comment-index');
+        return redirect()->route('admin.bads.comment-index')
+        ->with(['message'=>'違反コメントを凍結しました',
+        'status'=> 'delete']);;
     }
     public function badCommentCancel(Request $request,$id)
     {
@@ -71,7 +73,9 @@ foreach($comments as $comment){
         }
         
 
-        return redirect()->route('admin.bads.comment-index');
+        return redirect()->route('admin.bads.comment-index')
+        ->with(['message'=>'違反コメントを取り消しました',
+        'status'=> 'info']);;
     }
 
     public function badProductIndex()
@@ -109,7 +113,9 @@ foreach($comments as $comment){
         }
         
 
-        return redirect()->route('admin.bads.product-index');
+        return redirect()->route('admin.bads.product-index')
+        ->with(['message'=>'違反商品をを凍結しました',
+        'status'=> 'delete']);;
     }
     public function badProductCancel(Request $request,$id)
     {
@@ -132,6 +138,8 @@ foreach($comments as $comment){
         }
         
 
-        return redirect()->route('admin.bads.product-index');
+        return redirect()->route('admin.bads.product-index')
+        ->with(['message'=>'違反商品を取り消しました',
+        'status'=> 'info']);;
     }
 }

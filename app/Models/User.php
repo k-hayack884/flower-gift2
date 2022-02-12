@@ -12,7 +12,7 @@ use App\Models\Product;
 use App\Models\Review;
 use App\Models\Comment;
 
-
+// use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {

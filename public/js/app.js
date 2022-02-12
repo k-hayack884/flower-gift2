@@ -24939,12 +24939,10 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)({
   components: {
-    // router,
     ReviewComponent: _components_Review_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
-}).mount('#app'); // Vue.use(VueRouter);
-
+}).mount('#app');
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_4__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_4__["default"].start();

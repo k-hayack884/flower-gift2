@@ -7,12 +7,10 @@ import ModalComponent from './components/Modal.vue'
 
 createApp({
     components:{
-        // router,
         ReviewComponent,
         ModalComponent
     }
 }).mount('#app')
-// Vue.use(VueRouter);
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

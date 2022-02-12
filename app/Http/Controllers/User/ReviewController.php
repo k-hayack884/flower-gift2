@@ -135,5 +135,5 @@ class ReviewController extends Controller
             'message' => 'レビューありがとうございます!'
         ]); //200が入ってる
     }
-
 }
+

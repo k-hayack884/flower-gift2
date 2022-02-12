@@ -31,6 +31,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="text-sm my-2 sm:my-4">表示順
                 <select name="sort" id="sort" class="ml-4">
                     <option value="{{ \Constant::ORDER_LIST['later'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順

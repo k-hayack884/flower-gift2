@@ -662,9 +662,6 @@ select {
 .top-40 {
   top: 10rem;
 }
-.left-24 {
-  left: 6rem;
-}
 .z-0 {
   z-index: 0;
 }
@@ -777,17 +774,11 @@ select {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
-.ml-20 {
-  margin-left: 5rem;
-}
 .block {
   display: block;
 }
 .inline-block {
   display: inline-block;
-}
-.inline {
-  display: inline;
 }
 .flex {
   display: flex;
@@ -822,14 +813,11 @@ select {
 .h-32 {
   height: 8rem;
 }
-.h-10 {
-  height: 2.5rem;
-}
-.h-20 {
-  height: 5rem;
-}
 .h-48 {
   height: 12rem;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-3 {
   height: 0.75rem;
@@ -887,9 +875,6 @@ select {
 }
 .w-24 {
   width: 6rem;
-}
-.w-16 {
-  width: 4rem;
 }
 .w-3 {
   width: 0.75rem;
@@ -1070,6 +1055,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
 .border-green-700 {
   --tw-border-opacity: 1;
   border-color: rgb(21 128 61 / var(--tw-border-opacity));
@@ -1077,10 +1066,6 @@ select {
 .border-indigo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
-}
-.border-red-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -1113,6 +1098,10 @@ select {
 .bg-green-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+.bg-amber-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity));
 }
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
@@ -1375,10 +1364,6 @@ select {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
-.text-yellow-400 {
-  --tw-text-opacity: 1;
-  color: rgb(250 204 21 / var(--tw-text-opacity));
-}
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
@@ -1386,6 +1371,10 @@ select {
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+.text-yellow-400 {
+  --tw-text-opacity: 1;
+  color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 .text-indigo-700 {
   --tw-text-opacity: 1;
@@ -1892,10 +1881,6 @@ select {
   }
 }
 @media (min-width: 1024px) {
-
-  .lg\:absolute {
-    position: absolute;
-  }
 
   .lg\:left-1\/4 {
     left: 25%;

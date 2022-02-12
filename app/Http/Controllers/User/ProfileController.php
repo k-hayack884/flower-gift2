@@ -10,8 +10,6 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use App\Providers\AppServiceProvider;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
 use Carbon\Carbon;
@@ -116,6 +114,8 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'comment' => [ 'string', 'max:200'],
             'password' => ['required', 'confirmed','string', Password::defaults()],
+            'prefecture' => ['string', 'max:50'],
+            'comment' => ['string', 'max:100'],
         ]);
         $userProfile = User::findOrFail($id);
         $imageFile=$request->image;
@@ -176,6 +176,7 @@ class ProfileController extends Controller
             throw $e;
         }
         Auth::guard('users')->logout();
-        return redirect('/');
+        return redirect('/')->with(['message'=>'ユーザーを削除しました',
+        'status'=> 'delete']);;
     }
 }

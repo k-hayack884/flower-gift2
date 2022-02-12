@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -7,7 +6,7 @@
     </x-slot>
 
     <section class="text-gray-600 body-font">
-
+       
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div class="lg:max-w-lg lg:w-full lg:w-1/2 w-5/6 mb-10 md:mb-0">
                 <x-product-image :filename="$productInfo->img" />
@@ -26,10 +25,11 @@
                     </h1>
                     <span id="api">
                         @if (empty($favorite))
-                            <favorite-component :canFavorite="true" :productId="{{ $productInfo->id }}"/></favorite-component>                          
+                            <favorite-component :canFavorite="true" :productId="{{ $productInfo->id }}" />
+                            </favorite-component>
                         @else
-                            <favorite-component :canFavorite="false" :productId="{{ $productInfo->id }}"/></favorite-component>
-
+                            <favorite-component :canFavorite="false" :productId="{{ $productInfo->id }}" />
+                            </favorite-component>
                         @endif
                     </span>
                 </div>
@@ -74,13 +74,13 @@
                             @if ($productInfo->user_id !== auth()->user()->id)
                                 <button type="button"
                                     onclick="location.href='{{ route('user.emails.create', ['mail' => $productInfo->id]) }}'"
-                                    class="mx-auto  text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 text-center mb-4">取引希望</button>
+                                    class="mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 lg:px-8 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 text-center mb-4">取引希望</button>
                             @endif
                             <button type="button" onclick="location.href='{{ route('user.dashboard') }}'"
                                 class=" mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 text-center mb-4">戻る</button>
 
                             <a href="{{ route('user.bads.product', ['bad' => $userProfile->id]) }}"
-                                class="text-center">違反報告</a>
+                                class="text-center pt-2">違反報告</a>
                         </div>
 
                 </div>
@@ -118,6 +118,7 @@
                                             class="mx-auto text-center text-white bg-red-500 border-0 px- focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
                                             削除</a>
                             </li>
+                            @endif
                             <li class=""></li>
                             <li>
                                 <a href="{{ route('user.bads.comment', ['bad' => $comment->id]) }}">
@@ -125,10 +126,10 @@
                                 </a>
                             </li>
                             <li>
-                                <p class="text-right">{{ $comment->created_at->toDateString() }}</p>
+                                <p class="text-right text-sm">{{ $comment->created_at->toDateString() }}</p>
                             </li>
                             </form>
-                        @endif
+                        
             @endif
         </div>
         </ul>

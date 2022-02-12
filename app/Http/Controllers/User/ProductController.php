@@ -131,7 +131,7 @@ class ProductController extends Controller
             ->route('user.products.index')
             ->with([
                 'message' => 'この商品は非公開にされています',
-                'status' => 'info'
+                'status' => 'delete'
             ]);
         }
         $categoryName = Product::findOrFail($id)

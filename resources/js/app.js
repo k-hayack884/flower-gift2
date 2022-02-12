@@ -5,7 +5,7 @@ import { createApp } from 'vue'
 import CounterComponent from './components/Counter.vue'
 import ReviewComponent from './components/Review.vue'
 import ExampleComponent from './components/Example.vue'
-import ApiComponent from './components/Api.vue'
+import FlashmessageComponent from './components/Flashmessage.vue'
 import FavoriteComponent from './components/Favorite.vue'
 createApp({
     components:{
@@ -15,11 +15,15 @@ createApp({
 }).mount('#app')
 createApp({
     components:{
-        // ExampleComponent,
-        // ApiComponent,
         FavoriteComponent
     }
 }).mount('#api')
+createApp({
+    components:{
+        FlashmessageComponent
+    }
+}).mount('#flash')
+
 // //data() {
 //     return {
 //         info: null

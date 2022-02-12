@@ -34,7 +34,9 @@
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-green-300">
                 {{ $header ?? '' }}
+
                 <x-flash-message status="session('status')"></x-flash-message>
+
             </div>
         </header>
 
@@ -43,6 +45,7 @@
             {{ $slot }}
         </main>
     </div>
+    
 </body>
 
 </html>

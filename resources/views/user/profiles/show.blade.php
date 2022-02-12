@@ -26,7 +26,9 @@
                                         
                                         
                                     </li>
+                                    @if($userProfile->id===auth()->user()->id)
                                     <li class="mb-8 leading-relaxed">メールアドレス: {{ $userProfile->email }}</li>
+                                    @endif
                                     <li class="mb-8 leading-relaxed">出身地: {{ $userProfile->prefecture }}</li>
                                     <li class="mb-8 leading-relaxed">自己紹介: {{ $userProfile->comment }}</li>
                                     <ul>

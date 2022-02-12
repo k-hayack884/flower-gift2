@@ -59,11 +59,14 @@ class FavoriteController extends Controller
             ]); //200が入ってる
         // return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
     }
-    public function indexDelete(Request $request)
-    {
-        Favorite::where('product_id', $request->product_id)
-            ->where('user_id', Auth::id())->delete();
+    // public function indexDelete(Request $request)
+    // {
+    //     $product_id = $request->input('productId');
+    //     Favorite::where('product_id', $product_id)
+    //         ->where('user_id', Auth::id())->delete();
 
-        return redirect()->route('user.favorites.index');
-    }
+    //         return response()->json([
+    //             'message' => 'お気に入り登録を削除しました'
+    //         ]); //200が入ってる
+    // }
 }

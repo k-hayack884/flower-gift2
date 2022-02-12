@@ -55,13 +55,17 @@ class TradeController extends Controller
             'comment' => $request->comment,
             'status' => true
         ]);
-        return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
+        return redirect()->route('user.trades.show', ['trade' => $request->product_id])
+        ->with(['message'=>'コメントを投稿しました',
+        'status'=> 'info']);;
     }
     public function delete(Request $request, $id)
     {
         Comment::findOrFail($id)->delete();
 
-        return redirect()->route('user.trades.show', ['trade' => $request->product_id]);
+        return redirect()->route('user.trades.show', ['trade' => $request->product_id])
+        ->with(['message'=>'コメントを削除しました',
+        'status'=> 'info']);;
     }
 
 }

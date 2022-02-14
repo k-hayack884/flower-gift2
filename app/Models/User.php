@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\User\UserResetPassword;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Comment;
@@ -18,6 +19,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
+    public function sendPasswordResetNotification($token)
+    {
+
+        $this->notify(new UserResetPassword($token));
+
+    }
     public function products()
     {
         return $this->belongsToMany(Product::class, 'favorites');
@@ -32,7 +39,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'address',
+        'prefecture',
+        'comment'
     ];
 
     /**

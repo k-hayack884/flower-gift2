@@ -24814,7 +24814,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       goodCount: this.good,
       normalCount: this.normal,
-      badCount: this.bad
+      badCount: this.bad,
+      error: ''
     };
   },
   props: ["good", "normal", "bad", "userid"],
@@ -24834,7 +24835,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.normalCount = response.data.normal;
           _this.badCount = response.data.bad;
         })["catch"](function (response) {
-          return console.error(response.message);
+          return _this.error = 'そのユーザーは既に評価しています';
         });
       });
     },
@@ -24852,7 +24853,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.normalCount = response.data.normal;
           _this2.badCount = response.data.bad;
         })["catch"](function (response) {
-          return console.error(response.message);
+          return _this2.error = 'そのユーザーは既に評価しています';
         });
       });
     },
@@ -24870,7 +24871,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.normalCount = response.data.normal;
           _this3.badCount = response.data.bad;
         })["catch"](function (response) {
-          return console.error(response.message);
+          return _this3.error = 'そのユーザーは既に評価しています';
         });
       });
     }
@@ -25123,12 +25124,15 @@ var _hoisted_1 = {
   id: "review"
 };
 var _hoisted_2 = {
+  "class": "text-red-500"
+};
+var _hoisted_3 = {
   "class": "flex justify-center md:justify-start"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ユーザー評価: ");
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ユーザー評価: ");
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   version: "1.1",
   id: "_x32_",
   xmlns: "http://www.w3.org/2000/svg",
@@ -25172,9 +25176,9 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_5 = [_hoisted_4];
+var _hoisted_6 = [_hoisted_5];
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   version: "1.1",
   id: "_x32_",
   xmlns: "http://www.w3.org/2000/svg",
@@ -25221,9 +25225,9 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_7 = [_hoisted_6];
+var _hoisted_8 = [_hoisted_7];
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   version: "1.1",
   id: "_x32_",
   xmlns: "http://www.w3.org/2000/svg",
@@ -25270,28 +25274,30 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_9 = [_hoisted_8];
+var _hoisted_10 = [_hoisted_9];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"increment-button\" @click=\"increment\">+ 1</button>\r\n      <button id=\"decrement-button\" @click=\"decrement\">- 1</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"increment-button\" @click=\"increment\">+ 1</button>\r\n      <button id=\"decrement-button\" @click=\"decrement\">- 1</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.error), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "good-icon",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.goodReview && $options.goodReview.apply($options, arguments);
     })
-  }, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.goodCount), 1
+  }, _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.goodCount), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "normal-icon",
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.normalReview && $options.normalReview.apply($options, arguments);
     })
-  }, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.normalCount) + " ", 1
+  }, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.normalCount) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bad-icon",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.badReview && $options.badReview.apply($options, arguments);
     })
-  }, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.badCount), 1
+  }, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.badCount), 1
   /* TEXT */
   )])]);
 }

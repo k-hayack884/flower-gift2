@@ -38,7 +38,7 @@ return [
     'digits_between' => ':attributeは、:min桁から:max桁にしてください。',
     'dimensions'     => ':attributeの画像サイズが無効です',
     'distinct'       => ':attributeの値が重複しています。',
-    'email'          => ':attributeは、有効なメールアドレス形式で指定してください。',
+    'email'          => ':attributeは、有効なメールアドレス形式を入力してください。',
     'ends_with'      => ':attributeは、次のうちのいずれかで終わらなければなりません。: :values',
     'exists'         => '選択された:attributeは、有効ではありません。',
     'file'           => ':attributeはファイルでなければいけません。',
@@ -95,7 +95,7 @@ return [
     'password'              => 'パスワードが正しくありません。',
     'present'               => ':attributeが存在している必要があります。',
     'regex'                 => ':attributeには、有効な正規表現を指定してください。',
-    'required'              => ':attributeは、必ず指定してください。',
+    'required'              => ':attributeは、必ず入力してください。',
     'required_if'           => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'       => ':otherが:values以外の場合、:attributeを指定してください。',
     'required_with'         => ':valuesが指定されている場合、:attributeも指定してください。',
@@ -110,11 +110,11 @@ return [
         'array'   => ':attributeの項目は、:size個にしてください。',
     ],
     'starts_with' => ':attributeは、次のいずれかで始まる必要があります。:values',
-    'string'      => ':attributeには、文字を指定してください。',
+    'string'      => ':attributeには、文字を入力してください。',
     'timezone'    => ':attributeには、有効なタイムゾーンを指定してください。',
-    'unique'      => '指定の:attributeは既に使用されています。',
+    'unique'      => '入力した:attributeは既に使用されています。',
     'uploaded'    => ':attributeのアップロードに失敗しました。',
-    'url'         => ':attributeは、有効なURL形式で指定してください。',
+    'url'         => ':attributeは、有効なURL形式を入力してください。',
     'uuid'        => ':attributeは、有効なUUIDでなければなりません。',
 
     /*
@@ -148,6 +148,7 @@ return [
     'attributes' => [
         'password'=>'パスワード',
         'your_name'=>'氏名',
+        'name'=>'名前',
         'title'=>'タイトル',
         'email'=>'メールアドレス',
         'url'=>'URL',
@@ -155,6 +156,11 @@ return [
         'age'=>'年齢',
         'contact'=>'お問い合わせ内容',
         'caution'=>'注意事項',
-
+        'prefecture'=>'出身地',
+        'address'=>'取引住所',
+        'comment'=>'コメント',
+        'image'=>'画像',
+        'reason'=>'理由',
+        'message'=>'お問い合わせ内容'
     ],
 ];

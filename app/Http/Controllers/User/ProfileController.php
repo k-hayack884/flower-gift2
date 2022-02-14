@@ -109,7 +109,6 @@ class ProfileController extends Controller
                 abort(404);
             }
         }
-        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'comment' => [ 'string', 'max:200'],
@@ -128,7 +127,7 @@ class ProfileController extends Controller
         $user->comment=$request->comment;
         $user->prefecture=$request->prefecture;
         $user->password=Hash::make($request->password);
-        if (!is_null($imageFile&&$imageFile->isValid())) {
+        if (!is_null($imageFile)&&$imageFile->isValid()) {
             $user->img=$fileNameToStore;
         }
         
@@ -148,6 +147,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
+
         $this->middleware('auth:users');
         //直接別ユーザーにアクセスするとはじくシステム
         $this->middleware(function ($request, $next) {

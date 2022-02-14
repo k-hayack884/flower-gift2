@@ -5,6 +5,7 @@
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">違反商品報告</h1>
             </div>
             <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="flex">
                     <div class="w-1/3">
                         <x-product-image :filename="$badProduct->user->img" />

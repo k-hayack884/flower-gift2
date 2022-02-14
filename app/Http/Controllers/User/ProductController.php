@@ -103,11 +103,11 @@ class ProductController extends Controller
         $product=Product::create([
             'user_id'=>Auth::id(),
             'name' => $request->name,
-            'comment_id' => $request->comment,
+            'comment' => $request->comment,
             'status' => $request->status,
             'address'=>$request->address,
             'trade_type'=>$request->trade_type,
-            'img' => $fileNameToStore,
+            'img' => $fileNameToStore ?? '',
             'secondary_category_id'=>$request->category
 
         ]);
@@ -182,7 +182,7 @@ class ProductController extends Controller
         $product->trade_type = $request->trade_type;
         $product->address = $request->address;
         $product->secondary_category_id = $request->category;
-        $product->img = $fileNameToStore;
+        $product->img = $fileNameToStore ?? '';
 
 
         $product->save();

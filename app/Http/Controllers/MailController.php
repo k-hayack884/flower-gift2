@@ -34,6 +34,10 @@ class MailController extends Controller
     }
     public function send(Request $request)
     {
+        $request->validate([
+            'name' => ['string', 'max:20','required'],
+            'message' => ['string', 'max:200','required'],
+        ]);
         $user=User::findOrFail(Auth::id());
 
         $product=Product::with('user')->findOrFail($request->product_id);
@@ -42,7 +46,7 @@ class MailController extends Controller
         Mail::to($product->user->email)->send(new OwnerMail($product,$user,$request));
 
         return redirect()
-            ->route('user.products.index')
+            ->route('user.trades.show', ['trade'=>$request->product_id])
             ->with([
                 'message' => 'メールを送信しました',
                 'status' => 'info'

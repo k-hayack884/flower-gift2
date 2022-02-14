@@ -105,15 +105,6 @@
                                         <button type="button"
                                             onclick="location.href='{{ route('user.products.show', ['product' => $product->id]) }}'"
                                             class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">戻る</button>
-
-                                            <form id="delete_{{ $product->id }}" method="post"
-                                                action="{{ route('user.products.destroy', ['product' => $product->id]) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="#" data-id="{{ $product->id }}" onclick="deletePost(this)"
-                                                    class="mx-auto text-center text-white bg-red-500 border-0 py-2 px-12 focus:outline-none hover:bg-red-300 rounded text-lg mx-4 mb-4">
-                                                    削除する</a>
-                                            </form>
                                     </div>
                                 </form>
 

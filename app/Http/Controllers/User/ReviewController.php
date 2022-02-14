@@ -27,6 +27,7 @@ class ReviewController extends Controller
     {
         $reviewer_id = Auth::id();
         $reviewee_id = $request->input('userid');
+        // dd($reviewer_id,$reviewee_id);
         $reviewCheck = Review::where('reviewer_id', $reviewer_id)
                 ->where('reviewee_id', $reviewee_id)->first();
 

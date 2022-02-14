@@ -45,7 +45,7 @@
                                     onclick="location.href='{{ route('user.products.edit', ['product' => $productInfo->id]) }}'"
                                     class=" mx-auto w-full md:w-1/4 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">編集</button>
                                     @endif
-                                <button type="button" onclick="location.href='{{ route('user.dashboard') }}'"
+                                <button type="button" onclick="location.href='{{ route('user.products.index') }}'"
                                     class="mx-auto w-full md:w-1/4 text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg md:mx-4 my-4">戻る</button>
                                     @if($productInfo->user_id===auth()->user()->id)  
                                     <form id="delete_{{ $productInfo->id }}" method="post"
@@ -53,8 +53,8 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
-                                        <a href="#" data-id="{{ $productInfo->id }}" onclick="deletePost(this)"
-                                            class="block w-full text-white bg-red-500 border-0 py-2 px-8 text-center focus:outline-none hover:bg-red-600 rounded text-lg  mt-4 md:mx-4">
+                                        <a href="#" data-id="{{ $productInfo->id }}" onclick="deleteProduct(this)"
+                                            class="block text-white bg-red-500 border-0 py-2 px-8 text-center focus:outline-none hover:bg-red-600 rounded text-lg  mt-4 md:mx-4">
              
                                             削除</a>
                                         </form>
@@ -91,7 +91,7 @@
                                         action="{{ route('user.trades.show.delete', ['trade' => $comment->id]) }}">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $productInfo->id }}">
-                                        <a href="#" data-id="{{ $comment->id }}" onclick="deletePost(this)"
+                                        <a href="#" data-id="{{ $comment->id }}" onclick="deleteComment(this)"
                                             class="mx-auto text-center text-white bg-red-500 border-0 px- focus:outline-none hover:bg-red-600 rounded text-lg mx-4">
                                             削除</a>
                             </li>
@@ -130,8 +130,13 @@
     <script>
         'use strict';
 
-        function deletePost(e) {
+        function deleteComment(e) {
             if (confirm('コメントを削除してもよろしいですか？')) {
+                document.getElementById('delete_' + e.dataset.id).submit();
+            }
+        }
+        function deleteProduct(e) {
+            if (confirm('商品を削除してもよろしいですか？')) {
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }

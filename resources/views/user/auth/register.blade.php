@@ -27,7 +27,7 @@
             <div class="mt-4">
                 <x-label for="prefecture" :value="__('出身地')" />
 
-                <x-input id="prefecture" class="block mt-1 w-full" type="email" name="email" :value="old('prefecture')" />
+                <x-input id="prefecture" class="block mt-1 w-full" type="text" name="prefecture" :value="old('prefecture')" />
             </div>
 
             <!-- Password -->

@@ -21,7 +21,7 @@ class TradeController extends Controller
             ->route('user.dashboard')
             ->with([
                 'message' => 'この商品は非公開にされています',
-                'status' => 'info'
+                'status' => 'bad'
             ]);
         }
         //大カテゴリーと小カテゴリーの名称を取得
@@ -61,11 +61,12 @@ class TradeController extends Controller
     }
     public function delete(Request $request, $id)
     {
+        
         Comment::findOrFail($id)->delete();
 
         return redirect()->route('user.trades.show', ['trade' => $request->product_id])
         ->with(['message'=>'コメントを削除しました',
-        'status'=> 'info']);;
+        'status'=> 'delete']);;
     }
 
 }

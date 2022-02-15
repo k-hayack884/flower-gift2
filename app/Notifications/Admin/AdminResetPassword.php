@@ -42,18 +42,13 @@ class AdminResetPassword extends ResetPasswordNotification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->greeting('パスワードリセットのリクエスト承りました')
-        ->subject('パスワード初期化についてのお知らせ')
-        ->line('パスワードリセットのリンクを送信しました。')
-        ->action('Notification Action', url('admin/reset-password', ['token' => $this->token]))
-        ->line('このリンクは60分を過ぎると無効になります。')
-        ->line('flower-giftをご利用くださってありがとうございます。')
-        ->salutation('floewr-gift');
-//         return (new MailMessage)
-//         ->subject('パスワード初期化についてのお知らせ')
-//         ->view('admin.reset-password', [
-//             'restUrl' => route('admin.reset-password', ['token' => $this->token])
-//    ]);
+            ->greeting('パスワードリセットのリクエスト承りました')
+            ->subject('パスワード初期化についてのお知らせ')
+            ->line('パスワードリセットのリンクを送信しました。')
+            ->action('Notification Action', url('admin/reset-password', ['token' => $this->token]))
+            ->line('このリンクは60分を過ぎると無効になります。')
+            ->line('flower-giftをご利用くださってありがとうございます。')
+            ->salutation('floewr-gift');
     }
 
     /**

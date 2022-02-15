@@ -16,7 +16,8 @@
                         @foreach ($categories as $category)
                             <optgroup label={{ $category->name }}>
                                 @foreach ($category->secondary as $secondary)
-                                    <option value="{{ $secondary->id }}" @if (\Request::get('category') == $secondary->id) selected @endif>
+                                    <option value="{{ $secondary->id }}"
+                                        @if (\Request::get('category') == $secondary->id) selected @endif>
                                         {{ $secondary->name }}
                                     </option>
                                 @endforeach
@@ -31,14 +32,16 @@
                     </div>
                 </div>
             </div>
-
             <div class="text-sm my-2 sm:my-4">表示順
                 <select name="sort" id="sort" class="ml-4">
-                    <option value="{{ \Constant::ORDER_LIST['later'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順
+                    <option value="{{ \Constant::ORDER_LIST['later'] }}"
+                        @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順
                     </option>
-                    <option value="{{ \Constant::ORDER_LIST['older'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['older']) selected @endif>古い順
+                    <option value="{{ \Constant::ORDER_LIST['older'] }}"
+                        @if (\Request::get('sort') === \Constant::ORDER_LIST['older']) selected @endif>古い順
                     </option>
-                    <option value="{{ \Constant::ORDER_LIST['sell'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['sell']) selected @endif>取引中を除く
+                    <option value="{{ \Constant::ORDER_LIST['sell'] }}"
+                        @if (\Request::get('sort') === \Constant::ORDER_LIST['sell']) selected @endif>取引中を除く
                     </option>
                 </select>
             </div>

@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
-use Carbon\Carbon;
-use InterventionImage;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
@@ -84,8 +82,7 @@ class ProfileController extends Controller
             if ($currentUserId!==$authId) {
                 abort(404);
             }
-        }
-        
+        }   
         $userProfile = User::findOrFail($id);
 
         return view('user.profiles.edit', compact('userProfile'));
@@ -145,9 +142,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-
         $this->middleware('auth:users');
         //直接別ユーザーにアクセスするとはじくシステム
         $this->middleware(function ($request, $next) {

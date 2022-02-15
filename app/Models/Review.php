@@ -14,10 +14,12 @@ class Review extends Model
         'reviewee_id',
         'review',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
     public function scopeGoodReview($query, $id)
     {
         $good=Review::with('user')
@@ -26,23 +28,23 @@ class Review extends Model
         ->where('review', 1)->count();
         return $good;
     }
+
     public function scopeNormalReview($query, $id)
     {
         $normal=Review::with('user')
         ->select('review')
         ->where('reviewee_id', $id)
         ->where('review', 2)
-        ->count();
-       
+        ->count();   
         return $normal;
     }
+
     public function scopeBadReview($query, $id)
     {
         $bad=Review::with('user')
         ->select('review')
         ->where('reviewee_id', $id)
-        ->where('review', 3)->count();
-     
+        ->where('review', 3)->count();     
         return $bad;
     }
 }

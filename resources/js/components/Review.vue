@@ -1,11 +1,8 @@
 <template>
   <div id="review">
-    <!-- <button id="increment-button" @click="increment">+ 1</button>
-      <button id="decrement-button" @click="decrement">- 1</button> -->
-            <span class="text-red-500">{{ error }}</span>
+    <span class="text-red-500">{{ error }}</span>
     <div class="flex justify-center md:justify-start">
-
-      ユーザー評価: 
+      ユーザー評価:
       <button class="good-icon" @click="goodReview">
         <svg
           version="1.1"
@@ -157,14 +154,14 @@
 <script>
 export default {
   el: "#review",
-data() {
-  return {
-    goodCount: this.good,
-    normalCount: this.normal,
-    badCount: this.bad,
-    error:''
-  }
-},
+  data() {
+    return {
+      goodCount: this.good,
+      normalCount: this.normal,
+      badCount: this.bad,
+      error: "",
+    };
+  },
   props: ["good", "normal", "bad", "userid"], //直接変更してはいけない　先に定義名を変えてデータに渡す
   methods: {
     goodReview() {
@@ -183,7 +180,9 @@ data() {
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
             })
-            .catch((response) => this.error='そのユーザーは既に評価しています');
+            .catch(
+              (response) => (this.error = "そのユーザーは既に評価しています")
+            );
         });
     },
     normalReview() {
@@ -202,7 +201,9 @@ data() {
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
             })
-            .catch((response) =>this.error='そのユーザーは既に評価しています');
+            .catch(
+              (response) => (this.error = "そのユーザーは既に評価しています")
+            );
         });
     },
     badReview() {
@@ -217,12 +218,13 @@ data() {
               withCredentials: true,
             })
             .then((response) => {
-                
               this.goodCount = response.data.good;
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
             })
-            .catch((response) => this.error='そのユーザーは既に評価しています');
+            .catch(
+              (response) => (this.error = "そのユーザーは既に評価しています")
+            );
         });
     },
   },

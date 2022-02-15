@@ -8,8 +8,10 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\BadComment;
 use App\Models\ProcessedComment;
+
 class Comment extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'user_id',
         'comment',
@@ -17,19 +19,22 @@ class Comment extends Model
         'status'
 
     ];
-    use HasFactory;
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
+
     public function badcomment()
     {
         return $this->hasMany(BadComment::class);
     }
+
     public function processedcomment()
     {
         return $this->hasMany(ProcessedComment::class);

@@ -23,7 +23,7 @@ class Trademail extends Mailable
     public $product;
     public $user;
     public $request;
-    public function __construct(Product $product,$user,$request)
+    public function __construct(Product $product, $user, $request)
     {
         $this->product = $product;
         $this->user = $user;

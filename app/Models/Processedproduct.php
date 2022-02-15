@@ -8,13 +8,13 @@ use App\Models\Admin;
 
 class ProcessedProduct extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'admin_id',
         'result',
         'product_id'
-
     ];
-    use HasFactory;
+
     public function admin()
     {
         return $this->belongsTo(Admin::class);

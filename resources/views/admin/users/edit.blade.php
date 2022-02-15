@@ -61,7 +61,7 @@
                                             onclick="location.href='{{ route('admin.users.index') }}'"
                                             class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4 md:mb-0">戻る</button>
                                         <button type="submit"
-                                            class=" mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">登録</button>
+                                            class=" mx-auto  text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg mx-4">更新</button>
                                     </div>
                                 </form>
                             </div>

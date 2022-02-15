@@ -89,13 +89,13 @@
                                         <div class="flex  flex-col md:flex-row md:justify-around">
                                             <div><input type="radio" name="status"
                                                     value="{{ \Constant::PRODUCT_LIST['sell'] }}"
-                                                    @if ($product->status === 0) checked @endif>販売中</div>
+                                                    @if ($product->status === 1) checked @endif>販売中</div>
                                             <div><input type="radio" name="status"
                                                     value="{{ \Constant::PRODUCT_LIST['transaction'] }}"
-                                                    @if ($product->status === 1) checked @endif>取引中</div>
+                                                    @if ($product->status === 2) checked @endif>取引中</div>
                                             <div><input type="radio" name="status"
                                                     value="{{ \Constant::PRODUCT_LIST['sold'] }}"
-                                                    @if ($product->status === 2) checked @endif>販売終了</div>
+                                                    @if ($product->status === 3) checked @endif>販売終了</div>
                                         </div>
                                     </div>
                                     <div class="flex flex-col md:flex-row justify-around mt-4">
@@ -107,12 +107,11 @@
                                             class="mx-auto  text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-gray-600 rounded text-lg mx-4 mb-4">戻る</button>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
+                    </section>
                 </div>
             </div>
-            </section>
         </div>
     </div>
     </div>

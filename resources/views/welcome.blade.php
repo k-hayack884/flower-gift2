@@ -8,14 +8,10 @@
                     <h1 class="font-semibold text-lg text-gray-800 leading-tight">
                         flower-giftへようこそ!
                     </h1>
-                
                     @if (Route::has('user.login'))
                         <div class="">
                             @auth
-
                             @else
-
-
                                 <a href="{{ route('user.login') }}"
                                     class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 border-2 border-red-500 rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -33,8 +29,6 @@
                         </div>
                     @endif
                 </div>
-
-
             </x-slot>
             <form action="#" method="get">
                 <div class="md:flex md:justify-around mt-20">
@@ -44,7 +38,8 @@
                                 @foreach ($categories as $category)
                                     <optgroup label={{ $category->name }}>
                                         @foreach ($category->secondary as $secondary)
-                                            <option value="{{ $secondary->id }}" @if (\Request::get('category') == $secondary->id) selected @endif>
+                                            <option value="{{ $secondary->id }}"
+                                                @if (\Request::get('category') == $secondary->id) selected @endif>
                                                 {{ $secondary->name }}
                                             </option>
                                         @endforeach
@@ -61,40 +56,41 @@
                     </div>
                     <div class="text-sm my-2 sm:my-4">表示順
                         <select name="sort" id="sort" class="ml-4">
-                            <option value="{{ \Constant::ORDER_LIST['later'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順
+                            <option value="{{ \Constant::ORDER_LIST['later'] }}"
+                                @if (\Request::get('sort') === \Constant::ORDER_LIST['later']) selected @endif>新しい順
                             </option>
-                            <option value="{{ \Constant::ORDER_LIST['older'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['older']) selected @endif>古い順
+                            <option value="{{ \Constant::ORDER_LIST['older'] }}"
+                                @if (\Request::get('sort') === \Constant::ORDER_LIST['older']) selected @endif>古い順
                             </option>
-                            <option value="{{ \Constant::ORDER_LIST['sell'] }}" @if (\Request::get('sort') === \Constant::ORDER_LIST['sell']) selected @endif>取引中を除く
+                            <option value="{{ \Constant::ORDER_LIST['sell'] }}"
+                                @if (\Request::get('sort') === \Constant::ORDER_LIST['sell']) selected @endif>取引中を除く
                             </option>
                         </select>
                     </div>
+                </div>
             </form>
         </div>
         <div id="app">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="container px-5 py-12 mx-auto">
-                <div class="flex flex-wrap m-4">
-                    @foreach ($productInfo as $product)
-                        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                            
-                            <span class="block relative  rounded overflow-hidden">
-                                <x-product-image :filename="$product->img"/>
-                                <modal-component v-on:click="openModal"></modal-component>
-                                
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                <div class="container px-5 py-12 mx-auto">
+                    <div class="flex flex-wrap m-4">
+                        @foreach ($productInfo as $product)
+                            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                                <span class="block relative  rounded overflow-hidden">
+                                    <x-product-image :filename="$product->img" />
+                                    <modal-component v-on:click="openModal"></modal-component>
                                 </span>
-                          
-                            <div class="mt-4">
-                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-                                    {{ $product->category->name }}</h3>
-                                <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
+                                <div class="mt-4">
+                                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+                                        {{ $product->category->name }}</h3>
+                                    <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}
+                                    </h2>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         {{ $productInfo->appends(request()->query())->links() }}
     </body>
@@ -106,7 +102,5 @@
         select.addEventListener('change', function() {
             this.form.submit()
         })
-
-
     </script>
 </x-app-layout>

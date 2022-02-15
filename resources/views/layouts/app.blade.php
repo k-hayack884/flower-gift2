@@ -18,17 +18,14 @@
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-   
-
-
 </head>
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-        @if(auth('admin')->user())
-        @include('layouts.admin-navigation')
+        @if (auth('admin')->user())
+            @include('layouts.admin-navigation')
         @elseif(auth('users')->user())
-        @include('layouts.user-navigation')
+            @include('layouts.user-navigation')
         @endif
         <!-- Page Heading -->
         <header class="bg-white shadow">
@@ -45,7 +42,7 @@
             {{ $slot }}
         </main>
     </div>
-    
+
 </body>
 
 </html>

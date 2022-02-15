@@ -1,12 +1,12 @@
-{{ $product->user->name}}様
+{{ $product->user->name }}様
 <h1>相手から取引のリクエストがありました</h1>
 <p>希望相手の送付先へ商品を発送してください</p>
 
 <h1>注文情報</h1>
 
-<p>商品名:{{ $product->name}}</p>
-<p>商品説明:{{ $product->comment}}</p>
-<p>注文日時:<?php echo date( "Y/m/d" ) ;?></p>
+<p>商品名:{{ $product->name }}</p>
+<p>商品説明:{{ $product->comment }}</p>
+<p>注文日時:<?php echo date('Y/m/d'); ?></p>
 
 <h1>送り先情報</h1>
 <p>名前:{{ $request->name }}</p>
@@ -20,4 +20,4 @@ http://127.0.0.1:8000/profiles/show/{{ $user->id }}
 
 <p> このメールはシステムにより自動送信されています。返信されても出品者との連絡はできません。</p>
 またのご利用をお待ちしております。
-今後ともよろしくお願いいたします。
+今後ともflower-giftをよろしくお願いいたします。

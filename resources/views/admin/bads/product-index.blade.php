@@ -37,9 +37,11 @@
                                     <tbody>
                                         @foreach ($products as $product)
                                             <tr class="border-2">
-                                                <td class="md:px-4 py-3 break-all">{{ $product->product->user->name}}</td>
+                                                <td class="md:px-4 py-3 break-all">{{ $product->product->user->name }}
+                                                </td>
                                                 <td class="md:px-4 py-3 break-all">{{ $product->reason }}</td>
-                                                <td class="md:px-4 py-3 break-all">{{ $product->created_at->toDateString() }}
+                                                <td class="md:px-4 py-3 break-all">
+                                                    {{ $product->created_at->toDateString() }}
                                                 </td>
                                                 <td class="w-20 text-center md:px-4">
                                                     <a href="{{ route('admin.bads.product-show', ['product' => $product->id]) }}"

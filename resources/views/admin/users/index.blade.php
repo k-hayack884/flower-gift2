@@ -9,7 +9,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="md:p-6 bg-white border-b border-gray-200">
                         <div class="container md:px-5 mx-auto">
-                            <x-flash-message status="session('status')"></x-flash-message>
                             <div class="flex justify-between w-full mb-4">
                                 <h1 class="text-4xl font-medium title-font text-gray-900  ">ユーザー管理</h1>
                                 <div class="p-2 w-1/3">
@@ -18,7 +17,7 @@
                                 </div>
                             </div>
                             <div class="lg:w-3/4 w-full mx-auto overflow-auto">
-                                <table class="table-auto text-left whitespace-no-wrap">
+                                <table class="table-auto text-left whitespace-no-wrap border solid">
                                     <thead>
                                         <tr>
                                             <th
@@ -37,7 +36,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
-                                            <tr>
+                                            <tr class="border-2">
                                                 <td class="md:px-4 py-3 break-all">{{ $user->name }}</td>
                                                 <td class="md:px-4 py-3 break-all">{{ $user->email }}</td>
                                                 <td class="md:px-4 py-3">
@@ -45,6 +44,9 @@
                                                         {{ $user->created_at->subDays(30)->toDateString() }}
                                                     @else
                                                         {{ $user->created_at->diffForHumans() }}
+
+
+
                                                     @endif
                                                 </td>
                                                 <td class=" text-center md:px-4 py-3 md:flex md:flex-row">

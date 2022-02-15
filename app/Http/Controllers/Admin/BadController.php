@@ -74,7 +74,7 @@ foreach($comments as $comment){
         
 
         return redirect()->route('admin.bads.comment-index')
-        ->with(['message'=>'違反コメントを取り消しました',
+        ->with(['message'=>'違反コメントを取消しました',
         'status'=> 'info']);;
     }
 

@@ -42,9 +42,13 @@ class UserResetPassword extends ResetPasswordNotification //notification→
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('reset-password', ['token' => $this->token]))
-                    ->line('Thank you for using our application!');
+                    ->greeting('パスワードリセットのリクエスト承りました')
+                    ->subject('パスワード初期化についてのお知らせ')
+                    ->line('パスワードリセットのリンクを送信しました。')
+                    ->action('パスワードリセット', url('reset-password', ['token' => $this->token]))
+                    ->line('このリンクは60分を過ぎると無効になります。')
+                    ->line('flower-giftをご利用くださってありがとうございます。')
+                    ->salutation('floewr-gift');
     }
 
     /**

@@ -22,28 +22,23 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', [ViewController::class,'index'])->name('view');
-
-
-// Route::resource('profile', ProfileController::class)
-// ->middleware('auth:users');
+Route::get('/', [ViewController::class, 'index'])->name('view');
 
 Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
     // Route::get('index', [ProfileController::class], 'index')->name('profiles.index');
-    Route::get('show/{profile}', [ProfileController::class,'show'])->name('profiles.show');
-    Route::get('edit/{profile}', [ProfileController::class,'edit'])->name('profiles.edit');
-    Route::post('update/{profile}', [ProfileController::class,'update'])->name('profiles.update');
-    Route::get('destroy/{profile}', [ProfileController::class,'destroy'])->name('profiles.destroy');
-    Route::post('destroy/{profile}', [ProfileController::class,'destroy'])->name('profiles.destroy');
+    Route::get('show/{profile}', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('edit/{profile}', [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::post('update/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
+    Route::get('destroy/{profile}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+    Route::post('destroy/{profile}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 });
 
 Route::resource('products', ProductController::class)
-->middleware('auth:users');
+    ->middleware('auth:users');
 
 Route::prefix('emails')->middleware(['auth:users'])->group(function () {
     Route::get('/create/{mail}', [MailController::class, 'create'])->name('emails.create');
     Route::post('/send', [MailController::class, 'send'])->name('emails.send');
-    
 });
 Route::prefix('trades')->middleware(['auth:users'])->group(function () {
     Route::get('show/{trade}', [TradeController::class, 'show'])->name('trades.show');
@@ -60,13 +55,10 @@ Route::prefix('bads')->middleware(['auth:users'])->group(function () {
 
 Route::prefix('favorites')->middleware(['auth:users'])->group(function () {
     Route::get('/index', [FavoriteController::class, 'index'])->name('favorites.index');
-    // Route::post('/add', [FavoriteController::class,'add'])->name('favorites.add');
-    // Route::post('/delete', [FavoriteController::class,'delete'])->name('favorites.delete');
-    // Route::post('/delete/{favorite}', [FavoriteController::class,'indexDelete'])->name('favorites.indexdelete');
 });
 
 
-Route::get('/dashboard', [ ProductController::class,'view'])
-->middleware(['auth:users'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, 'view'])
+    ->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

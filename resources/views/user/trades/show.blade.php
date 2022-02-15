@@ -48,7 +48,7 @@
                             <div class="flex">
                                 <div id="app">
                                     <review-component v-bind:good='{{ $good }}'
-                                        v-bind:normal='{{ $normal }}' v-bind:bad='{{ $bad }}' v-bind:userId="{{ $userProfile->id }}">
+                                        v-bind:normal='{{ $normal }}' v-bind:bad='{{ $bad }}' v-bind:userId="{{ $userProfile->user->id }}">
                                     </review-component>
                                 </div>
 

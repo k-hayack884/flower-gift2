@@ -1,15 +1,12 @@
 import './bootstrap'
 
 import { createApp } from 'vue'
-import CounterComponent from './components/Counter.vue'
 import ReviewComponent from './components/Review.vue'
-import ExampleComponent from './components/Example.vue'
 import FlashmessageComponent from './components/Flashmessage.vue'
 import FavoriteComponent from './components/Favorite.vue'
 import ModalComponent from './components/Modal.vue'
 createApp({
     components:{
-        // CounterComponent,
         ReviewComponent,
         ModalComponent
     }
@@ -32,8 +29,8 @@ createApp({
 //       };
 //     },
 
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();

@@ -1,5 +1,4 @@
 import './bootstrap'
-
 import { createApp } from 'vue'
 import ReviewComponent from './components/Review.vue'
 import FlashmessageComponent from './components/Flashmessage.vue'

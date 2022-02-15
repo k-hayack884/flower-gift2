@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Password::defaults(function () {
             return Password::min(8);
         });
+        Schema::defaultStringLength(191);
 
     }
 }

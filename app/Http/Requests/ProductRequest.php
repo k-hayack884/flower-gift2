@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'comment' => ['required', 'string', 'max:200'],
             'status' => ['required', 'between:1,3'],
             'image' => ['image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'address' => ['string', 'max:50'],
+            'address' => ['max:50'],
             'trade_type' => ['required', 'between:1,3'],
         ];
     }

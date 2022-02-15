@@ -10,17 +10,18 @@ use App\Models\Comment;
 
 class ProcessedComment extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'admin_id',
         'result',
         'comment_id'
-
     ];
-    use HasFactory;
+
     public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
+
     public function comment()
     {
         return $this->belongsTo(Comment::class);

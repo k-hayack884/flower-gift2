@@ -6,22 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\PrimaryCategory;
-use App\Models\SecondaryCategory;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Models\BadProduct;
-use App\Models\BadComment;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use App\Providers\AppServiceProvider;
-use App\Http\Requests\UploadImageRequest;
 use App\Http\Requests\ProductRequest;
 use App\Services\ImageService;
-use Carbon\Carbon;
-use InterventionImage;
-use Illuminate\Validation\Rules\Password;
 
 class ProductController extends Controller
 {
@@ -35,12 +24,12 @@ class ProductController extends Controller
         $this->middleware('auth:users');
         //直接別ユーザーにアクセスするとはじくシステム
         $this->middleware(function ($request, $next) {
-            $id=$request->route()->parameter('product');
+            $id = $request->route()->parameter('product');
             if (!is_null($id)) {
-                $productId=Product::findOrFail($id)->user_id;
-                $currentUserId=(int)$productId;
-                $authId=Auth::id();
-                if ($currentUserId!==$authId) {
+                $productId = Product::findOrFail($id)->user_id;
+                $currentUserId = (int)$productId;
+                $authId = Auth::id();
+                if ($currentUserId !== $authId) {
                     abort(404);
                 }
             }
@@ -50,29 +39,18 @@ class ProductController extends Controller
 
     public function view(Request $request)
     {
-        $categories=PrimaryCategory::with('secondary')->get();
-        $productInfo=Product::availableItems()
-        ->selectCategory($request->category ?? '0')
-        ->searchKeyword($request->keyword ?? '')
-        ->sortOrder($request->sort)->with('category')->paginate(20); //n+1なんとかなた
-        
-        // dd($productInfo);
-        //モデルのリレーションのファンクションでつなぐ
-
+        $categories = PrimaryCategory::with('secondary')->get();
+        $productInfo = Product::availableItems()
+            ->selectCategory($request->category ?? '0')
+            ->searchKeyword($request->keyword ?? '')
+            ->sortOrder($request->sort)->with('category')->paginate(20); //n+1なんとかなた
         return view('user.dashboard', compact('productInfo', 'categories'));
     }
+
     public function index()
     {
-        $productInfo=User::with('product.category') //モデルのリレーションのファンクションでつなぐ
-        ->where('id', Auth::id())->paginate(10);
-        // dd($productInfo);
-        // foreach ($productInfo as $info) {
-        //     // dd($info->product);
-        //     foreach ($info->product as $product) {
-        //         dd($product->id);
-        //     }
-        // }
-        
+        $productInfo = User::with('product.category') //モデルのリレーションのファンクションでつなぐ
+            ->where('id', Auth::id())->paginate(10);
         return view('user.products.index', compact('productInfo'));
     }
 
@@ -83,7 +61,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories=PrimaryCategory::with('secondary')->get();
+        $categories = PrimaryCategory::with('secondary')->get();
         return view('user.products.create', compact('categories'));
     }
 
@@ -95,26 +73,28 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $imageFile=$request->image;
-        if (!is_null($imageFile)&&$imageFile->isValid()) {
+        $imageFile = $request->image;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
-            $fileNameToStore=ImageService::upload($imageFile, 'products');
+            $fileNameToStore = ImageService::upload($imageFile, 'products');
         }
-        $product=Product::create([
-            'user_id'=>Auth::id(),
+        Product::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'comment' => $request->comment,
             'status' => $request->status,
-            'address'=>$request->address,
-            'trade_type'=>$request->trade_type,
+            'address' => $request->address,
+            'trade_type' => $request->trade_type,
             'img' => $fileNameToStore ?? '',
-            'secondary_category_id'=>$request->category
+            'secondary_category_id' => $request->category
 
         ]);
         return redirect()
-        ->route('user.products.index')
-        ->with(['message'=>'商品を登録しました',
-        'status'=> 'info']);
+            ->route('user.products.index')
+            ->with([
+                'message' => '商品を登録しました',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -126,13 +106,13 @@ class ProductController extends Controller
     public function show($id)
     {
         $productInfo = Product::findOrFail($id);
-        if($productInfo->status===0){
+        if ($productInfo->status === 0) {
             return redirect()
-            ->route('user.products.index')
-            ->with([
-                'message' => 'この商品は非公開にされています',
-                'status' => 'delete'
-            ]);
+                ->route('user.products.index')
+                ->with([
+                    'message' => 'この商品は非公開にされています',
+                    'status' => 'delete'
+                ]);
         }
         $categoryName = Product::findOrFail($id)
             ->join('secondary_categories', 'products.secondary_category_id', '=', 'secondary_categories.id')
@@ -182,8 +162,9 @@ class ProductController extends Controller
         $product->trade_type = $request->trade_type;
         $product->address = $request->address;
         $product->secondary_category_id = $request->category;
-        $product->img = $fileNameToStore ?? '';
-
+        if (!empty($fileNameToStore)) {
+            $product->img = $fileNameToStore;
+        }
 
         $product->save();
 
@@ -195,7 +176,6 @@ class ProductController extends Controller
             ]);
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
@@ -204,15 +184,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
-            
-            Product::findOrFail($id)->delete();
-
-
-       
+        Product::findOrFail($id)->delete();
         return redirect()->route('user.products.index')->with([
-                'message' => '商品を削除しました',
-                'status' => 'delete'
-            ]);
+            'message' => '商品を削除しました',
+            'status' => 'delete'
+        ]);
     }
 }

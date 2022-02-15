@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 
-class UserResetPassword extends ResetPasswordNotification //notification→
+class UserResetPassword extends ResetPasswordNotification //notification→esetPasswordNotificationにオーバーライド
 {
     use Queueable;
 
@@ -42,13 +42,13 @@ class UserResetPassword extends ResetPasswordNotification //notification→
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('パスワードリセットのリクエスト承りました')
-                    ->subject('パスワード初期化についてのお知らせ')
-                    ->line('パスワードリセットのリンクを送信しました。')
-                    ->action('パスワードリセット', url('reset-password', ['token' => $this->token]))
-                    ->line('このリンクは60分を過ぎると無効になります。')
-                    ->line('flower-giftをご利用くださってありがとうございます。')
-                    ->salutation('floewr-gift');
+            ->greeting('パスワードリセットのリクエスト承りました')
+            ->subject('パスワード初期化についてのお知らせ')
+            ->line('パスワードリセットのリンクを送信しました。')
+            ->action('パスワードリセット', url('reset-password', ['token' => $this->token]))
+            ->line('このリンクは60分を過ぎると無効になります。')
+            ->line('flower-giftをご利用くださってありがとうございます。')
+            ->salutation('floewr-gift');
     }
 
     /**

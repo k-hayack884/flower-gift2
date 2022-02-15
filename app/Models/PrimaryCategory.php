@@ -8,7 +8,6 @@ use App\Models\SecondaryCategory;
 
 class PrimaryCategory extends Model
 {
-
     use HasFactory;
     public function secondary()
     {

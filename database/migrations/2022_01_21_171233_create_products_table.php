@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreignId('secondary_category_id');
+            $table->foreignId('secondary_category_id')
+            ->constrained();
             $table->string('img')->nullable();
             $table->string('name');
             $table->string('comment');

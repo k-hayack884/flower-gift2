@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             // ProductSeeder::class,
         ]);
-        \App\Models\User::factory(20)->create();
-        \App\Models\Product::factory(100)->create();
-        \App\Models\Review::factory(500)->create();
-        \App\Models\Comment::factory(200)->create();
-        \App\Models\Favorite::factory(100)->create();
-        \App\Models\BadComment::factory(100)->create();
-        \App\Models\BadProduct::factory(100)->create();
+        // \App\Models\User::factory(20)->create();
+        // \App\Models\Product::factory(100)->create();
+        // \App\Models\Review::factory(500)->create();
+        // \App\Models\Comment::factory(200)->create();
+        // \App\Models\Favorite::factory(100)->create();
+        // \App\Models\BadComment::factory(100)->create();
+        // \App\Models\BadProduct::factory(100)->create();
 
     }
 }

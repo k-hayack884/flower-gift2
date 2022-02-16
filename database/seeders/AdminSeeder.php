@@ -17,12 +17,13 @@ class AdminSeeder extends Seeder
     {
         DB::table('admins')->insert([
             [
+                'id'=>1,
                 'name' => 'ナッシュ',
                 'email' => 'barian@shark',
                 'password' => Hash::make('mazikkukonbo'),
                 'created_at' => '2022/01/01 00:01:01'
             ],
-            [
+            ['id'=>2,
                 'name' => 'ミザエル',
                 'email' => 'barian@mizaeru',
                 'password' => Hash::make('takionlove'),

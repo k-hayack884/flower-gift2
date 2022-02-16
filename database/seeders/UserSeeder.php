@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'id'=>1,
             'name'=>'ドルベ',
             'email'=>'barian@books',
             'comment' => 'バリアンの白き盾!',
@@ -24,7 +25,7 @@ class UserSeeder extends Seeder
             'password'=>Hash::make('sirokitate'),
             'created_at'=>'2022/01/01 00:01:02'
             ],
-            [
+            ['id'=>2,
             'name'=>'たたく人',
             'email'=>'keyboard@tatakuyo',
             'comment' => 'キーボードクラッシャー',

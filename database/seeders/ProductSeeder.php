@@ -16,6 +16,7 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert(
             [
+                'id'=>1,
             'user_id'=>1,
             'secondary_category_id'=>1,
             'img'=>'computer_keyboard_yatsuatari_businessman.png',

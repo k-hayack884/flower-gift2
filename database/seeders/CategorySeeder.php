@@ -15,35 +15,35 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('primary_categories')->insert([
-            [
+            ['id'=>1,
                 'name' => '洋ラン',
                 'sort_order' => 1,
             ],
-            [
+            ['id'=>2,
                 'name' => 'アジサイ',
                 'sort_order' => 2,
             ],
-            [
+            ['id'=>3,
                 'name' => 'シクラメン',
                 'sort_order' => 3,
             ],
-            [
+            ['id'=>4,
                 'name' => '観葉植物',
                 'sort_order' => 4,
             ],
-            [
+            ['id'=>5,
                 'name' => '多肉植物',
                 'sort_order' => 5,
             ],
-            [
+            ['id'=>6,
                 'name' => '球根植物',
                 'sort_order' => 6,
             ],
-            [
+            ['id'=>7,
                 'name' => 'フラワースタンド',
                 'sort_order' => 7,
             ],
-            [
+            ['id'=>8,
                 'name' => 'その他',
                 'sort_order' => 8,
             ],

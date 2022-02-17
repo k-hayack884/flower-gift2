@@ -11,7 +11,6 @@ use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Services\ImageService;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -77,9 +76,7 @@ class ProductController extends Controller
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
-            // $fileNameToStore = ImageService::upload($imageFile, 'products');
-            $path = Storage::disk('s3')->putFile('products', $imageFile, 'public');
-            $image_path = Storage::disk('s3')->url($path);
+            $fileNameToStore = ImageService::upload($imageFile, 'products');
         }
         Product::create([
             'user_id' => Auth::id(),
@@ -88,7 +85,7 @@ class ProductController extends Controller
             'status' => $request->status,
             'address' => $request->address,
             'trade_type' => $request->trade_type,
-            'img' => $image_path ?? '',
+            'img' => $fileNameToStore ?? '',
             'secondary_category_id' => $request->category
 
         ]);

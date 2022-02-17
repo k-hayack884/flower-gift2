@@ -15,7 +15,7 @@
         "laravel/passport": "^10.3",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.5",
-        "league/flysystem-aws-s3-v3": "1.*",
+        "league/flysystem-aws-s3-v3": "1.0",
         "nesbot/carbon": "^2.55"
     },
     "require-dev": {

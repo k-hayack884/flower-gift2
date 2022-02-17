@@ -11,6 +11,7 @@ use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Services\ImageService;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -49,6 +50,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        // dd(env('AWS_ACCESS_KEY_ID'),env('AWS_SECRET_ACCESS_KEY'),env('AWS_DEFAULT_REGION'),env('AWS_BUCKET'),env('AWS_URL'));
         $productInfo = User::with('product.category') //モデルのリレーションのファンクションでつなぐ
             ->where('id', Auth::id())->paginate(10);
         return view('user.products.index', compact('productInfo'));
@@ -73,12 +75,15 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $imageFile = $request->image;
+        $imageFile = $request->file('image');
+        $path = Storage::disk('s3')->put('/', $imageFile, 'public');
+dd($path);
         if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
-            // $fileNameToStore = ImageService::upload($imageFile, 'products');
-            $path = Storage::disk('s3')->putFile('products', $imageFile, 'public');
-            $image_path = Storage::disk('s3')->url($path);
+            
+            ImageService::upload($imageFile, 'products');
+            // $path = Storage::disk('s3')->putFile('products', $imageFile, 'public');
+            // $image_path = Storage::disk('s3')->url($path);
         }
         Product::create([
             'user_id' => Auth::id(),

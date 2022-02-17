@@ -76,7 +76,9 @@ class ProductController extends Controller
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
-            $fileNameToStore = ImageService::upload($imageFile, 'products');
+            // $fileNameToStore = ImageService::upload($imageFile, 'products');
+            $path = Storage::disk('s3')->putFile('products', $imageFile, 'public');
+            $image_path = Storage::disk('s3')->url($path);
         }
         Product::create([
             'user_id' => Auth::id(),
@@ -85,7 +87,7 @@ class ProductController extends Controller
             'status' => $request->status,
             'address' => $request->address,
             'trade_type' => $request->trade_type,
-            'img' => $fileNameToStore ?? '',
+            'img' => $image_path ?? '',
             'secondary_category_id' => $request->category
 
         ]);

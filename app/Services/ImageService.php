@@ -13,7 +13,7 @@ class ImageService
             $extension=$imageFile->extension(); //拡張子を判別
             $fileNameToStore=$fileName.'.'.$extension;
         $resizedImage=InterventionImage::make($imageFile)->resize(400, 400)->encode();
-        Storage::disk('s3')->put($folderName,$resizedImage, 'public');
+        Storage::disk('s3')->put('/', $fileName,'public');
         // Storage::put('public/'.$folderName.'/'.$fileNameToStore, $resizedImage);
         
         return $fileNameToStore;

@@ -166,12 +166,12 @@ export default {
   methods: {
     goodReview() {
       axios
-        .get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`http://127.0.0.1:8000/api/reviews/good`, {
+            .post(`api/reviews/good`, {
               userid: this.userid,
               withCredentials: true,
             })
@@ -187,12 +187,12 @@ export default {
     },
     normalReview() {
       axios
-        .get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`http://127.0.0.1:8000/api/reviews/normal`, {
+            .post(`api/reviews/normal`, {
               userid: this.userid,
               withCredentials: true,
             })
@@ -208,12 +208,12 @@ export default {
     },
     badReview() {
       axios
-        .get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`http://127.0.0.1:8000/api/reviews/bad`, {
+            .post(`api/reviews/bad`, {
               userid: this.userid,
               withCredentials: true,
             })

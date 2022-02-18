@@ -14,9 +14,9 @@ class ImageService
             $fileNameToStore=$fileName.'.'.$extension;
         $resizedImage=InterventionImage::make($imageFile)->resize(400, 400)->encode();
 
-        // $fileNameToStore= Storage::disk('s3')->put('/testdir/', $fileNameToStore, 'public');
+        $fileNameToStore= Storage::disk('s3')->put('products/', $fileNameToStore, 'public');
        
-        $fileNameToStore=Storage::disk('s3')->put('/','aaa', 'public');
+        // $fileNameToStore=Storage::disk('s3')->put('/','aaa', 'public');
         // Storage::put('public/'.$folderName.'/'.$fileNameToStore, $resizedImage);
         
         return $fileNameToStore;

@@ -76,12 +76,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $imageFile = $request->file('image');
-        $path = Storage::disk('s3')->put('/', $imageFile, 'public');
-dd($path);
+        // $path = Storage::disk('s3')->put('/products/', $imageFile, 'public');
+
         if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
             
-            ImageService::upload($imageFile, 'products');
+            ImageService::upload($imageFile, 'products/');
             // $path = Storage::disk('s3')->putFile('products', $imageFile, 'public');
             // $image_path = Storage::disk('s3')->url($path);
         }

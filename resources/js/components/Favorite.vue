@@ -50,12 +50,12 @@ export default {
   methods: {
     postFavo() {
       axios
-        .get("https://flower-gift.herokuapp.com/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`https://flower-gift.herokuapp.com/api/favorites/add`, {
+            .post(`api/favorites/add`, {
               productId: this.productid,
               withCredentials: true,
             })
@@ -65,12 +65,12 @@ export default {
     },
     deleteFavo() {
       axios
-        .get("https://flower-gift.herokuapp.com/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`https://flower-gift.herokuapp.com/api/favorites/delete`, {
+            .post(`api/favorites/delete`, {
               productId: this.productid,
               withCredentials: true,
             })

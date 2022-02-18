@@ -50,12 +50,12 @@ export default {
   methods: {
     postFavo() {
       axios
-        .get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`http://127.0.0.1:8000/api/favorites/add`, {
+            .post(`api/favorites/add`, {
               productId: this.productid,
               withCredentials: true,
             })
@@ -65,12 +65,12 @@ export default {
     },
     deleteFavo() {
       axios
-        .get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+        .get("sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`http://127.0.0.1:8000/api/favorites/delete`, {
+            .post(`api/favorites/delete`, {
               productId: this.productid,
               withCredentials: true,
             })

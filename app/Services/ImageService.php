@@ -12,10 +12,11 @@ class ImageService
         $fileName=uniqid(rand().'_'); //ユニークなIDを生成
             $extension=$imageFile->extension(); //拡張子を判別
             $fileNameToStore=$fileName.'.'.$extension;
+            
         $resizedImage=InterventionImage::make($imageFile)->resize(400, 400)->encode();
 
-        $fileNameToStore= Storage::disk('s3')->put('products/', $fileNameToStore, 'public');
-       
+        Storage::disk('s3')->put($folderName.'/'.$fileNameToStore,$resizedImage, 'public');
+        // $url = Storage::disk('s3')->url($folderName.$fileNameToStore);
         // $fileNameToStore=Storage::disk('s3')->put('/','aaa', 'public');
         // Storage::put('public/'.$folderName.'/'.$fileNameToStore, $resizedImage);
         

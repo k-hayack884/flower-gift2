@@ -166,12 +166,12 @@ export default {
   methods: {
     goodReview() {
       axios
-        .get("https://flower-gift.herokuapp.com/sanctum/csrf-cookie", {
+        .get("/sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`https://flower-gift.herokuapp.com/api/reviews/good`, {
+            .post(`/api/reviews/good`, {
               userid: this.userid,
               withCredentials: true,
             })
@@ -187,12 +187,12 @@ export default {
     },
     normalReview() {
       axios
-        .get("https://flower-gift.herokuapp.com/sanctum/csrf-cookie", {
+        .get("/sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`https://flower-gift.herokuapp.com/api/reviews/normal`, {
+            .post(`/api/reviews/normal`, {
               userid: this.userid,
               withCredentials: true,
             })
@@ -208,12 +208,12 @@ export default {
     },
     badReview() {
       axios
-        .get("https://flower-gift.herokuapp.com/sanctum/csrf-cookie", {
+        .get("/sanctum/csrf-cookie", {
           withCredentials: true,
         })
         .then((response) => {
           axios
-            .post(`https://flower-gift.herokuapp.com/api/reviews/bad`, {
+            .post(`/api/reviews/bad`, {
               userid: this.userid,
               withCredentials: true,
             })

@@ -76,11 +76,11 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $imageFile = $request->file('image');
-        // $path = Storage::disk('s3')->put('/products/', $imageFile, 'public');
 
         if (!is_null($imageFile) && $imageFile->isValid()) {
             // Storage::putFile('public/profiles', $imageFile);//リサイズなし
             $fileNameToStore = ImageService::upload($imageFile, 'products');
+
 
         }
         Product::create([
@@ -92,7 +92,6 @@ class ProductController extends Controller
             'trade_type' => $request->trade_type,
             'img' => $fileNameToStore ?? '',
             'secondary_category_id' => $request->category
-
         ]);
         return redirect()
             ->route('user.products.index')

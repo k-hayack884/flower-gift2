@@ -16,7 +16,9 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "1.0.29",
-        "nesbot/carbon": "^2.55"
+        "nesbot/carbon": "^2.55",
+        "s-ichikawa/laravel-sendgrid-driver": "^3.0",
+        "sendgrid/sendgrid": "^7.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

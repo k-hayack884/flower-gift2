@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\trademail;
 use App\Mail\Ownermail;
+use SendGrid;
+use \Symfony\Component\HttpFoundation\Response;
 
 class MailController extends Controller
 {
@@ -29,6 +31,8 @@ class MailController extends Controller
         $user = User::findOrFail(Auth::id());
 
         $product = Product::with('user')->findOrFail($request->product_id);
+
+
 
         Mail::to($user->email)->send(new Trademail($product, $user, $request));
         Mail::to($product->user->email)->send(new OwnerMail($product, $user, $request));

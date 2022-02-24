@@ -7,9 +7,37 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## flower-gift  
+###概要：不要になった花を処分したい人と、その花を必要とする人をつなぐためのサイトです。  
+レスポンシブ対応をしているため、スマートフォンからもご利用できます。  
+###制作の背景：
+私は処分される花を少しでも減らしたい思いから、このサービスを製作しました。  
+お祝い事で各地から贈られることが多い胡蝶蘭ですが、花が終わったあとを考えたことがあるでしょうか。  
+胡蝶蘭は多年草で、来年以降も花を咲かせるにもかかわらず、咲き終わった胡蝶蘭の大半は処分されます。  
+一方で、胡蝶蘭を育ててみたい人がいるにもかかわらず、値段が高いため、安易に購入することができません。  
+そして、胡蝶蘭以外の花に目を向けると、年間で１０億本以上の花が処分されています。  
+私はこのサービスを通して、1本でも多くの花を救いたいです。  
+<br>
+###機能:
+-ユーザー側
+-商品を出品する機能
+-商品をカテゴリーごと、または用語を入力して検索する機能
+-商品をお気に入り登録し、自分だけのお気に入りを表示する機能(axios)
+-ユーザーをレビューする機能(axios)
+-ページング機能
+-画像登録、リサイズ機能(AWS:s3,InterventionImage)
+-自動メール送信機能(sendgrid)
+-違反商品、コメントを報告する機能
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-管理者側
+-ユーザーを編集、削除する機能
+-退会ユーザーを保存、完全削除する機能
+-違反商品、違反コメントを集積する機能
+-違反商品、違反コメントを凍結し、ユーザーへ非表示にする機能
+
+
+
+
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).

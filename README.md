@@ -42,7 +42,7 @@ https://flower-gift.herokuapp.com/
 - 違反商品、違反コメントを集積する機能
  -違反商品、違反コメントを凍結し、ユーザーへ非表示にする機能
 
-### 仕様技術:
+### 使用技術:
 - PHP 8.1.2 
 - Laravel Framework 8.83.1
 - mysql 5.6.50
@@ -88,10 +88,13 @@ AWS_BUCKET=s3のバケット名
 AWS_URL=https://s3-(リージョン).amazonaws.com/（バケット名）/  
 を追記してください
 
-
 ## データベース構成
 
 ![flower-gift-er](https://user-images.githubusercontent.com/85856269/155475282-e1024968-bf43-4233-b9cb-f9208f691350.png)
 
+## 今後追加したい機能
+- javasprictを利用した画像のプレビュー機能
+- 一つの商品に対して複数の画像を追加する機能
+- 
 ## ライセンス
 Copyright (c) [2022] [k-hayack884]

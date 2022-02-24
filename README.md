@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+![logo](https://user-images.githubusercontent.com/85856269/155497267-ae42c747-4a14-4e7c-bd85-b0f0d4d64bef.png) 
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -10,6 +10,10 @@
 ## flower-gift  
 ### URL:
 https://flower-gift.herokuapp.com/
+### プレビュー  
+
+![demo](https://user-images.githubusercontent.com/85856269/155496576-4d659f10-1e73-43ba-95c3-866d912f829b.png)
+
 ### 概要：  
 不要になった花を処分したい人と、その花を必要とする人をつなぐためのサイトです。  
 レスポンシブ対応をしているため、スマートフォンからもご利用できます。  
@@ -76,11 +80,11 @@ email barian@shark
 password mazikkukonbo  
 
 登録した画像を表示させたい場合AWSのs3を利用する必要があります。  
-AWSのs3でバケットを作成した後、envに
-AWS_ACCESS_KEY_ID=AWSのアクセスキー
-AWS_SECRET_ACCESS_KEY=AWSのシークレットアクセスキー
-AWS_DEFAULT_REGION=AWSのリージョン
-AWS_BUCKET=s3のバケット名
+AWSのs3でバケットを作成した後、envに  
+AWS_ACCESS_KEY_ID=AWSのアクセスキー  
+AWS_SECRET_ACCESS_KEY=AWSのシークレットアクセスキー  
+AWS_DEFAULT_REGION=AWSのリージョン  
+AWS_BUCKET=s3のバケット名  
 AWS_URL=https://s3-(リージョン).amazonaws.com/（バケット名）/  
 を追記してください
 

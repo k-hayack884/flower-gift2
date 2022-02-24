@@ -6,9 +6,10 @@
 
     <div id="overlay" v-show="showContent" class="z-20 flex justify-center">
       <div id="content" class="md:absolute top-40">
+        <div class="flex justify-end">
         <button
           v-on:click="closeModal"
-          class="ml-30 z-30 w-8 h-8 flex justify-end"
+          class="ml-30 z-30 w-8 h-8"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +17,7 @@
             fill="red"
             viewBox="0 0 24 24"
             stroke="white"
+            text-anchor="w-8 h-8"
           >
             <path
               strokeLinecap="round"
@@ -25,7 +27,7 @@
             />
           </svg>
         </button>
-
+</div>
         <section class="text-gray-600 body-font">
           <div
             class="relative mx-auto px-5 py-12"
@@ -77,7 +79,7 @@
                 href="register"
                 class="
                   text-center text-gray-700
-                  bg-gray-100
+                  bg-gray-300
                   border-0
                   py-2
                   px-6

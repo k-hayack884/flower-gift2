@@ -10,7 +10,7 @@
             <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">管理者画面にようこそ!
             </h1>
             <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-                <div class="p-4 md:w-1/2 flex">
+                <div class="p-4 md:w-1/2 flex border-2">
                     <div class="flex-grow pl-6">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">ユーザー管理</h2>
                         <p class="leading-relaxed text-base">ユーザーの登録及び編集、削除をすることができます。</p>
@@ -23,7 +23,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="p-4 md:w-1/2 flex">
+                <div class="p-4 md:w-1/2 flex border-2">
                     <div class="flex-grow pl-6">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">退会ユーザー管理</h2>
                         <p class="leading-relaxed text-base">退会したユーザーの確認および削除ができます</p>
@@ -36,7 +36,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="p-4 md:w-1/2 flex">
+                <div class="p-4 md:w-1/2 flex border-2">
                     <div class="flex-grow pl-6">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">違反商品管理</h2>
                         <p class="leading-relaxed text-base">違反していると報告された商品確認、非公開処理の切り替えができます</p>
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="p-4 md:w-1/2 flex">
+                <div class="p-4 md:w-1/2 flex border-2">
                     <div class="flex-grow pl-6">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">違反コメント管理</h2>
                         <p class="leading-relaxed text-base">違反していると報告された商品確認、非公開処理の切り替えができます</p>

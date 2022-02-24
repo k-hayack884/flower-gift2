@@ -24648,10 +24648,10 @@ __webpack_require__.r(__webpack_exports__);
     postFavo: function postFavo() {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+      axios.get("/sanctum/csrf-cookie", {
         withCredentials: true
       }).then(function (response) {
-        axios.post("http://127.0.0.1:8000/api/favorites/add", {
+        axios.post("/api/favorites/add", {
           productId: _this.productid,
           withCredentials: true
         }).then(function (response) {
@@ -24664,10 +24664,10 @@ __webpack_require__.r(__webpack_exports__);
     deleteFavo: function deleteFavo() {
       var _this2 = this;
 
-      axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+      axios.get("/sanctum/csrf-cookie", {
         withCredentials: true
       }).then(function (response) {
-        axios.post("http://127.0.0.1:8000/api/favorites/delete", {
+        axios.post("/api/favorites/delete", {
           productId: _this2.productid,
           withCredentials: true
         }).then(function (response) {
@@ -24760,10 +24760,10 @@ __webpack_require__.r(__webpack_exports__);
     goodReview: function goodReview() {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+      axios.get("/sanctum/csrf-cookie", {
         withCredentials: true
       }).then(function (response) {
-        axios.post("http://127.0.0.1:8000/api/reviews/good", {
+        axios.post("/api/reviews/good", {
           userid: _this.userid,
           withCredentials: true
         }).then(function (response) {
@@ -24778,10 +24778,10 @@ __webpack_require__.r(__webpack_exports__);
     normalReview: function normalReview() {
       var _this2 = this;
 
-      axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+      axios.get("/sanctum/csrf-cookie", {
         withCredentials: true
       }).then(function (response) {
-        axios.post("http://127.0.0.1:8000/api/reviews/normal", {
+        axios.post("/api/reviews/normal", {
           userid: _this2.userid,
           withCredentials: true
         }).then(function (response) {
@@ -24796,10 +24796,10 @@ __webpack_require__.r(__webpack_exports__);
     badReview: function badReview() {
       var _this3 = this;
 
-      axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie", {
+      axios.get("/sanctum/csrf-cookie", {
         withCredentials: true
       }).then(function (response) {
-        axios.post("http://127.0.0.1:8000/api/reviews/bad", {
+        axios.post("/api/reviews/bad", {
           userid: _this3.userid,
           withCredentials: true
         }).then(function (response) {
@@ -24934,13 +24934,17 @@ var _hoisted_3 = {
   id: "content",
   "class": "md:absolute top-40"
 };
+var _hoisted_4 = {
+  "class": "flex justify-end"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   className: "h-3 w-3",
   fill: "red",
   viewBox: "0 0 24 24",
-  stroke: "white"
+  stroke: "white",
+  "text-anchor": "w-8 h-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   strokeLinecap: "round",
   strokeLinejoin: "round",
@@ -24950,9 +24954,9 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_5 = [_hoisted_4];
+var _hoisted_6 = [_hoisted_5];
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"text-gray-600 body-font\"><div class=\"relative mx-auto px-5 py-12\" style=\"background-image:url(&#39;images/back_img.jpg&#39;);\"></div><div class=\"container mx-auto flex px-5 py-4 items-center justify-center flex-col\"><h1 class=\"title-font sm:text-xl text-2xl mb-4 font-medium text-gray-900\"> 利用のためにログインしてください </h1><div class=\"flex justify-center flex-col md:flex-row\"><a href=\"login\" class=\"text-center text-white bg-indigo-500 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-indigo-600 rounded text-lg md:mx-4\">ログイン</a><a href=\"register\" class=\"text-center text-gray-700 bg-gray-100 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-gray-200 rounded text-lg md:mx-4\">新規登録</a></div></div></section>", 1);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"text-gray-600 body-font\"><div class=\"relative mx-auto px-5 py-12\" style=\"background-image:url(&#39;images/back_img.jpg&#39;);\"></div><div class=\"container mx-auto flex px-5 py-4 items-center justify-center flex-col\"><h1 class=\"title-font sm:text-xl text-2xl mb-4 font-medium text-gray-900\"> 利用のためにログインしてください </h1><div class=\"flex justify-center flex-col md:flex-row\"><a href=\"login\" class=\"text-center text-white bg-indigo-500 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-indigo-600 rounded text-lg md:mx-4\">ログイン</a><a href=\"register\" class=\"text-center text-gray-700 bg-gray-300 border-0 py-2 px-6 mb-4 focus:outline-none hover:bg-gray-200 rounded text-lg md:mx-4\">新規登録</a></div></div></section>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" template for the modal component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -24960,12 +24964,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.openModal && $options.openModal.apply($options, arguments);
     }),
     "class": "absolute top-0 p-48"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.closeModal && $options.closeModal.apply($options, arguments);
     }),
-    "class": "ml-30 z-30 w-8 h-8 flex justify-end"
-  }, _hoisted_5), _hoisted_6])], 512
+    "class": "ml-30 z-30 w-8 h-8"
+  }, _hoisted_6)]), _hoisted_7])], 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.showContent]])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */

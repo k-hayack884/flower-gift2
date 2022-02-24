@@ -29,7 +29,7 @@
         @endif
         <!-- Page Heading -->
         <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 bg-green-300">
+            <div class="max-w-7x py-6 px-4 sm:px-6 lg:px-8 bg-green-300">
                 {{ $header ?? '' }}
 
                 <x-flash-message status="session('status')"></x-flash-message>
@@ -42,7 +42,9 @@
             {{ $slot }}
         </main>
     </div>
-
+<footer class="shadow text-center text-gray-300 text-sm">
+    © 2022, https://flower-gift.herokuapp.com/, k-hayack884
+</footer>
 </body>
 
 </html>

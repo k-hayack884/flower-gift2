@@ -1,0 +1,1 @@
+<img src="{{asset('images/logo-cutout.png')}}" class="w-28 h-10 ">

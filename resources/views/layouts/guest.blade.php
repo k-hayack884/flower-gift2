@@ -17,6 +17,17 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
+        <!-- Page Heading -->
+        <header class="bg-white shadow">
+            <div class="max-w-7x py-6 px-4 sm:px-6 lg:px-8 bg-green-300">
+                {{ $header ?? '' }}
+                <div class=" sm:-my-px sm:ml-10 sm:flex">
+                    <x-logo></x-logo>
+                </div>
+                <x-flash-message status="session('status')"></x-flash-message>
+
+            </div>
+        </header>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

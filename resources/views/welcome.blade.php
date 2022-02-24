@@ -5,15 +5,13 @@
             <x-slot name="header">
 
                 <div class="relative flex items-top justify-between dark:bg-gray-900 sm:items-center z-20">
-                    <h1 class="font-semibold text-lg text-gray-800 leading-tight">
-                        flower-giftへようこそ!
-                    </h1>
+                  <x-logo></x-logo>
                     @if (Route::has('user.login'))
                         <div class="">
                             @auth
                             @else
                                 <a href="{{ route('user.login') }}"
-                                    class="relative text-sm text-gray-700 dark:text-gray-500 px-2 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 border-2 border-red-500 rounded">
+                                    class="relative text-sm text-gray-700 dark:text-gray-500 px-4 py-2 sm:px-8 sm:py-4 text-white bg-red-500 hover:bg-red-300 border-2 border-red-500 rounded">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class=" hidden sm:inline w-6 absolute top-3 left-2" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -23,7 +21,7 @@
                                     ログイン</a>
                                 @if (Route::has('user.register'))
                                     <a href="{{ route('user.register') }}"
-                                        class=" text-sm text-gray-700 dark:text-gray-500  py-2 md:px-8 sm:py-4  hover:underline border-2 border-green-700 border-solid rounded">新規登録</a>
+                                        class=" text-sm text-gray-700 dark:text-gray-500  py-2 px-4 md:px-8 sm:py-4  hover:underline border-2 border-green-700 border-solid rounded">新規登録</a>
                                 @endif
                             @endauth
                         </div>

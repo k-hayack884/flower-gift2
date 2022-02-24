@@ -1,33 +1,36 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto ">
+    <div class="px-4 sm:px-4 lg:px-6 bg-green-500 py-2 ">
         <div class="flex justify-between h-16 bg-green-500">
             <div class="flex">
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class=" sm:-my-px sm:ml-4 flex items-center">
+                    <x-logo></x-logo>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('ホーム') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         {{ __('ユーザー管理') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('admin.expired-users.index')"
                         :active="request()->routeIs('admin.expired-users.index')">
                         {{ __('退会ユーザー管理') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('admin.bads.product-index')"
                         :active="request()->routeIs('admin.bads.product-index')">
                         {{ __('違反商品管理') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('admin.bads.comment-index')"
                         :active="request()->routeIs('admin.bads.comment-index')">
                         {{ __('違反コメント管理') }}
@@ -36,7 +39,7 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:mr-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -84,10 +87,10 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden ">
-        <div class="pt-2 pb-3 space-y-1">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-green-300">
+        <div class="pt-2 pb-3 space-y-1 bg-green-300">
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('ホーム') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 {{ __('ユーザー管理') }}

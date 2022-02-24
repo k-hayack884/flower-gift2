@@ -51,7 +51,48 @@ https://flower-gift.herokuapp.com/
 - Google MAP API
 
 ## 利用方法
-git clone
+git clone https://github.com/k-hayack884/flower-gift2.git  
+composer install
+composer update
+npm install
+npm run dev
+
+seederおよびfactoryがありますので、ダミーデータが必要な場合はコメントアウトを解除して、  
+php artisan migrate::refresh  --seed  
+を入力してください。   
+
+php artisan key:generate   
+と入力してキーを生成後、  
+php artisan serve  
+で簡易サーバーを立ち上げ、表示確認してください。
+<br>
+テストアカウント    
+ユーザー側  
+email barian@books  
+password sirokitate  
+<br>
+管理者側  
+email barian@shark  
+password mazikkukonbo  
+
+登録した画像を表示させたい場合AWSのs3を利用する必要があります。  
+AWSのs3でバケットを作成した後、envに
+AWS_ACCESS_KEY_ID=AWSのアクセスキー
+AWS_SECRET_ACCESS_KEY=AWSのシークレットアクセスキー
+AWS_DEFAULT_REGION=AWSのリージョン
+AWS_BUCKET=s3のバケット名
+AWS_URL=https://s3-(リージョン).amazonaws.com/（バケット名）/  
+を追記してください
+
+
+## データベース構成
+
+
+
+
+
+
+
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 

@@ -19,13 +19,13 @@ class AdminSeeder extends Seeder
             [
                 'id'=>1,
                 'name' => 'ナッシュ',
-                'email' => 'barian@shark',
+                'email' => 'barianshark@gmail.com',
                 'password' => Hash::make('mazikkukonbo'),
                 'created_at' => '2022/01/01 00:01:01'
             ],
             ['id'=>2,
                 'name' => 'ミザエル',
-                'email' => 'barian@mizaeru',
+                'email' => 'bariantakion@gmail.com',
                 'password' => Hash::make('takionlove'),
                 'created_at' => '2022/01/01 00:01:01'
             ],

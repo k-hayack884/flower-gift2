@@ -76,11 +76,11 @@ php artisan serve
 <br>
 テストアカウント    
 ユーザー側  
-email barian@books  
+email barianbooks@gmail.com  
 password sirokitate  
 <br>
 管理者側  
-email barian@shark  
+email barianshark@gmail.com  
 password mazikkukonbo  
 
 画像を登録したい場合、AWSのs3を利用する必要があります。  

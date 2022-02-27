@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             [
                 'id'=>1,
             'name'=>'ドルベ',
-            'email'=>'barian@books',
+            'email'=>'barianbooks@gmail.com',
             'comment' => 'バリアンの白き盾!',
             'prefecture'=>'京都府舞鶴市浜町5-3',
             'password'=>Hash::make('sirokitate'),
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ],
             ['id'=>2,
             'name'=>'たたく人',
-            'email'=>'keyboard@tatakuyo',
+            'email'=>'keyboard@gmail.com',
             'comment' => 'キーボードクラッシャー',
             'prefecture'=>'山形県米沢市駅前一丁目1-43',
             'password'=>Hash::make('kowasuyo'),

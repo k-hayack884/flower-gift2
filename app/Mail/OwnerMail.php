@@ -7,6 +7,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use SendGrid;
+use SendGrid\Mail\Mail;
+use \Symfony\Component\HttpFoundation\Response;
 
 class OwnerMail extends Mailable
 {
@@ -35,6 +38,20 @@ class OwnerMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('取引ありがとうございます')->view('emails.ownermail');
+        $email = new Mail();
+        $email->setFrom('hayack885@gmail.com', 'ララベルメールテストチーム');
+        $email->setSubject('取引ありがとうございます');
+        $email->addTo('hayack885@gmail.com');
+        $email->addContent("text/plain", 'えのっぴ');
+
+        $sendgrid = new SendGrid(env('SENDGRID_API_KEY'));
+
+        $response = $sendgrid->send($email);
+        if ($response->statusCode() == Response::HTTP_ACCEPTED) {
+            return $this->subject('取引ありがとうございます')->view('emails.ownermail');
+        } else {
+            return view('mail', ['errorMessage' => '送信失敗しました!']);
+        }
+        // return $this->subject('取引ありがとうございます')->view('emails.ownermail');
     }
 }

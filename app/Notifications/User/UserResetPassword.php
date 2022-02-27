@@ -41,6 +41,8 @@ class UserResetPassword extends ResetPasswordNotification //notification→esetP
      */
     public function toMail($notifiable)
     {
+
+
         return (new MailMessage)
             ->greeting('パスワードリセットのリクエスト承りました')
             ->subject('パスワード初期化についてのお知らせ')

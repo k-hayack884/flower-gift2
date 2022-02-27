@@ -41,7 +41,6 @@ class UserResetPassword extends ResetPasswordNotification //notification→esetP
      */
     public function toMail($notifiable)
     {
-dd($notifiable);
 
 
         return (new MailMessage)

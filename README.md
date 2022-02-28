@@ -96,7 +96,7 @@ AWS_URL=https://s3-(リージョン).amazonaws.com/（バケット名）/
 ### ユーザー側
 ![スクリーンショット (1634)](https://user-images.githubusercontent.com/85856269/155912676-6844fb05-d867-4bbc-97a6-c2fb776f386f.png)
 ### 管理者側
-![スクリーンショット (1633)](https://user-images.githubusercontent.com/85856269/155912732-d1d7fc3f-870c-4d1f-a383-0c167fa54d89.png)
+![スクリーンショット (1633)](https://user-images.githubusercontent.com/85856269/155912801-8ae07e97-9843-45a4-a037-75a44fc98592.png)
 
 ## データベース構成
 

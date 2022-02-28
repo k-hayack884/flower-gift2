@@ -92,6 +92,12 @@ AWS_BUCKET=s3のバケット名
 AWS_URL=https://s3-(リージョン).amazonaws.com/（バケット名）/  
 を追記してください
 
+## サイトや機能の全体図
+### ユーザー側
+![スクリーンショット (1634)](https://user-images.githubusercontent.com/85856269/155912676-6844fb05-d867-4bbc-97a6-c2fb776f386f.png)
+### 管理者側
+![スクリーンショット (1633)](https://user-images.githubusercontent.com/85856269/155912732-d1d7fc3f-870c-4d1f-a383-0c167fa54d89.png)
+
 ## データベース構成
 
 ![flower-gift-er](https://user-images.githubusercontent.com/85856269/155475282-e1024968-bf43-4233-b9cb-f9208f691350.png)

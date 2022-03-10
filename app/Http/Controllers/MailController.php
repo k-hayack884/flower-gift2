@@ -50,7 +50,7 @@ class MailController extends Controller
         $ownerEmail = new Mail();
         $ownerEmail->setFrom('flowergift884@gmail.com', 'flower-gift運営');
         $ownerEmail->setSubject('取引ありがとうございます');
-        $ownerEmail->addTo('hayack.job@gmail.com');
+        $ownerEmail->addTo($product->user->email);
         $ownerEmail->addContent("text/html",  strval(
             view(
                 'emails.ownermail',

@@ -12,14 +12,13 @@
             <div
                 class="lg:flex-grow md:w-1/2 lg:pl-24  flex flex-col md:items-start md:text-left items-center text-center">
 
-                <ul>
+                <ul class="ml-8">
                     <li class="mb-8 leading-relaxed">商品名:{{ $product->product->name }}</li>
                     <li class="mb-8 leading-relaxed break-all">{{ $product->product->comment }}</li>
                     <li class="mb-8 leading-relaxed">出品日: {{ $product->product->created_at->toDateString() }}</li>
                     <li class="mb-8 leading-relaxed">
                         現在の状態:@if ($product->product->status == \Constant::PRODUCT_LIST['sell'])
-                    取引可能@elseif($product->product->status == \Constant::PRODUCT_LIST['transaction'])取引中@elseif($product->product->status == \Constant::PRODUCT_LIST['sold'])取引終了@elseif
-                        ($product->product->status == \Constant::PRODUCT_LIST['noshow'])凍結中
+                    取引可能@elseif($product->product->status == \Constant::PRODUCT_LIST['transaction'])取引中@elseif($product->product->status == \Constant::PRODUCT_LIST['sold'])取引終了@elseif($product->product->status == \Constant::PRODUCT_LIST['noshow'])凍結中
                     @endif
                 </li>
                 <li class="mb-8 leading-relaxed">希望取引形態:
@@ -28,7 +27,7 @@
                 @endif
             </li>
         </ul>
-        <div class="flex justify-center flex-col lg:flex-row">
+        <div class="flex justify-center flex-col lg:flex-row ml-8">
             <form action="{{ route('admin.bads.product.delete', ['product' => $product->id]) }}"
                 method="post">
                 @csrf

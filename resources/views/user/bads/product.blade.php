@@ -8,7 +8,7 @@
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="flex">
                     <div class="w-1/3">
-                        <x-product-image :filename="$badProduct->user->img" />
+                        <x-product-image :filename="$badProduct->img" />
                         <p>商品名:{{ $badProduct->name }}</p>
                         <p> 出品者:{{ $badProduct->user->name }}</p>
                     </div>

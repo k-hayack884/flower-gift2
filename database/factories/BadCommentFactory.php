@@ -15,7 +15,7 @@ class BadCommentFactory extends Factory
     {
         return [
             'user_id'=>$this->faker->numberBetween(1, 20),
-            'comment_id'=>$this->faker->numberBetween(1, 100),
+            'comment_id'=>$this->faker->numberBetween(1, 99),
             'reason'=>$this->faker->realText($maxNbChars = 100),
         ];
     }

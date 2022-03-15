@@ -82,7 +82,9 @@ class BadController extends Controller
 
     public function badProductIndex()
     {
-        $products = BadProduct::with('product.user')->paginate(10);
+        $products = BadProduct::with('user')->paginate(10);
+
+        
         return view('admin.bads.product-index', compact('products'));
     }
 

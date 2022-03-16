@@ -96,7 +96,6 @@ class BadController extends Controller
 
     public function badProductDelete(Request $request, $id)
     {
-        dd('nande');
         try {
             DB::transaction(function () use ($request, $id) {
                 BadProduct::select('id')

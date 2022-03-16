@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin;
+use App\Models\Product;
+
 
 class ProcessedProduct extends Model 
 {
@@ -18,5 +20,9 @@ class ProcessedProduct extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

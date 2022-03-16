@@ -30,6 +30,7 @@ class BadController extends Controller
 
     public function badCommentDelete(Request $request, $id)
     {
+        
         try {
             DB::transaction(function () use ($id, $request) {
                 BadComment::select('id')
@@ -104,7 +105,7 @@ class BadController extends Controller
                 $product = Product::findOrFail($id);
                 $product->status = 0;
                 $product->save();
-
+dd($product);
                 ProcessedProduct::create([
                     'admin_id' => Auth::id(),
                     'result' => false,
@@ -114,6 +115,7 @@ class BadController extends Controller
             }, 2); //試行する回数
         } catch (Throwable $e) {
             Log::error($e);
+            dd($e);
             throw $e;
         }
         return redirect()->route('admin.bads.product-index')

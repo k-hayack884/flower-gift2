@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Comment;
 use App\Models\BadProduct;
+use App\Models\ProcessedProduct;
 use App\Models\SecondaryCategory;
 
 class Product extends Model

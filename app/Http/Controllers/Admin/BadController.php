@@ -30,15 +30,17 @@ class BadController extends Controller
 
     public function badCommentDelete(Request $request, $id)
     {
-        
+
         try {
             DB::transaction(function () use ($id, $request) {
+                $badcomments = BadComment::findOrFail($id);
+                $comments = Comment::findOrFail($badcomments->comment_id);
+                $comments->status = 0;
+                $comments->save();
                 BadComment::select('id')
                     ->where('id', $id)->delete();
 
-                $comments = Comment::findOrFail($id);
-                $comments->status = 0;
-                $comments->save();
+                
                 ProcessedComment::create([
                     'admin_id' => Auth::id(),
                     'result' => false,
@@ -85,7 +87,7 @@ class BadController extends Controller
     {
         $products = BadProduct::with('user')->paginate(10);
 
-        
+
         return view('admin.bads.product-index', compact('products'));
     }
 
@@ -99,13 +101,13 @@ class BadController extends Controller
     {
         try {
             DB::transaction(function () use ($request, $id) {
+                $badproduct = BadProduct::findOrFail($id);
+                $product = Product::findOrFail($badproduct->product_id);
+                $product->status = 0;
+                $product->save();
                 BadProduct::select('id')
                     ->where('id', $id)->delete();
 
-                $product = Product::findOrFail($id);
-                $product->status = 0;
-                $product->save();
-dd($product);
                 ProcessedProduct::create([
                     'admin_id' => Auth::id(),
                     'result' => false,
@@ -115,7 +117,6 @@ dd($product);
             }, 2); //試行する回数
         } catch (Throwable $e) {
             Log::error($e);
-            dd($e);
             throw $e;
         }
         return redirect()->route('admin.bads.product-index')

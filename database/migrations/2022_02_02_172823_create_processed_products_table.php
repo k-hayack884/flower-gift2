@@ -17,9 +17,9 @@ class CreateProcessedproductsTable extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained('admins');
             $table->foreignId('product_id')
+            ->constrained()
             ->onUpdate('cascade')
-            ->onDelete('cascade')
-            ->constrained('products');
+            ->onDelete('cascade');
             $table->boolean('result');
             $table->timestamps();
         });

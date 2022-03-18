@@ -16,7 +16,10 @@ class CreateProcessedproductsTable extends Migration
         Schema::create('processed_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained('admins');
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')
+            ->onUpdate('cascade')
+            ->onDelete('cascade')
+            ->constrained('products');
             $table->boolean('result');
             $table->timestamps();
         });

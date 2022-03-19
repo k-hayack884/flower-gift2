@@ -30,9 +30,7 @@ class ProcessedCommentsTableDropForeign extends Migration
     public function down()
     {
         Schema::table('processed_comments', function (Blueprint $table) {
-            $table->foreign('comment_id')->references('id')->on('comments')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+            $table->foreign('comment_id')->references('id')->on('comments');
             // Schema::dropForeign('processed_products_product_id_foreign');
         });
         // Schema::table('processed_products', function (Blueprint $table) {

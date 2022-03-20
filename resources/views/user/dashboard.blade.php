@@ -49,22 +49,27 @@
     </div>
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <div class="container px-5 py-12 mx-auto">
-            <div class="flex flex-wrap m-4">
-                @foreach ($productInfo as $product)
-                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                        <a href="{{ route('user.trades.show', ['trade' => $product->id]) }}"
-                            class="block relative rounded overflow-hidden">
-                            <x-product-image :filename="$product->img" />
-                        </a>
-                        <div class="mt-4">
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-                                {{ $product->category->name }}</h3>
-                            <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
+            @if (!isset($productInfo[0]))
+                <p class="text-center mt-12">商品が見つかりませんでした</p>
+            @else
+                <div class="flex flex-wrap m-4">
+                    @foreach ($productInfo as $product)
+                        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                            <a href="{{ route('user.trades.show', ['trade' => $product->id]) }}"
+                                class="block relative rounded overflow-hidden">
+                                <x-product-image :filename="$product->img" />
+                            </a>
+                            <div class="mt-4">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+                                    {{ $product->category->name }}</h3>
+                                <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+            @endif
+
         </div>
+    </div>
     </div>
     {{ $productInfo->appends(request()->query())->links() }}
     <script>

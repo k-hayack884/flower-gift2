@@ -23,6 +23,7 @@
                         <p>{{ $productInfo->name }}</p>
                     </h1>
                     <span id="api">
+                        <load-component show="true"></load-component>
                         @if (empty($favorite))
                             <favorite-component :canFavorite="true" :productId="{{ $productInfo->id }}" />
                             </favorite-component>

@@ -760,6 +760,9 @@ select {
 .mt-10 {
   margin-top: 2.5rem;
 }
+.ml-8 {
+  margin-left: 2rem;
+}
 .-mb-10 {
   margin-bottom: -2.5rem;
 }
@@ -774,9 +777,6 @@ select {
 }
 .mt-20 {
   margin-top: 5rem;
-}
-.ml-8 {
-  margin-left: 2rem;
 }
 .block {
   display: block;

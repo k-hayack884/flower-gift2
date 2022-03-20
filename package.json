@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "vue-route": "^1.5.1",
-        "vue-router": "^4.0.12"
+        "vue-router": "^4.0.12",
+        "vue-simple-spinner": "^1.2.8"
     }
 }

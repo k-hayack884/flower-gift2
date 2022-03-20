@@ -15,6 +15,7 @@
           d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
         />
       </svg>
+      
     </button>
   </div>
   <div v-else>
@@ -34,9 +35,16 @@
         />
       </svg>
     </button>
-  </div>
+     </div>
+  <p v-html="text" v-show="load" id="load"></p>
 </template>
-
+<style>
+#load img {
+	position: fixed;
+	top: 45%;
+	left: 45%;
+}
+</style>
 <script>
 export default {
   el: "#favo",
@@ -44,6 +52,8 @@ export default {
     return {
       favo: this.canfavorite, //初期値
       error: "",
+      text:'<img src="/images/loading.gif">',
+      load:false
     };
   },
   props: ["productid", "canfavorite"],
@@ -54,27 +64,30 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
+          (this.load=true)
           axios
             .post(`/api/favorites/add`, {
               productId: this.productid,
               withCredentials: true,
             })
-            .then((response) => (this.favo = false))
+            .then((response) => (this.favo = false,this.load=false))
             .catch((response) => console.error(response.message));
         });
     },
     deleteFavo() {
       axios
         .get("/sanctum/csrf-cookie", {
+         
           withCredentials: true,
         })
         .then((response) => {
+           (this.load=true)
           axios
             .post(`/api/favorites/delete`, {
               productId: this.productid,
               withCredentials: true,
             })
-            .then((response) => (this.favo = true))
+            .then((response) => (this.favo = true,this.load=false))
             .catch((response) => console.error(response.message));
         });
     },

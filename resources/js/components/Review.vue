@@ -149,7 +149,16 @@
       {{ badCount }}
     </div>
   </div>
+  <p v-html="text" v-show="load" id="load"></p>
 </template>
+<style>
+#load img {
+	position: fixed;
+	top: 45%;
+	left: 45%;
+}
+</style>
+
 
 <script>
 export default {
@@ -160,6 +169,8 @@ export default {
       normalCount: this.normal,
       badCount: this.bad,
       error: "",
+      text:'<img src="/images/loading.gif">',
+      load:false
     };
   },
   props: ["good", "normal", "bad", "userid"], //直接変更してはいけない　先に定義名を変えてデータに渡す
@@ -170,6 +181,7 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
+          (this.load=true)
           axios
             .post(`/api/reviews/good`, {
               userid: this.userid,
@@ -179,9 +191,10 @@ export default {
               this.goodCount = response.data.good;
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
+              this.load=false;
             })
             .catch(
-              (response) => (this.error = "そのユーザーは既に評価しています")
+              (response) => (this.error = "そのユーザーは既に評価しています",this.load=false)
             );
         });
     },
@@ -191,6 +204,7 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
+          (this.load=true)
           axios
             .post(`/api/reviews/normal`, {
               userid: this.userid,
@@ -200,9 +214,10 @@ export default {
               this.goodCount = response.data.good;
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
+              this.load=false;
             })
             .catch(
-              (response) => (this.error = "そのユーザーは既に評価しています")
+              (response) => (this.error = "そのユーザーは既に評価しています",this.load=false)
             );
         });
     },
@@ -212,6 +227,7 @@ export default {
           withCredentials: true,
         })
         .then((response) => {
+          (this.load=true)
           axios
             .post(`/api/reviews/bad`, {
               userid: this.userid,
@@ -221,9 +237,11 @@ export default {
               this.goodCount = response.data.good;
               this.normalCount = response.data.normal;
               this.badCount = response.data.bad;
+              this.load=true;
             })
             .catch(
-              (response) => (this.error = "そのユーザーは既に評価しています")
+              (response) => (this.error = "そのユーザーは既に評価しています",
+              this.load=false)
             );
         });
     },

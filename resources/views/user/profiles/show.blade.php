@@ -77,7 +77,7 @@
         'use strict';
 
         function deletePost(e) {
-            if (confirm('本当に退会してもよろしいですか？')) {
+            if (confirm('本当に削除してもよろしいですか？（自動的にログアウトします）')) {
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }

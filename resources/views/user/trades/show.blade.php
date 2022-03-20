@@ -8,7 +8,7 @@
     <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div class="lg:max-w-lg lg:w-full lg:w-1/2 w-5/6 mb-10 md:mb-0">
-                <x-product-image :filename="$productInfo->img" />
+                <x-product-image :filename="$productInfo->img"  class="object-cover" />
             </div>
             <div class="lg:flex-grow md:w-1/2 lg:pl-12 md:pl-16 flex flex-col md:items-start md:text-left items-center">
                 <div class="lg:flex-grow flex  md:items-start md:text-left">
@@ -23,7 +23,6 @@
                         <p>{{ $productInfo->name }}</p>
                     </h1>
                     <span id="api">
-                        <load-component show="true"></load-component>
                         @if (empty($favorite))
                             <favorite-component :canFavorite="true" :productId="{{ $productInfo->id }}" />
                             </favorite-component>

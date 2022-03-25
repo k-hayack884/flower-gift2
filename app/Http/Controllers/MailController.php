@@ -33,7 +33,7 @@ class MailController extends Controller
 
         $product = Product::with('user')->findOrFail($request->product_id);
 
-        $email = new Mail();
+        $email = new SendGrid\Mail\Mail();
         $email->setFrom('flowergift884@gmail.com', 'flower-gift運営');
         $email->setSubject('取引ありがとうございます');
         $email->addTo($user->email);
@@ -47,7 +47,7 @@ class MailController extends Controller
         $sendgrid = new SendGrid(env('SENDGRID_API_KEY'));
 
 
-        $ownerEmail = new Mail();
+        $ownerEmail = new SendGrid\Mail\Mail();
         $ownerEmail->setFrom('flowergift884@gmail.com', 'flower-gift運営');
         $ownerEmail->setSubject('取引ありがとうございます');
         $ownerEmail->addTo($product->user->email);

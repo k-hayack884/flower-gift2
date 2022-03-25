@@ -60,10 +60,10 @@ https://flower-gift.herokuapp.com/
 - TailwindCSS はユーティリティファーストのフレームワークだったので CSS をスクラッチで書くくらいの表現力を少ない記述量かつ自由に書けるため。ほかのフレームワークも検討したが Bootstrap やVuetify などはコンポーネントファーストだっため除外した。  
 ## 利用方法
 git clone https://github.com/k-hayack884/flower-gift2.git  
-composer install
-composer update
-npm install
-npm run dev
+composer install  
+composer update  
+npm install  
+npm run dev  
 
 seederおよびfactoryがありますので、ダミーデータが必要な場合はコメントアウトを解除して、  
 php artisan migrate::refresh  --seed  

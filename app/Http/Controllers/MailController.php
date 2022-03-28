@@ -34,7 +34,7 @@ class MailController extends Controller
         $product = Product::with('user')->findOrFail($request->product_id);
 
         $email = new SendGrid\Mail\Mail();
-        $email->setFrom('flowergift884@gmail.com', 'flower-gift運営');
+        $email->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         $email->setSubject('取引ありがとうございます');
         $email->addTo($user->email);
         $email->addContent("text/html",  strval(
@@ -48,7 +48,7 @@ class MailController extends Controller
 
 
         $ownerEmail = new SendGrid\Mail\Mail();
-        $ownerEmail->setFrom('flowergift884@gmail.com', 'flower-gift運営');
+        $ownerEmail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         $ownerEmail->setSubject('取引ありがとうございます');
         $ownerEmail->addTo($product->user->email);
         $ownerEmail->addContent("text/html",  strval(

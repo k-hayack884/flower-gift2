@@ -31,7 +31,7 @@
         <section class="text-gray-600 body-font">
           <div
             class="relative mx-auto px-5 py-12"
-            style="background-image: url('images/back_img.jpg')"
+            style="background-image: url('/images/back_img.jpg')"
           ></div>
           <div
             class="
@@ -59,7 +59,7 @@
             </h1>
             <div class="flex justify-center flex-col md:flex-row">
               <a
-                href="login"
+                href="/login"
                 class="
                   text-center text-white
                   bg-indigo-500
@@ -76,7 +76,7 @@
                 >ログイン</a
               >
               <a
-                href="register"
+                href="/register"
                 class="
                   text-center text-gray-700
                   bg-gray-300

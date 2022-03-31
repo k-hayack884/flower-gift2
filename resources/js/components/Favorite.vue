@@ -60,18 +60,18 @@ export default {
   methods: {
     postFavo() {
       axios
-        .get("/sanctum/csrf-cookie", {
+        .get("/sanctum/csrf-cookie", { //最初から使ってもおｋ
           withCredentials: true,
         })
         .then((response) => {
-          (this.load=true)
+          (this.load=true) //()なくてもおｋ
           axios
             .post(`/api/favorites/add`, {
               productId: this.productid,
               withCredentials: true,
             })
-            .then((response) => (this.favo = false,this.load=false))
-            .catch((response) => console.error(response.message));
+            .then((response) => (this.favo = false,this.load=false)) //処理が2つ以上の場合()を{}にする　,をセミコロン
+            .catch((response) => console.error(response.message)); //finallyというのがある　成功失敗にもかかわらず処理する
         });
     },
     deleteFavo() {
@@ -88,7 +88,7 @@ export default {
               withCredentials: true,
             })
             .then((response) => (this.favo = true,this.load=false))
-            .catch((response) => console.error(response.message));
+            .catch((response) => console.error(response.message)); //アシンクアウエイトを使えば解決？
         });
     },
   },

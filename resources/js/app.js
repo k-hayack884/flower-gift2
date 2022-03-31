@@ -14,6 +14,11 @@ createApp({
 }).mount('#app')
 createApp({
     components:{
+        ModalComponent,
+    }
+}).mount('#modal')
+createApp({
+    components:{
         FavoriteComponent,
         // LoadComponent
         

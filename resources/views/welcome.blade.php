@@ -77,10 +77,10 @@
                         <div class="flex flex-wrap m-4">
                             @foreach ($productInfo as $product)
                                 <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                                    <span class="block relative  rounded overflow-hidden">
+                                        <a href="{{ route('user.show', ['trade' => $product->id]) }}"
+                                        class="block relative rounded overflow-hidden">
                                         <x-product-image :filename="$product->img" />
-                                        <modal-component v-on:click="openModal"></modal-component>
-                                    </span>
+                                    </a>
                                     <div class="mt-4">
                                         <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
                                             {{ $product->category->name }}</h3>

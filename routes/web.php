@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', [ViewController::class, 'index'])->name('view');
-
+Route::get('/', [ViewController::class, 'index'])->middleware('guest')->name('view');
+Route::get('/show/{trade}', [ViewController::class, 'show'])->middleware('guest')->name('show');
 Route::prefix('profiles')->middleware(['auth:users'])->group(function () {
     // Route::get('index', [ProfileController::class], 'index')->name('profiles.index');
     Route::get('show/{profile}', [ProfileController::class, 'show'])->name('profiles.show');
